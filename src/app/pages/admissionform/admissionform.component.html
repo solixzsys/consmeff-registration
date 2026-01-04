@@ -1,0 +1,168 @@
+<simple-notifications (destroy)="destroyed($event)"></simple-notifications>
+<div class="layout">
+    <!-- Top Bar -->
+    <app-topbar></app-topbar>
+    <!-- Sidebar -->
+    <app-sidebar></app-sidebar>
+
+
+
+
+    <!-- Main Content -->
+    <div class="content py-3 px-5 container"
+        [ngStyle]="{width:'calc(100vw - (15rem + 3rem))', 'margin-left':sidebarVisible?'14rem':'8.5rem'}">
+
+        <div class="title my-3">Admission Form</div>
+        <div class="flex justify-center my-5">
+            <p-dialog header="Registration Complete" [(visible)]="visible" [style]="{width: '500px'}" [modal]="true"
+                [dismissableMask]="true" [closeOnEscape]="true" [resizable]="false" styleClass="success-dialog">
+                <ng-template pTemplate="header">
+                    <div class="flex align-items-center">
+                        <span class="p-dialog-title">Registration Complete</span>
+                    </div>
+                </ng-template>
+
+                <div class="dialog-content">
+                    <i class="pi pi-check-circle success-icon"></i>
+                    <h2 class="congrats-title">Congratulations!</h2>
+                    <p class="congrats-message">
+                        You have successfully completed your registration process.
+                        We're excited to have you join our academic community!
+                    </p>
+
+                    <div class="next-steps">
+                        <div class="next-steps-title">What's Next?</div>
+                        <p>You will receive an email shortly with details about the next steps in your academic journey.
+                        </p>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <button pButton type="button" label="Got It!" (click)="done()" class="success-button"></button>
+                    </div>
+                </div>
+            </p-dialog>
+            <p-stepper [value]="activeStepIndex" class="basis-[50rem]">
+                <p-step-list>
+                    <p-step [value]="1">Personal Details</p-step>
+                    <p-step [value]="2">Next of Kin Details</p-step>
+                    <p-step [value]="3">Academic History</p-step>
+                    <p-step [value]="4">Document Upload</p-step>
+                    <p-step [value]="5">Application Summary</p-step>
+                </p-step-list>
+                <p-step-panels>
+                    <p-step-panel [value]="1">
+                        <ng-template #content let-activateCallback="activateCallback">
+                            <div class="flex flex-col h-48">
+                                <div
+                                    class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
+                                    <app-personaldetails></app-personaldetails>
+                                </div>
+                                <div class="d-flex pt-6 justify-content-end">
+                                    <!-- <p-button  [ngStyle]="{'background-color':formStepStatus.personalinfoValid?'#000080':'#CBD5E1'}" label="Save and Continue" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(2)" /> -->
+                                    <button style="position: relative;" [disabled]="!formStepStatus.personalinfoValid"
+                                        [ngStyle]="{'background-color':formStepStatus.personalinfoValid?'#000080':'#CBD5E1'}"
+                                        class="btn btn-primary"
+                                        (click)="saveAndMoveToStep(2, savePersonalDetails.bind(this))">Save and Continue
+
+                                        <ngx-spinner name="personal" [fullScreen]="false" type="line-scale"
+                                            size="small">
+                                            <p class="loading"></p>
+                                        </ngx-spinner>
+                                    </button>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-step-panel>
+
+                    <p-step-panel [value]="2">
+                        <ng-template #content let-activateCallback="activateCallback">
+                            <div class="flex flex-col h-48">
+                                <div
+                                    class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
+                                    <app-nextofkin></app-nextofkin>
+                                </div>
+                            </div>
+                            <div class="d-flex pt-6 justify-content-end">
+
+                                <button class="btn btn-primary back" (click)="activateCallback(1)">Back</button>
+                                <button style="position: relative;" [disabled]="!formStepStatus.nextofkinValid"
+                                    [ngStyle]="{'background-color':formStepStatus.nextofkinValid?'#000080':'#CBD5E1'}"
+                                    class="btn btn-primary mx-3"
+                                    (click)="saveAndMoveToStep(3, saveNextOfKinDetails.bind(this))">Save and Continue
+                                    <ngx-spinner name="nextofkin" [fullScreen]="false" type="line-scale" size="small">
+                                        <p class="loading"></p>
+                                    </ngx-spinner>
+
+                                </button>
+                            </div>
+                        </ng-template>
+                    </p-step-panel>
+
+                    <p-step-panel [value]="3">
+                        <ng-template #content let-activateCallback="activateCallback">
+                            <div class="flex flex-col h-48">
+                                <div
+                                    class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
+                                    <app-academichistory></app-academichistory>
+                                </div>
+                            </div>
+                            <div class="d-flex pt-6 justify-content-end">
+
+                                <button class="btn btn-primary back" (click)="activateCallback(2)">Back</button>
+                                <button style="position: relative;" [disabled]="!formStepStatus.academicValid"
+                                    [ngStyle]="{'background-color':formStepStatus.academicValid?'#000080':'#CBD5E1'}"
+                                    class="btn btn-primary mx-3"
+                                    (click)="saveAndMoveToStep(4,saveAcademicHistory.bind(this))">Save and Continue
+                                    <ngx-spinner name="academic" [fullScreen]="false" type="line-scale" size="small">
+                                        <p class="loading"></p>
+                                    </ngx-spinner>
+
+                                </button>
+                            </div>
+                        </ng-template>
+                    </p-step-panel>
+                    <p-step-panel [value]="4">
+                        <ng-template #content let-activateCallback="activateCallback">
+                            <div class="flex flex-col h-48">
+                                <div
+                                    class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
+                                    <app-uploadform></app-uploadform>
+                                </div>
+                            </div>
+                            <div class="d-flex pt-6 justify-content-end">
+
+                                <button class="btn btn-primary back" (click)="activateCallback(3)">Back</button>
+                                <button [disabled]="!formStepStatus.docuplodValid"
+                                    [ngStyle]="{'background-color':formStepStatus.docuplodValid?'#000080':'#CBD5E1'}"
+                                    class="btn btn-primary mx-3"
+                                    (click)="saveAndMoveToStep(5,saveDocumentUpload.bind(this))">Save and
+                                    Continue</button>
+                            </div>
+                        </ng-template>
+                    </p-step-panel>
+                    <p-step-panel [value]="5">
+                        <ng-template #content let-activateCallback="activateCallback">
+                            <div class="flex flex-col h-48">
+                                <div
+                                    class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">
+                                    <app-applicationsummary></app-applicationsummary>
+                                </div>
+                            </div>
+                            <div class="d-flex pt-6 justify-content-end">
+                                <!-- <p-button label="Back" icon="pi pi-arrow-left" iconPos="right" (onClick)="activateCallback(4)" /> -->
+                                <button class="btn btn-primary back" (click)="activateCallback(4)">Back</button>
+                                <button [ngStyle]="{'background-color':'#000080'}" class="btn btn-primary mx-3"
+                                    (click)="confirm()">Submit and Confirm</button>
+                            </div>
+                        </ng-template>
+                    </p-step-panel>
+                </p-step-panels>
+            </p-stepper>
+        </div>
+
+    </div>
+
+
+
+
+</div>
