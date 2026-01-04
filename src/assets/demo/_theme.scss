@@ -1,0 +1,382 @@
+// _theme.scss - Complete Theme Color System
+// Import this file in your main styles.scss: @import './theme';
+
+// ============================================================================
+// PRIMARY COLORS (Blue)
+// ============================================================================
+$primary-50: #eff6ff;
+$primary-100: #dbeafe;
+$primary-200: #bfdbfe;
+$primary-300: #93c5fd;
+$primary-400: #60a5fa;
+$primary-500: #3b82f6;
+$primary-600: #2563eb;
+$primary-700: #1d4ed8;
+$primary-800: #1e40af;
+$primary-900: #1e3a8a;
+$primary-950: #172554;
+
+// Primary aliases
+$primary: $primary-600;
+$primary-light: $primary-400;
+$primary-dark: $primary-700;
+$primary-darker: $primary-800;
+
+// ============================================================================
+// SECONDARY/ACCENT COLORS (Pink/Magenta)
+// ============================================================================
+$secondary-50: #fdf4f9;
+$secondary-100: #fce7f3;
+$secondary-200: #f9d0e8;
+$secondary-300: #f5aad4;
+$secondary-400: #ee7cb8;
+$secondary-500: #e1509a;
+$secondary-600: #c93480;
+$secondary-700: #a54786;  // Your custom color
+$secondary-800: #8b3d6e;
+$secondary-900: #73365b;
+$secondary-950: #4a1c37;
+
+// Secondary aliases
+$secondary: $secondary-700;
+$secondary-light: $secondary-500;
+$secondary-dark: $secondary-800;
+$secondary-darker: $secondary-900;
+
+// ============================================================================
+// SEMANTIC COLORS
+// ============================================================================
+
+// Success (Green)
+$success-50: #f0fdf4;
+$success-100: #dcfce7;
+$success-200: #bbf7d0;
+$success-300: #86efac;
+$success-400: #4ade80;
+$success-500: #22c55e;
+$success-600: #16a34a;
+$success-700: #15803d;
+$success-800: #166534;
+$success-900: #14532d;
+
+$success: $success-600;
+$success-light: $success-400;
+$success-dark: $success-700;
+
+// Warning (Yellow/Amber)
+$warning-50: #fffbeb;
+$warning-100: #fef3c7;
+$warning-200: #fde68a;
+$warning-300: #fcd34d;
+$warning-400: #fbbf24;
+$warning-500: #f59e0b;
+$warning-600: #d97706;
+$warning-700: #b45309;
+$warning-800: #92400e;
+$warning-900: #78350f;
+
+$warning: $warning-500;
+$warning-light: $warning-400;
+$warning-dark: $warning-600;
+
+// Danger/Error (Red)
+$danger-50: #fef2f2;
+$danger-100: #fee2e2;
+$danger-200: #fecaca;
+$danger-300: #fca5a5;
+$danger-400: #f87171;
+$danger-500: #ef4444;
+$danger-600: #dc2626;
+$danger-700: #b91c1c;
+$danger-800: #991b1b;
+$danger-900: #7f1d1d;
+
+$danger: $danger-600;
+$danger-light: $danger-400;
+$danger-dark: $danger-700;
+
+// Info (Cyan)
+$info-50: #ecfeff;
+$info-100: #cffafe;
+$info-200: #a5f3fc;
+$info-300: #67e8f9;
+$info-400: #22d3ee;
+$info-500: #06b6d4;
+$info-600: #0891b2;
+$info-700: #0e7490;
+$info-800: #155e75;
+$info-900: #164e63;
+
+$info: $info-600;
+$info-light: $info-400;
+$info-dark: $info-700;
+
+// ============================================================================
+// NEUTRAL/GRAY COLORS
+// ============================================================================
+$gray-50: #f9fafb;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-300: #d1d5db;
+$gray-400: #9ca3af;
+$gray-500: #6b7280;
+$gray-600: #4b5563;
+$gray-700: #374151;
+$gray-800: #1f2937;
+$gray-900: #111827;
+$gray-950: #030712;
+
+// Gray aliases
+$text-primary: $gray-900;
+$text-secondary: $gray-600;
+$text-tertiary: $gray-500;
+$text-disabled: $gray-400;
+
+$border-color: $gray-200;
+$border-color-dark: $gray-300;
+
+// ============================================================================
+// DARK MODE COLORS
+// ============================================================================
+$dark-bg-primary: $gray-900;
+$dark-bg-secondary: $gray-800;
+$dark-bg-tertiary: $gray-700;
+
+$dark-text-primary: #ffffff;
+$dark-text-secondary: $gray-300;
+$dark-text-tertiary: $gray-400;
+$dark-text-disabled: $gray-500;
+
+$dark-border-color: $gray-700;
+$dark-border-color-light: $gray-600;
+
+// ============================================================================
+// BACKGROUND COLORS
+// ============================================================================
+$bg-primary: #ffffff;
+$bg-secondary: $gray-50;
+$bg-tertiary: $gray-100;
+
+// ============================================================================
+// GRADIENTS
+// ============================================================================
+$gradient-primary: linear-gradient(to right, $primary-600, $primary-500);
+$gradient-primary-hover: linear-gradient(to right, $primary-700, $primary-600);
+$gradient-secondary: linear-gradient(to right, $secondary-700, $secondary-600);
+$gradient-bg-light: linear-gradient(to bottom right, $primary-50, $primary-100);
+$gradient-bg-dark: linear-gradient(to bottom right, $gray-900, $gray-950);
+
+// ============================================================================
+// SHADOW COLORS
+// ============================================================================
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+$shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+$shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+
+// Primary color shadows
+$shadow-primary: 0 0 0 3px rgba($primary-600, 0.1);
+$shadow-primary-dark: 0 0 0 3px rgba($primary-400, 0.2);
+$shadow-secondary: 0 0 0 3px rgba($secondary-700, 0.1);
+
+// ============================================================================
+// BORDER RADIUS
+// ============================================================================
+$radius-sm: 0.25rem;
+$radius: 0.5rem;
+$radius-md: 0.75rem;
+$radius-lg: 1rem;
+$radius-xl: 1.5rem;
+$radius-2xl: 2rem;
+$radius-full: 9999px;
+
+// ============================================================================
+// SPACING SCALE
+// ============================================================================
+$spacing-0: 0;
+$spacing-1: 0.25rem;
+$spacing-2: 0.5rem;
+$spacing-3: 0.75rem;
+$spacing-4: 1rem;
+$spacing-5: 1.25rem;
+$spacing-6: 1.5rem;
+$spacing-8: 2rem;
+$spacing-10: 2.5rem;
+$spacing-12: 3rem;
+$spacing-16: 4rem;
+$spacing-20: 5rem;
+$spacing-24: 6rem;
+
+// ============================================================================
+// TYPOGRAPHY
+// ============================================================================
+$font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$font-family-mono: 'Monaco', 'Courier New', monospace;
+
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+$font-size-2xl: 1.5rem;
+$font-size-3xl: 1.875rem;
+$font-size-4xl: 2.25rem;
+
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$line-height-tight: 1.25;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.75;
+
+// ============================================================================
+// TRANSITIONS
+// ============================================================================
+$transition-fast: 150ms ease;
+$transition-base: 200ms ease;
+$transition-slow: 300ms ease;
+$transition-all: all 200ms ease;
+
+// ============================================================================
+// Z-INDEX SCALE
+// ============================================================================
+$z-dropdown: 1000;
+$z-sticky: 1020;
+$z-fixed: 1030;
+$z-modal-backdrop: 1040;
+$z-modal: 1050;
+$z-popover: 1060;
+$z-tooltip: 1070;
+
+// ============================================================================
+// BREAKPOINTS
+// ============================================================================
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;
+
+// ============================================================================
+// UTILITY MIXINS
+// ============================================================================
+
+// Focus ring
+@mixin focus-ring($color: $primary) {
+  outline: 2px solid $color;
+  outline-offset: 2px;
+}
+
+// Button reset
+@mixin button-reset {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+// Truncate text
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Dark mode mixin
+@mixin dark-mode {
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+  
+  .dark & {
+    @content;
+  }
+}
+
+// Responsive mixin
+@mixin responsive($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+// ============================================================================
+// COMPONENT SPECIFIC VARIABLES
+// ============================================================================
+
+// Buttons
+$btn-padding-y: 0.75rem;
+$btn-padding-x: 1rem;
+$btn-font-weight: $font-weight-semibold;
+$btn-border-radius: $radius-md;
+
+// Inputs
+$input-padding-y: 0.75rem;
+$input-padding-x: 1rem;
+$input-bg: $gray-50;
+$input-border: $gray-200;
+$input-border-focus: $primary;
+$input-border-radius: $radius-md;
+$input-border-width: 2px;
+
+$dark-input-bg: $gray-800;
+$dark-input-border: $gray-700;
+
+// Cards
+$card-bg: #ffffff;
+$card-border-radius: $radius-xl;
+$card-padding: 1.5rem;
+$card-shadow: $shadow-lg;
+
+$dark-card-bg: $gray-900;
+
+// ============================================================================
+// EXPORT AS CSS CUSTOM PROPERTIES (Optional)
+// ============================================================================
+:root {
+  // Primary
+  --color-primary: #{$primary};
+  --color-primary-light: #{$primary-light};
+  --color-primary-dark: #{$primary-dark};
+  
+  // Secondary
+  --color-secondary: #{$secondary};
+  --color-secondary-light: #{$secondary-light};
+  --color-secondary-dark: #{$secondary-dark};
+  
+  // Semantic
+  --color-success: #{$success};
+  --color-warning: #{$warning};
+  --color-danger: #{$danger};
+  --color-info: #{$info};
+  
+  // Text
+  --text-primary: #{$text-primary};
+  --text-secondary: #{$text-secondary};
+  --text-tertiary: #{$text-tertiary};
+  
+  // Background
+  --bg-primary: #{$bg-primary};
+  --bg-secondary: #{$bg-secondary};
+  
+  // Border
+  --border-color: #{$border-color};
+  --border-radius: #{$radius};
+  
+  // Spacing
+  --spacing-base: #{$spacing-4};
+}
+
+.dark {
+  --text-primary: #{$dark-text-primary};
+  --text-secondary: #{$dark-text-secondary};
+  --bg-primary: #{$dark-bg-primary};
+  --bg-secondary: #{$dark-bg-secondary};
+  --border-color: #{$dark-border-color};
+}

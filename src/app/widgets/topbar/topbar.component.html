@@ -1,0 +1,102 @@
+<div class="topbar">
+    <div class="topbar-left">
+      <button 
+        pButton 
+        icon="pi pi-bars" 
+        (click)="toggleSidebar()" 
+        class="menu-button"
+        [text]="true"
+        [rounded]="true"
+      ></button>
+    </div>
+  
+    <div class="topbar-right">
+      <!-- Dark Mode Toggle -->
+      <button 
+        pButton 
+        [icon]="isDarkMode ? 'pi pi-sun' : 'pi pi-moon'" 
+        (click)="toggleDarkMode()" 
+        class="icon-button"
+        [text]="true"
+        [rounded]="true"
+        pTooltip="Toggle theme"
+        tooltipPosition="bottom"
+      ></button>
+  
+      <!-- Notifications -->
+      <button 
+      pButton 
+      icon="pi pi-bell" 
+      (click)="notificationsMenu.toggle($event)" 
+      class="icon-button p-button-badge"
+      [text]="true"
+      [rounded]="true"
+      pTooltip="Notifications"
+      tooltipPosition="bottom"
+    >
+      <p-badge *ngIf="notificationCount > 0" [value]="notificationCount.toString()" severity="danger"></p-badge>
+    </button>
+  
+      <!-- Messages -->
+      <button 
+        pButton 
+        icon="pi pi-envelope" 
+        (click)="messagesMenu.toggle($event)" 
+        class="icon-button"
+        [text]="true"
+        [rounded]="true"
+       
+        pTooltip="Messages"
+        tooltipPosition="bottom"
+      >
+      <p-badge *ngIf="notificationCount > 0" [value]="notificationCount.toString()" severity="danger"></p-badge>
+    </button>
+  
+      <!-- Profile Menu -->
+      <button 
+        pButton 
+        (click)="profileMenu.toggle($event)" 
+        class="profile-button"
+        [text]="true"
+      >
+        <p-avatar 
+          [label]="userInitials" 
+          styleClass="profile-avatar"
+          shape="circle"
+        ></p-avatar>
+        <span class="username">{{ username }}</span>
+        <i class="pi pi-chevron-down"></i>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Notifications Menu -->
+  <p-menu #notificationsMenu [model]="notifications" [popup]="true" styleClass="notification-menu">
+    <ng-template pTemplate="start">
+      <div class="menu-header">
+        <h4>Notifications</h4>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="end">
+      <div class="menu-footer">
+        <a routerLink="/pages/notifications">View All</a>
+      </div>
+    </ng-template>
+  </p-menu>
+  
+  <!-- Messages Menu -->
+  <p-menu #messagesMenu [model]="messages" [popup]="true" styleClass="message-menu">
+    <ng-template pTemplate="start">
+      <div class="menu-header">
+        <h4>Messages</h4>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="end">
+      <div class="menu-footer">
+        <a routerLink="/pages/messages">View All</a>
+      </div>
+    </ng-template>
+  </p-menu>
+  
+  <!-- Profile Menu -->
+  <p-menu #profileMenu [model]="profileMenuItems" [popup]="true" styleClass="profile-menu"></p-menu>

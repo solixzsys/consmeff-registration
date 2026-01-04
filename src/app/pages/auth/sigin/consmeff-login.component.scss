@@ -1,0 +1,461 @@
+// Import the theme variables
+@import '../../../../assets/demo/theme';
+
+.login-wrapper {
+  display: block;
+  min-height: 100vh;
+  width: 100%;
+  transition: background-color $transition-slow;
+}
+
+.login-container {
+  background: $gradient-bg-light;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: $spacing-4;
+  transition: background $transition-slow;
+}
+
+.dark .login-container {
+  background: $gradient-bg-dark;
+}
+
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+  position: fixed;
+  top: $spacing-6;
+  right: $spacing-6;
+  padding: $spacing-3;
+  border-radius: $radius-full;
+  background-color: $bg-primary;
+  box-shadow: $shadow-lg;
+  transition: all $transition-slow;
+  z-index: $z-fixed;
+  border: none;
+  cursor: pointer;
+
+  @include button-reset;
+  background-color: $bg-primary;
+  padding: $spacing-3;
+  border-radius: $radius-full;
+
+  &:hover {
+    box-shadow: $shadow-xl;
+    transform: scale(1.05);
+  }
+
+  .icon {
+    width: $spacing-6;
+    height: $spacing-6;
+    color: $primary;
+  }
+}
+
+.dark .dark-mode-toggle {
+  background-color: $dark-bg-secondary;
+
+  .icon {
+    color: $primary-light;
+  }
+}
+
+/* Card Container */
+.login-card-container {
+  width: 100%;
+  max-width: 28rem;
+  position: relative;
+}
+
+.gradient-blur {
+  position: absolute;
+  inset: -0.125rem;
+  background: $gradient-primary;
+  border-radius: $radius-xl;
+  filter: blur(1rem);
+  opacity: 0.3;
+  transition: opacity 1s ease;
+}
+
+.gradient-border {
+  position: relative;
+  background: linear-gradient(to bottom, $primary-500, $primary-400, transparent);
+  padding: 2px;
+  border-radius: $radius-xl;
+}
+
+.login-card {
+  background-color: $card-bg;
+  border-radius: $radius-xl;
+  padding: $spacing-8;
+  transition: background-color $transition-slow;
+
+  @include responsive($breakpoint-sm) {
+    padding: $spacing-12;
+  }
+}
+
+.dark .login-card {
+  background-color: $dark-card-bg;
+}
+
+/* Header Section */
+.header-section {
+  text-align: center;
+  margin-bottom: $spacing-8;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: $spacing-6;
+}
+
+.logo-circle {
+ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  
+    transform: scale(1.1);
+  
+}
+
+.logo-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: white;
+}
+
+.title {
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-bold;
+  color: $text-primary;
+  margin-bottom: $spacing-2;
+  transition: color $transition-slow;
+}
+
+.dark .title {
+  color: $dark-text-primary;
+}
+
+.subtitle {
+  color: $text-secondary;
+  transition: color $transition-slow;
+}
+
+.dark .subtitle {
+  color: $dark-text-secondary;
+}
+
+/* Form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-6;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  display: block;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $text-primary;
+  margin-bottom: $spacing-2;
+  transition: color $transition-slow;
+}
+
+.dark .form-label {
+  color: $dark-text-primary;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  padding-left: $spacing-3;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.icon-small {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: $gray-400;
+}
+
+.form-input {
+  width: 100%;
+  padding: $input-padding-y $input-padding-x $input-padding-y 2.5rem;
+  background-color: $input-bg;
+  border: $input-border-width solid $input-border;
+  border-radius: $input-border-radius;
+  outline: none;
+  transition: all $transition-slow;
+  color: $text-primary;
+  font-size: $font-size-base;
+
+  &::placeholder {
+    color: $gray-400;
+  }
+
+  &:focus {
+    border-color: $input-border-focus;
+    box-shadow: $shadow-primary;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.dark .form-input {
+  background-color: $dark-input-bg;
+  border-color: $dark-input-border;
+  color: $dark-text-primary;
+
+  &:focus {
+    border-color: $primary-light;
+    box-shadow: $shadow-primary-dark;
+  }
+}
+
+.password-input {
+  padding-right: 3rem;
+}
+
+.password-toggle {
+  @include button-reset;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding-right: $spacing-3;
+  display: flex;
+  align-items: center;
+  color: $gray-400;
+  transition: color $transition-base;
+
+  &:hover:not(:disabled) {
+    color: $primary;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+/* Form Footer */
+.form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-8;
+}
+
+.remember-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox {
+  width: $spacing-4;
+  height: $spacing-4;
+  color: $primary;
+  background-color: $gray-100;
+  border: 1px solid $gray-300;
+  border-radius: $radius-sm;
+  cursor: pointer;
+
+  &:focus {
+    @include focus-ring($primary);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.dark .checkbox {
+  background-color: $gray-700;
+  border-color: $gray-600;
+}
+
+.remember-text {
+  margin-left: $spacing-2;
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  transition: color $transition-base;
+}
+
+.dark .remember-text {
+  color: $dark-text-secondary;
+}
+
+.remember-label:hover .remember-text {
+  color: $primary;
+}
+
+.dark .remember-label:hover .remember-text {
+  color: $primary-light;
+}
+
+.forgot-link {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $secondary;
+  text-decoration: none;
+  transition: color $transition-base;
+
+  &:hover {
+    color: $secondary-dark;
+  }
+}
+
+.dark .forgot-link {
+  color: $secondary-light;
+
+  &:hover {
+    color: $secondary;
+  }
+}
+
+/* Submit Button */
+.submit-button {
+  width: 100%;
+  background: $gradient-primary;
+  color: white;
+  font-weight: $btn-font-weight;
+  padding: $btn-padding-y $btn-padding-x;
+  border-radius: $btn-border-radius;
+  box-shadow: $shadow-lg;
+  border: none;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:hover:not(:disabled) {
+    background: $gradient-primary-hover;
+    box-shadow: $shadow-xl;
+    transform: scale(1.02);
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  &:focus {
+    @include focus-ring($primary);
+  }
+}
+
+.dark .submit-button:focus {
+  outline-color: $primary-light;
+}
+
+.button-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-left: $spacing-2;
+}
+
+/* Custom Spinner */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  display: flex;
+  gap: $spacing-2;
+}
+
+.spinner-circle {
+  width: 0.625rem;
+  height: 0.625rem;
+  background-color: white;
+  border-radius: $radius-full;
+  animation: bounce 1.4s infinite ease-in-out both;
+
+  &:nth-child(1) {
+    animation-delay: -0.32s;
+  }
+
+  &:nth-child(2) {
+    animation-delay: -0.16s;
+  }
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Signup Section */
+.signup-section {
+  margin-top: $spacing-6;
+  text-align: center;
+}
+
+.signup-text {
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  transition: color $transition-slow;
+}
+
+.dark .signup-text {
+  color: $dark-text-secondary;
+}
+
+.signup-link {
+  font-weight: $font-weight-medium;
+  color: $secondary;
+  text-decoration: none;
+  transition: color $transition-base;
+
+  &:hover {
+    color: $secondary-dark;
+  }
+}
+
+.dark .signup-link {
+  color: $secondary-light;
+
+  &:hover {
+    color: $secondary;
+  }
+}

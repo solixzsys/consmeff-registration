@@ -1,0 +1,174 @@
+@import '../../../assets/demo/theme';
+
+:host ::ng-deep {
+  .custom-sidebar {
+    .p-sidebar {
+      width: 280px;
+      background: $bg-primary;
+      border-right: 1px solid $border-color;
+      box-shadow: $shadow-lg;
+    }
+
+    .p-sidebar-header {
+      padding: $spacing-6;
+      border-bottom: 1px solid $border-color;
+      background: $bg-primary;
+    }
+
+    .p-sidebar-content {
+      padding: 0;
+      background: $bg-primary;
+      display: flex;
+      flex-direction: column;
+      height: calc(100% - 140px);
+    }
+
+    .p-sidebar-footer {
+      padding: $spacing-4;
+      border-top: 1px solid $border-color;
+      background: $bg-primary;
+    }
+  }
+
+  .dark .custom-sidebar {
+    .p-sidebar {
+      background: $dark-bg-primary;
+      border-right-color: $dark-border-color;
+    }
+
+    .p-sidebar-header,
+    .p-sidebar-content,
+    .p-sidebar-footer {
+      background: $dark-bg-primary;
+    }
+
+    .p-sidebar-header,
+    .p-sidebar-footer {
+      border-color: $dark-border-color;
+    }
+  }
+
+  .sidebar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sidebar-logo {
+    max-width: 180px;
+    height: auto;
+  }
+
+  .sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-1;
+    padding: $spacing-4;
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+    padding: $spacing-3 $spacing-4;
+    border-radius: $radius-md;
+    text-decoration: none;
+    color: $text-secondary;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-base;
+    transition: all $transition-base;
+    cursor: pointer;
+
+    i {
+      font-size: $font-size-xl;
+      color: $text-tertiary;
+      transition: color $transition-base;
+    }
+
+    &:hover {
+      background: $bg-secondary;
+      color: $text-primary;
+
+      i {
+        color: $primary;
+      }
+    }
+
+    &.active-menu-item {
+      background: linear-gradient(90deg, rgba($primary, 0.1) 0%, rgba($primary, 0.05) 100%);
+      color: $primary;
+      font-weight: $font-weight-semibold;
+      border-left: 3px solid $primary;
+
+      i {
+        color: $primary;
+      }
+    }
+  }
+
+  .dark .menu-item {
+    color: $dark-text-secondary;
+
+    i {
+      color: $dark-text-tertiary;
+    }
+
+    &:hover {
+      background: $dark-bg-secondary;
+      color: $dark-text-primary;
+
+      i {
+        color: $primary-light;
+      }
+    }
+
+    &.active-menu-item {
+      background: linear-gradient(90deg, rgba($primary-light, 0.15) 0%, rgba($primary-light, 0.05) 100%);
+      color: $primary-light;
+      border-left-color: $primary-light;
+
+      i {
+        color: $primary-light;
+      }
+    }
+  }
+
+  .sidebar-footer {
+    .logout-button {
+      width: 100%;
+      justify-content: flex-start;
+      gap: $spacing-3;
+      padding: $spacing-3 $spacing-4;
+      color: $danger;
+      font-weight: $font-weight-semibold;
+
+      &:hover {
+        background: rgba($danger, 0.1);
+      }
+
+      i {
+        font-size: $font-size-xl;
+      }
+    }
+  }
+
+  // Scrollbar styling
+  .sidebar-menu::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .sidebar-menu::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .sidebar-menu::-webkit-scrollbar-thumb {
+    background: $gray-300;
+    border-radius: $radius-full;
+  }
+
+  .dark .sidebar-menu::-webkit-scrollbar-thumb {
+    background: $gray-700;
+  }
+}

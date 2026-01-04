@@ -1,0 +1,161 @@
+<div class="grid grid-cols-12 gap-8">
+    <!-- Animated Welcome Panel -->
+    <div class="col-span-12 transition-all duration-1000 ease-out overflow-hidden hidden md:block"
+        [style.margin-bottom]="showPanel ? '2rem' : '0px'">
+
+        <div class="relative h-25 bg-gradient-to-r from-violet-500 to-purple-600 rounded-md panel-shadow overflow-hidden transition-all duration-1000 ease-out"
+            [style.width]="showPanel ? '100%' : '0px'" [style.height]="showPanel ? '100px' : '0px'"
+            [style.margin-left]="showPanel ? '0%' : '100%'">
+
+            <!-- Animated Background Elements -->
+            <div class="absolute inset-0 opacity-20">
+                <div class="absolute top-3 right-4 w-16 h-16 bg-white rounded-full animate-pulse"></div>
+                <div class="absolute bottom-3 right-20 w-8 h-8 bg-white rounded-full animate-bounce"
+                    style="animation-delay: 0.5s;"></div>
+                <div class="absolute top-6 right-32 w-4 h-4 bg-white rounded-full animate-ping"
+                    style="animation-delay: 1s;"></div>
+            </div>
+
+            <!-- Content Container -->
+            <div class="flex items-center justify-between h-full px-8 relative z-10">
+
+                <!-- Welcome Text -->
+                <div class="flex-1 transition-all duration-1000 ease-out transform"
+                    [style.opacity]="showWelcomeText ? '1' : '0'"
+                    [style.transform]="showWelcomeText ? 'translateX(0)' : 'translateX(100px)'">
+                    <h2 class="text-white text-2xl font-bold mb-1">Welcome back, {{user}}! 👋</h2>
+                    <p class="text-violet-100 text-sm">Ready to complete your application ?</p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex items-center space-x-4">
+                    <div *ngFor="let action of actionButtons; let i = index"
+                        class="transition-all duration-500 ease-out transform"
+                        [style.opacity]="showActionButtons ? '1' : '0'"
+                        [style.transform]="showActionButtons ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.8)'"
+                        [style.transition-delay]="(i * 150) + 'ms'">
+
+                        <div class="flex flex-col items-center p-5 bg-white bg-opacity-20 rounded-md backdrop-blur-sm cursor-pointer transition-all duration-300 hover:bg-white hover:bg-opacity-30 transform hover:scale-105 hover:-translate-y-1"
+                            (click)="showDialog()">
+
+                            <i [class]="action.icon + ' text-white text-xl mb-1'"></i>
+                            <span class="text-white text-xs font-medium text-center leading-tight">{{ action.name
+                                }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Close Button -->
+                <div class="ml-6 transition-all duration-500 ease-out transform"
+                    [style.opacity]="showActionButtons ? '1' : '0'"
+                    [style.transform]="showActionButtons ? 'rotate(0deg)' : 'rotate(180deg)'">
+                    <div class="p-2 bg-white bg-opacity-20 rounded-xl backdrop-blur-sm cursor-pointer transition-all duration-300 hover:bg-red-500 hover:bg-opacity-80 transform hover:scale-110"
+                        (click)="closePanel()">
+                        <i class="pi pi-times text-white text-lg"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p-dialog header="{{title}}" [modal]="true" [closable]="true"
+    [(visible)]="visible"
+    [style]="{  'text-align': 'center',height:'353px',width:'540px','border-radius':'16px', 'font-weight': '600','font-size':'18px','line-height':'21.6px' }">
+
+    <app-programme [backendProgramme]="backendProgramme" (showGuidelineStatus)="showGuideline($event)" (selectedDeptChanged)="courseUpdated($event)"></app-programme>
+
+
+</p-dialog>
+<p-dialog 
+  header="APPLICATION GUIDELINE" 
+  [(visible)]="guidelineVisible" 
+  [modal]="true"
+  [closable]="true"
+  [style]="{ width: '540px', maxHeight: '90vh' }"
+  styleClass="guidelines-dialog"
+>
+  <div class="guidelines-wrapper">
+    <div class="guidelines-intro">
+      Kindly read the Application Guideline carefully before you proceed with the application. It is very important to understand and follow the guideline to avoid error in your application.
+    </div>
+    
+    <div class="guidelines-scroll-area">
+      <ol class="guidelines-list">
+        <li class="guideline-item">
+          Candidates for admission into the Basic Midwifery Programme must possess the Senior Secondary School Certificate (SSCE) or its equivalent at credit level in the following five (5) subjects at not more than two (2) sittings:
+          <ul class="subjects-list">
+            <li>Physics</li>
+            <li>Chemistry</li>
+            <li>Biology</li>
+            <li>English</li>
+            <li>Mathematics</li>
+          </ul>
+        </li>
+        
+        <li class="guideline-item">
+          Candidates are required to upload the following documents in addition to other relevant documents:
+          <ul class="subjects-list">
+            <li>Certificate of Birth</li>
+            <li>O' Level (SSCE) Certificates</li>
+            <li>Certificate of Origin</li>
+            <li>Passport Photograph</li>
+          </ul>
+        </li>
+        
+        <li class="guideline-item">
+          Candidates are required to make payment of a non-refundable sum of Fifteen Thousand Naira Only (NGN15,000.00) as application fee.
+        </li>
+        
+        <li class="guideline-item">
+          Candidate must have a minimum JAMB score of 150 and must have chosen the institution as first choice in the 2024 UTME registration. Moreover, candidates who did not select CONSMMEFS as their first choice can change institution on the JAMB Portal.
+        </li>
+      </ol>
+      
+      <div class="acceptance-section">
+        <p-checkbox 
+          [(ngModel)]="guidelinesAccepted" 
+          [binary]="true" 
+          inputId="acceptguide"
+        ></p-checkbox>
+        <label for="acceptguide" class="acceptance-label">
+          I have read and understand the guideline
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <div class="dialog-footer">
+      <p-button 
+        label="Continue to Payments" 
+        icon="pi pi-arrow-right"
+        iconPos="right"
+        [disabled]="!guidelinesAccepted"
+        (onClick)="dismissGuideline()"
+        styleClass="continue-payment-btn"
+      ></p-button>
+    </div>
+  </ng-template>
+</p-dialog>
+
+    <!-- Existing Widgets with Smooth Transition -->
+    <div class="contents transition-all duration-1000 ease-out">
+        <!-- <app-stats-widget class="contents" /> -->
+    </div>
+
+    <div class="col-span-12  xl:col-span-6 transition-all duration-1000 ease-out flex flex-col
+    xl:gap-y-8">
+        <!-- <app-recenttask />
+
+        <app-bestperforming-product></app-bestperforming-product> -->
+
+
+    </div>
+
+    <div class="col-span-12 xl:col-span-6 transition-all duration-1000 ease-out flex flex-col space-y-8">
+        <!-- <app-revenue-stream-widget />
+        
+        <app-activities-log></app-activities-log> -->
+    </div>
+
+</div>

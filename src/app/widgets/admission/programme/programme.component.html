@@ -1,0 +1,71 @@
+<!-- Programme Selection -->
+<div *ngIf="programmes && toShow === 0" class="selection-container">
+    <form [formGroup]="courseForm" class="selection-grid">
+      <div 
+        *ngFor="let programme of programmes.data" 
+        class="selection-card"
+        [class.selected]="selectedCourse === programme.program.id"
+        (click)="selectProgramme(programme.program.id)"
+      >
+        <div class="card-radio">
+          <p-radioButton
+            [formControlName]="programme.program.name.toLowerCase()"
+            [value]="programme.program.id"
+            [inputId]="'prog-' + programme.program.id"
+          ></p-radioButton>
+        </div>
+        <div class="card-content">
+          <i class="pi pi-book card-icon"></i>
+          <h3>{{ programme.program.name }}</h3>
+        </div>
+      </div>
+    </form>
+  
+    <div class="action-section">
+      <p-button
+        label="Continue"
+        icon="pi pi-arrow-right"
+        iconPos="right"
+        [disabled]="selectedCourse === 0 || busy"
+        [loading]="busy"
+        (onClick)="programmeChoice()"
+        styleClass="w-full action-btn"
+      ></p-button>
+    </div>
+  </div>
+  
+  <!-- Department Selection -->
+  <div *ngIf="departments && toShow === 1" class="selection-container">
+    <form [formGroup]="deptForm" class="selection-grid">
+      <div 
+        *ngFor="let dept of departments.data" 
+        class="selection-card"
+        [class.selected]="selectedDept === dept.id"
+        (click)="selectDepartment(dept.id)"
+      >
+        <div class="card-radio">
+          <p-radioButton
+            [formControlName]="dept.name.toLowerCase()"
+            [value]="dept.id"
+            [inputId]="'dept-' + dept.id"
+          ></p-radioButton>
+        </div>
+        <div class="card-content">
+          <i class="pi pi-building card-icon"></i>
+          <h3>{{ dept.name }}</h3>
+        </div>
+      </div>
+    </form>
+  
+    <div class="action-section">
+      <p-button
+        label="Continue"
+        icon="pi pi-arrow-right"
+        iconPos="right"
+        [disabled]="selectedDept === 0 || busy"
+        [loading]="busy"
+        (onClick)="deptChoice()"
+        styleClass="w-full action-btn"
+      ></p-button>
+    </div>
+  </div>

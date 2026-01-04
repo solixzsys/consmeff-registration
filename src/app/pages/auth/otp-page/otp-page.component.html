@@ -1,0 +1,106 @@
+<p-toast></p-toast>
+
+<div class="otp-wrapper">
+  <div class="otp-container">
+    <!-- Dark Mode Toggle -->
+    <!-- <button class="dark-mode-toggle" (click)="toggleDarkMode()" type="button">
+      <i class="pi" [ngClass]="isDarkMode ? 'pi-sun' : 'pi-moon'"></i>
+    </button> -->
+
+    <div class="otp-card-container">
+      <!-- Gradient blur effect -->
+      <div class="gradient-blur"></div>
+      
+      <!-- Card -->
+      <div class="otp-card">
+        <!-- Header Section -->
+        <div class="header-section">
+          <div class="logo-container">
+            <div class="logo-circle">
+              <img width="70%" src="../../../assets/logo.png" alt="School Logo" class="logo-image" />
+            </div>
+          </div>
+          <h1 class="title">Input One-Time Password (OTP)</h1>
+          <p class="subtitle">A verification code was sent to {{ email }}</p>
+        </div>
+
+        <!-- OTP Form -->
+        <form class="otp-form" [formGroup]="otpForm">
+          <div class="otp-inputs">
+            <input
+              pInputText
+              #box1Input
+              formControlName="box1"
+              type="text"
+              maxlength="1"
+              class="otp-box"
+              (input)="onInput($event, 2)"
+              (keydown)="onKeyDown($event, 1)"
+              (paste)="onPaste($event)"
+            />
+            <input
+              pInputText
+              #box2Input
+              formControlName="box2"
+              type="text"
+              maxlength="1"
+              class="otp-box"
+              (input)="onInput($event, 3)"
+              (keydown)="onKeyDown($event, 2)"
+            />
+            <input
+              pInputText
+              #box3Input
+              formControlName="box3"
+              type="text"
+              maxlength="1"
+              class="otp-box"
+              (input)="onInput($event, 4)"
+              (keydown)="onKeyDown($event, 3)"
+            />
+            <input
+              pInputText
+              #box4Input
+              formControlName="box4"
+              type="text"
+              maxlength="1"
+              class="otp-box"
+              (input)="onInput($event, 5)"
+              (keydown)="onKeyDown($event, 4)"
+            />
+            <input
+              pInputText
+              #box5Input
+              formControlName="box5"
+              type="text"
+              maxlength="1"
+              class="otp-box"
+              (input)="onInput($event, 6)"
+              (keydown)="onKeyDown($event, 5)"
+            />
+            <input
+              pInputText
+              #box6Input
+              formControlName="box6"
+              type="text"
+              maxlength="1"
+              class="otp-box"
+              (keydown)="onKeyDown($event, 6)"
+            />
+          </div>
+
+          <!-- Submit Button -->
+          <p-button
+            label="Continue"
+            icon="pi pi-arrow-right"
+            iconPos="right"
+            [loading]="busy"
+            [disabled]="!complete || busy"
+            (onClick)="submitOTP()"
+            styleClass="w-full submit-button"
+          ></p-button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

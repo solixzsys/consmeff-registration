@@ -1,0 +1,272 @@
+@import '../../../assets/demo/theme';
+
+:host ::ng-deep {
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $spacing-4 $spacing-6;
+    background: $bg-primary;
+    border-bottom: 1px solid $border-color;
+    box-shadow: $shadow-sm;
+    height: 70px;
+    position: sticky;
+    top: 0;
+    z-index: $z-sticky;
+    transition: all $transition-base;
+  }
+
+  .dark .topbar {
+    background: $dark-bg-primary;
+    border-bottom-color: $dark-border-color;
+  }
+
+  .topbar-left {
+    display: flex;
+    align-items: center;
+  }
+
+  .menu-button {
+    .p-button {
+      width: 40px;
+      height: 40px;
+      color: $text-primary;
+
+      .p-button-icon {
+        font-size: $font-size-2xl;
+      }
+
+      &:hover {
+        background: $bg-secondary;
+      }
+    }
+  }
+
+  .dark .menu-button .p-button {
+    color: $dark-text-primary;
+
+    &:hover {
+      background: $dark-bg-secondary;
+    }
+  }
+
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+  }
+
+  .icon-button {
+    .p-button {
+      width: 40px;
+      height: 40px;
+      color: $text-secondary;
+      position: relative;
+
+      .p-button-icon {
+        font-size: $font-size-xl;
+      }
+
+      &:hover {
+        background: $bg-secondary;
+        color: $text-primary;
+      }
+
+      .p-badge {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        min-width: 18px;
+        height: 18px;
+        font-size: $font-size-xs;
+        padding: 0 4px;
+      }
+    }
+  }
+
+  .dark .icon-button .p-button {
+    color: $dark-text-secondary;
+
+    &:hover {
+      background: $dark-bg-secondary;
+      color: $dark-text-primary;
+    }
+  }
+
+  .profile-button {
+    .p-button {
+      display: flex;
+      align-items: center;
+      gap: $spacing-2;
+      padding: $spacing-2 $spacing-3;
+      border-radius: $radius-full;
+      color: $text-primary;
+      font-weight: $font-weight-medium;
+
+      &:hover {
+        background: $bg-secondary;
+      }
+
+      .username {
+        font-size: $font-size-sm;
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        @media (max-width: 768px) {
+          display: none;
+        }
+      }
+
+      .pi-chevron-down {
+        font-size: $font-size-xs;
+        color: $text-tertiary;
+      }
+    }
+  }
+
+  .dark .profile-button .p-button {
+    color: $dark-text-primary;
+
+    &:hover {
+      background: $dark-bg-secondary;
+    }
+
+    .pi-chevron-down {
+      color: $dark-text-tertiary;
+    }
+  }
+
+  .profile-avatar {
+    background: $gradient-primary !important;
+    color: white;
+    font-weight: $font-weight-semibold;
+    width: 36px;
+    height: 36px;
+  }
+
+  // Menu styling
+  .notification-menu,
+  .message-menu,
+  .profile-menu {
+    .p-menu {
+      min-width: 320px;
+      border-radius: $radius-md;
+      box-shadow: $shadow-xl;
+      border: 1px solid $border-color;
+      background: $bg-primary;
+    }
+
+    .p-menu-list {
+      padding: 0;
+    }
+
+    .p-menuitem {
+      margin: 0;
+
+      .p-menuitem-content {
+        border-radius: 0;
+
+        &:hover {
+          background: $bg-secondary;
+        }
+
+        .p-menuitem-link {
+          padding: $spacing-3 $spacing-4;
+          color: $text-primary;
+
+          .p-menuitem-icon {
+            color: $text-tertiary;
+            margin-right: $spacing-2;
+          }
+
+          .p-menuitem-text {
+            font-size: $font-size-sm;
+          }
+        }
+      }
+    }
+
+    .menu-header {
+      padding: $spacing-4;
+      border-bottom: 1px solid $border-color;
+      background: $bg-secondary;
+
+      h4 {
+        margin: 0;
+        font-size: $font-size-base;
+        font-weight: $font-weight-semibold;
+        color: $text-primary;
+      }
+    }
+
+    .menu-footer {
+      padding: $spacing-3 $spacing-4;
+      border-top: 1px solid $border-color;
+      text-align: center;
+      background: $bg-secondary;
+
+      a {
+        color: $primary;
+        text-decoration: none;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .dark {
+    .notification-menu,
+    .message-menu,
+    .profile-menu {
+      .p-menu {
+        background: $dark-bg-primary;
+        border-color: $dark-border-color;
+      }
+
+      .p-menuitem-content {
+        &:hover {
+          background: $dark-bg-secondary;
+        }
+
+        .p-menuitem-link {
+          color: $dark-text-primary;
+
+          .p-menuitem-icon {
+            color: $dark-text-tertiary;
+          }
+        }
+      }
+
+      .menu-header,
+      .menu-footer {
+        background: $dark-bg-secondary;
+        border-color: $dark-border-color;
+
+        h4 {
+          color: $dark-text-primary;
+        }
+
+        a {
+          color: $primary-light;
+        }
+      }
+    }
+  }
+
+  // Responsive
+  @media (max-width: 768px) {
+    .topbar {
+      padding: $spacing-3 $spacing-4;
+    }
+
+    .topbar-right {
+      gap: $spacing-1;
+    }
+  }
+}

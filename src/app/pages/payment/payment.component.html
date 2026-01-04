@@ -1,0 +1,166 @@
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1 class="page-title">
+        <i class="pi pi-money-bill"></i>
+        Payment Processing
+      </h1>
+      <p class="page-subtitle">Complete your application payment</p>
+    </div>
+
+    <!-- Main Card -->
+    <div class="payment-card">
+      <form [formGroup]="paymentForm" autocomplete="off" novalidate #formRef="ngForm">
+        
+        <!-- Information Section -->
+        <div class="info-section">
+          <div class="info-icon">
+            <i class="pi pi-info-circle"></i>
+          </div>
+          <div class="info-content">
+            <p class="info-text">Thank you for applying to our institution.</p>
+            <p class="info-text">Please review the terms and conditions before proceeding with payment.</p>
+            <p class="info-text">You can pay with your debit card or upload payment evidence below.</p>
+          </div>
+        </div>
+
+        <!-- Online Payment Option -->
+        <div class="payment-option-card">
+          <div class="option-header">
+            <i class="pi pi-credit-card option-icon"></i>
+            <span class="option-title">Pay Online with Card</span>
+          </div>
+          
+          <div class="option-content">
+            <p-checkbox 
+              formControlName="pay" 
+              [binary]="true" 
+              inputId="payOnline"
+              label="I agree to proceed with online payment">
+            </p-checkbox>
+            
+            <p-button 
+              label="Pay Now" 
+              icon="pi pi-credit-card"
+              [disabled]="!canpay"
+              (onClick)="getPaymentRef()"
+              styleClass="pay-button"
+              [loading]="paymentProcessing">
+            </p-button>
+          </div>
+        </div>
+
+        <!-- Bank Account Information -->
+        <div class="divider-section">
+          <span class="divider-text">OR</span>
+        </div>
+
+        <div class="bank-info-card">
+          <div class="bank-header">
+            <i class="pi pi-building"></i>
+            <span>Bank Account Information</span>
+          </div>
+          
+          <div class="bank-details">
+            <div class="detail-item">
+              <label>Account Name</label>
+              <p class="detail-value">COLLEGE OF NURSING SCIENCE MUSLIM MEDICAL FOUNDATION SAKI OYO STATE</p>
+            </div>
+            
+            <div class="detail-row">
+              <div class="detail-item">
+                <label>Account Number</label>
+                <div class="account-number">
+                  <span class="detail-value">0005199552</span>
+                  <button 
+                    pButton 
+                    icon="pi pi-copy" 
+                    class="p-button-text p-button-sm copy-btn"
+                    pTooltip="Copy account number"
+                    (click)="copyToClipboard('0005199552')">
+                  </button>
+                </div>
+              </div>
+              
+              <div class="detail-item">
+                <label>Bank Name</label>
+                <p class="detail-value">JAIZ BANK</p>
+              </div>
+            </div>
+            
+            <div class="amount-banner">
+              <i class="pi pi-tag"></i>
+              <span>Application Fee: <strong>₦15,000.00</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upload Payment Evidence -->
+        <div class="payment-option-card upload-section">
+          <div class="option-header">
+            <i class="pi pi-upload option-icon"></i>
+            <span class="option-title">Upload Payment Evidence</span>
+          </div>
+          
+          <div class="option-content">
+            <p-checkbox 
+              formControlName="payslip" 
+              [binary]="true" 
+              inputId="uploadEvidence"
+              label="I have made payment and want to upload evidence">
+            </p-checkbox>
+            
+            <div class="upload-controls">
+              <input 
+                type="file" 
+                class="file-input" 
+                (change)="uploadPayment($event)" 
+                #fileUpload
+                accept="image/*,.pdf"
+                style="display: none;">
+              
+              <p-button 
+                [label]="uploadMsg" 
+                icon="pi pi-upload"
+                [disabled]="!canupload"
+                (onClick)="fileUpload.click()"
+                styleClass="upload-button"
+                severity="warn">
+              </p-button>
+              
+              <p-progressBar 
+                *ngIf="uploadProgress > 0 && uploadProgress < 100"
+                [value]="uploadProgress" 
+                [showValue]="true">
+              </p-progressBar>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hidden Navigation Buttons -->
+        <div class="navigation-buttons" style="display: none;">
+          <p-button 
+            label="Previous" 
+            icon="pi pi-arrow-left" 
+            styleClass="p-button-outlined"
+            cdkStepperPrevious>
+          </p-button>
+          
+          <p-button 
+            [label]="btnState==0?'Save':'Next'" 
+            icon="pi pi-arrow-right" 
+            iconPos="right"
+            (onClick)="paymentUploadSubmit()"
+            [loading]="isLoading"
+            cdkStepperNext>
+          </p-button>
+        </div>
+
+      </form>
+    </div>
+
+
+<!-- Loading Overlay -->
+<p-blockUI [blocked]="isLoading">
+  <i class="pi pi-spin pi-spinner" style="font-size: 3rem"></i>
+</p-blockUI>

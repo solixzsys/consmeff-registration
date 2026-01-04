@@ -1,0 +1,319 @@
+@import '../../../../assets/demo/theme';
+
+:host ::ng-deep {
+  .otp-wrapper {
+    display: block;
+    min-height: 100vh;
+    width: 100%;
+    transition: background-color $transition-slow;
+  }
+
+  .otp-container {
+    background: $gradient-bg-light;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: $spacing-4;
+    transition: background $transition-slow;
+  }
+
+  .dark .otp-container {
+    background: $gradient-bg-dark;
+  }
+
+  /* Dark Mode Toggle */
+  .dark-mode-toggle {
+    position: fixed;
+    top: $spacing-6;
+    right: $spacing-6;
+    padding: $spacing-3;
+    border-radius: $radius-full;
+    background-color: $bg-primary;
+    box-shadow: $shadow-lg;
+    transition: all $transition-slow;
+    z-index: $z-fixed;
+    border: none;
+    cursor: pointer;
+
+    @include button-reset;
+    background-color: $bg-primary;
+    padding: $spacing-3;
+    border-radius: $radius-full;
+
+    &:hover {
+      box-shadow: $shadow-xl;
+      transform: scale(1.05);
+    }
+
+    .pi {
+      font-size: $font-size-xl;
+      color: $primary;
+    }
+  }
+
+  .dark .dark-mode-toggle {
+    background-color: $dark-bg-secondary;
+
+    .pi {
+      color: $primary-light;
+    }
+  }
+
+  /* Card Container */
+  .otp-card-container {
+    width: 100%;
+    max-width: 40rem;
+    position: relative;
+    margin: $spacing-8 auto;
+  }
+
+  .gradient-blur {
+    position: absolute;
+    inset: -0.125rem;
+    background: $gradient-primary;
+    border-radius: $radius-xl;
+    filter: blur(1rem);
+    opacity: 0.3;
+    transition: opacity 1s ease;
+  }
+
+  .otp-card {
+    background-color: $card-bg;
+    border-radius: $radius-xl;
+    padding: $spacing-8;
+    transition: background-color $transition-slow;
+    box-shadow: $shadow-xl;
+    position: relative;
+
+    @include responsive($breakpoint-sm) {
+      padding: $spacing-12;
+    }
+  }
+
+  .dark .otp-card {
+    background-color: $dark-card-bg;
+  }
+
+  /* Header Section */
+  .header-section {
+    text-align: center;
+    margin-bottom: $spacing-10;
+  }
+
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: $spacing-6;
+  }
+
+  .logo-circle {
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    
+      transform: scale(1.05);
+    
+  }
+
+  .logo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .title {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $text-primary;
+    margin-bottom: $spacing-2;
+    transition: color $transition-slow;
+  }
+
+  .dark .title {
+    color: $dark-text-primary;
+  }
+
+  .subtitle {
+    color: $text-secondary;
+    font-size: $font-size-sm;
+    transition: color $transition-slow;
+  }
+
+  .dark .subtitle {
+    color: $dark-text-secondary;
+  }
+
+  /* OTP Form */
+  .otp-form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-8;
+  }
+
+  .otp-inputs {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-3;
+    flex-wrap: wrap;
+
+    @include responsive($breakpoint-sm) {
+      gap: $spacing-4;
+    }
+  }
+
+  /* OTP Box Inputs */
+  .otp-box {
+    width: 64px;
+    height: 64px;
+    border-radius: $radius-md;
+    border: 1px solid $input-border;
+    background-color: $input-bg;
+    text-align: center;
+    font-size: 2.25rem;
+    font-weight: $font-weight-semibold;
+    color: $primary;
+    transition: all $transition-base;
+    padding: 0 !important;
+    line-height: 64px;
+
+    &:focus {
+      border-color: $primary;
+      box-shadow: 0 0 0 3px rgba($primary, 0.2);
+      outline: none;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background-color: $gray-100;
+    }
+
+    // Remove number input arrows
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &[type=number] {
+      -moz-appearance: textfield;
+    }
+  }
+
+  .dark .otp-box {
+    background-color: $dark-input-bg;
+    border-color: $dark-input-border;
+    color: $primary-light;
+
+    &:focus {
+      border-color: $primary-light;
+      box-shadow: 0 0 0 3px rgba($primary-light, 0.2);
+    }
+
+    &:disabled {
+      background-color: $gray-800;
+    }
+  }
+
+  /* Submit Button */
+  .submit-button {
+    margin-top: $spacing-4;
+  }
+
+    .p-button {
+      width: 100%;
+      height: 48px;
+      background: $primary !important;
+      border: none !important;
+      color: white;
+      font-weight: $btn-font-weight;
+      padding: $btn-padding-y $btn-padding-x;
+      border-radius: 8px;
+      box-shadow: $shadow-lg;
+      transition: all $transition-base;
+      font-size: $font-size-base;
+
+      &:enabled:hover {
+        background: $primary-dark !important;
+        box-shadow: $shadow-xl;
+        transform: scale(1.02);
+      }
+
+      &:enabled:active {
+        transform: scale(0.98);
+      }
+
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        background: $gray-400 !important;
+      }
+
+      &:focus {
+        @include focus-ring($primary);
+      }
+
+      .p-button-label {
+        font-weight: $font-weight-semibold;
+        font-size: $font-size-base;
+      }
+
+      .p-button-icon {
+        margin-left: $spacing-2;
+        font-size: $font-size-lg;
+      }
+    }
+  
+
+  /* Toast Customization */
+  .p-toast {
+    .p-toast-message {
+      border-radius: $radius-md;
+      box-shadow: $shadow-xl;
+
+      &.p-toast-message-success {
+        background: $success;
+        border: none;
+        color: white;
+
+        .p-toast-message-icon,
+        .p-toast-icon-close {
+          color: white;
+        }
+      }
+
+      &.p-toast-message-error {
+        background: $danger;
+        border: none;
+        color: white;
+
+        .p-toast-message-icon,
+        .p-toast-icon-close {
+          color: white;
+        }
+      }
+    }
+  }
+
+  /* Utility classes */
+  .w-full {
+    width: 100%;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    .otp-box {
+      width: 48px;
+      height: 48px;
+      font-size: 1.75rem;
+      line-height: 48px;
+    }
+
+    .otp-inputs {
+      gap: $spacing-2;
+    }
+  }
+}

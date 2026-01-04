@@ -1,0 +1,364 @@
+@import '../../../assets/demo/theme';
+@keyframes slideInFromRight {
+    from {
+        width: 0%;
+        margin-left: 100%;
+    }
+
+    to {
+        width: 100%;
+        margin-left: 0%;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-in {
+    animation: slideInFromRight 1s ease-out forwards;
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Custom gradient animation */
+.gradient-animate {
+    background: linear-gradient(-45deg, #8B5CF6, #A855F7, #C084FC, #DDD6FE);
+    background-size: 400% 400%;
+    animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Hover effects for action buttons */
+.action-button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.action-button:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+}
+
+:host ::ng-deep .process-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #374151; /* gray-700 for icon contrast */
+    background: linear-gradient(145deg, #f3f4f6 0%, #e5e7eb00 100%); /* gray-100 → gray-200 */
+    box-shadow: 0 4px 8px rgba(55, 65, 81, 0.1); /* soft shadow */
+    transition: transform .12s ease, box-shadow .12s ease;
+  
+    &:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 8px 16px rgba(55, 65, 81, 0.15);
+    }
+  
+    > i {
+      font-size: 18px;
+      line-height: 1;
+      transform: translateY(1px);
+    }
+  }
+
+  
+
+:host ::ng-deep {
+  .guidelines-dialog {
+    .p-dialog {
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .p-dialog-header {
+      background: $bg-primary;
+      border-bottom: 1px solid $border-color;
+      padding: $spacing-6;
+      text-align: center;
+      
+      .p-dialog-title {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 21.6px;
+        color: $text-primary;
+        width: 100%;
+      }
+    }
+
+    .p-dialog-content {
+      background: $bg-primary;
+      padding: $spacing-6;
+      max-height: 600px;
+    }
+
+    .p-dialog-footer {
+      background: $bg-primary;
+      border-top: 1px solid $border-color;
+      padding: $spacing-6;
+    }
+  }
+
+  .dark .guidelines-dialog {
+    .p-dialog-header,
+    .p-dialog-content,
+    .p-dialog-footer {
+      background: $dark-bg-primary;
+    }
+
+    .p-dialog-header,
+    .p-dialog-footer {
+      border-color: $dark-border-color;
+    }
+
+    .p-dialog-title {
+      color: $dark-text-primary;
+    }
+  }
+
+  .guidelines-wrapper {
+    text-align: left;
+  }
+
+  .guidelines-intro {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    color: $text-secondary;
+    margin-bottom: $spacing-6;
+  }
+
+  .dark .guidelines-intro {
+    color: $dark-text-secondary;
+  }
+
+  .guidelines-scroll-area {
+    height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: $spacing-2;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: $bg-secondary;
+      border-radius: $radius-full;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $gray-300;
+      border-radius: $radius-full;
+
+      &:hover {
+        background: $gray-400;
+      }
+    }
+  }
+
+  .dark .guidelines-scroll-area {
+    &::-webkit-scrollbar-track {
+      background: $dark-bg-secondary;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $gray-700;
+
+      &:hover {
+        background: $gray-600;
+      }
+    }
+  }
+
+  .guidelines-list {
+    list-style: none;
+    counter-reset: guideline-counter;
+    padding-left: 0;
+    margin: 0;
+  }
+
+  .guideline-item {
+    position: relative;
+    padding-left: 2.5em;
+    margin-bottom: $spacing-6;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    color: $text-primary;
+    counter-increment: guideline-counter;
+
+    &::before {
+      content: counter(guideline-counter) ".";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-weight: 600;
+      color: $primary;
+      font-size: 16px;
+    }
+  }
+
+  .dark .guideline-item {
+    color: $dark-text-primary;
+
+    &::before {
+      color: $primary-light;
+    }
+  }
+
+  .subjects-list {
+    list-style: disc;
+    padding-left: $spacing-6;
+    margin-top: $spacing-3;
+    margin-bottom: 0;
+
+    li {
+      margin-bottom: $spacing-2;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 21px;
+      color: $text-secondary;
+    }
+  }
+
+  .dark .subjects-list li {
+    color: $dark-text-secondary;
+  }
+
+  .acceptance-section {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+    padding: $spacing-4;
+    background: $bg-secondary;
+    border-radius: $radius-md;
+    margin-top: $spacing-6;
+    margin-left: 2.5em;
+
+    .p-checkbox {
+      .p-checkbox-box {
+        width: 20px;
+        height: 20px;
+        border: 2px solid $border-color-dark;
+        border-radius: $radius-sm;
+
+        &.p-highlight {
+          background: $primary;
+          border-color: $primary;
+        }
+
+        .p-checkbox-icon {
+          font-size: 14px;
+        }
+      }
+    }
+
+    .acceptance-label {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 21px;
+      color: $text-primary;
+      cursor: pointer;
+      margin: 0;
+    }
+  }
+
+  .dark .acceptance-section {
+    background: $dark-bg-secondary;
+
+    .p-checkbox .p-checkbox-box {
+      border-color: $dark-border-color-light;
+      background: $dark-bg-tertiary;
+
+      &.p-highlight {
+        background: $primary-light;
+        border-color: $primary-light;
+      }
+    }
+
+    .acceptance-label {
+      color: $dark-text-primary;
+    }
+  }
+
+  .dialog-footer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .continue-payment-btn {
+    .p-button {
+      width: 200px;
+      height: 40px;
+      background: $primary !important;
+      border: none !important;
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 8px;
+      border-radius: 8px;
+      transition: all $transition-base;
+
+      &:enabled:hover {
+        background: $primary-dark !important;
+        transform: translateY(-2px);
+        box-shadow: $shadow-lg;
+      }
+
+      &:disabled {
+        background: #CBD5E1 !important;
+        opacity: 1;
+        cursor: not-allowed;
+      }
+
+      .p-button-label {
+        font-weight: 700;
+        font-size: 14px;
+      }
+
+      .p-button-icon {
+        margin-left: $spacing-2;
+        font-size: $font-size-sm;
+      }
+    }
+  }
+}
+  
+  /* optional per-process tweaks (icon color only) */
+  :host ::ng-deep .icon-encoding i     { color: #06B6D4; } /* cyan */
+  :host ::ng-deep .icon-commission i   { color: #F59E0B; } /* amber */
+  :host ::ng-deep .icon-packing i      { color: #2563EB; } /* blue */
+  :host ::ng-deep .icon-unpacking i    { color: #7C3AED; } /* purple */
+  :host ::ng-deep .icon-shipping i     { color: #16A34A; } /* green */
+  :host ::ng-deep .icon-receiving i    { color: #D97706; } /* orange */
+  :host ::ng-deep .icon-dispensing i   { color: #DC2626; } /* red */
+  :host ::ng-deep .icon-decommission i { color: #9CA3AF; } /* gray */
+  :host ::ng-deep .icon-default i      { color: #374151; } /* dark gray */
+  

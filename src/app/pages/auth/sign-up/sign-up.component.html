@@ -1,0 +1,226 @@
+<p-toast></p-toast>
+
+<div class="signup-wrapper">
+  <div class="signup-container">
+    <!-- Dark Mode Toggle -->
+    <!-- <button class="dark-mode-toggle" (click)="toggleDarkMode()" type="button">
+      <i class="pi" [ngClass]="isDarkMode ? 'pi-sun' : 'pi-moon'"></i>
+    </button> -->
+
+    <div class="signup-card-container">
+      <!-- Gradient blur effect -->
+      <div class="gradient-blur"></div>
+      
+      <!-- Card -->
+      <div class="signup-card">
+        <!-- Header Section -->
+        <div class="header-section">
+          <div class="logo-container">
+            <div class="logo-circle">
+              <img width="70%" src="../../../assets/logo.png" alt="School Logo" class="logo-image" />
+            </div>
+          </div>
+          <h1 class="title">Create Account</h1>
+          <p class="subtitle">Join us and get started today</p>
+        </div>
+
+        <!-- Form -->
+        <form class="signup-form" [formGroup]="regForm">
+          <!-- First Name -->
+          <div class="form-group">
+            <p-floatLabel>
+              <input
+                pInputText
+                id="firstname"
+                formControlName="firstname"
+                class="w-full"
+                [ngClass]="{
+                  'ng-invalid ng-dirty': firstname.touched && firstname.invalid
+                }"
+              />
+              <label for="firstname">First Name</label>
+              <i *ngIf="firstname.valid && firstname.value" class="pi pi-check-circle success-icon"></i>
+            </p-floatLabel>
+            <small *ngIf="firstname.touched && firstname.invalid" class="p-error">
+              First name is required
+            </small>
+          </div>
+
+          <!-- Middle Name -->
+          <div class="form-group">
+            <p-floatLabel>
+              <input
+                pInputText
+                id="middlename"
+                formControlName="middlename"
+                class="w-full"
+                [ngClass]="{
+                  'ng-invalid ng-dirty': middlename.touched && middlename.invalid
+                }"
+              />
+              <label for="middlename">Middle Name</label>
+              <i *ngIf="middlename.valid && middlename.value" class="pi pi-check-circle success-icon"></i>
+            </p-floatLabel>
+            <small *ngIf="middlename.touched && middlename.invalid" class="p-error">
+              Middle name is required
+            </small>
+          </div>
+
+          <!-- Last Name -->
+          <div class="form-group">
+            <p-floatLabel>
+              <input
+                pInputText
+                id="lastname"
+                formControlName="lastname"
+                class="w-full"
+                [ngClass]="{
+                  'ng-invalid ng-dirty': lastname.touched && lastname.invalid
+                }"
+              />
+              <label for="lastname">Last Name</label>
+              <i *ngIf="lastname.valid && lastname.value" class="pi pi-check-circle success-icon"></i>
+            </p-floatLabel>
+            <small *ngIf="lastname.touched && lastname.invalid" class="p-error">
+              Last name is required
+            </small>
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <p-floatLabel>
+              <input
+                pInputText
+                id="email"
+                type="email"
+                formControlName="email"
+                class="w-full"
+                [ngClass]="{
+                  'ng-invalid ng-dirty': email.touched && email.invalid
+                }"
+              />
+              <label for="email">Email Address</label>
+              <i *ngIf="email.valid && email.value" class="pi pi-check-circle success-icon"></i>
+            </p-floatLabel>
+            <small *ngIf="email.touched && email.invalid" class="p-error">
+              Please enter a valid email address
+            </small>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <p-floatLabel>
+              <p-password
+                inputId="password"
+                formControlName="password"
+                [toggleMask]="true"
+                [feedback]="false"
+                styleClass="w-full password-field"
+                inputStyleClass="w-full"
+                [ngClass]="{
+                  'ng-invalid ng-dirty': password.touched && password.invalid
+                }"
+              ></p-password>
+              <label for="password">Password</label>
+              <i *ngIf="password.valid && password.value" class="pi pi-check-circle success-icon password-success"></i>
+            </p-floatLabel>
+            <small *ngIf="password.touched && password.invalid" class="p-error d-block mt-2">
+              Password is required
+            </small>
+          </div>
+
+          <!-- Password Validation Card -->
+          <div class="validation-card" *ngIf="password.value">
+            <p-card>
+              <div class="validation-items">
+                <div *ngFor="let item of validationCheck" class="validation-item">
+                  <i class="pi" [ngClass]="item.status ? 'pi-check-circle check-valid' : 'pi-times-circle check-invalid'"></i>
+                  <span [ngClass]="item.status ? 'text-valid' : 'text-invalid'">
+                    {{ item.title }}
+                  </span>
+                </div>
+              </div>
+            </p-card>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="form-group">
+            <p-floatLabel>
+              <p-password
+                inputId="cpassword"
+                formControlName="cpassword"
+                [toggleMask]="true"
+                [feedback]="false"
+                styleClass="w-full password-field"
+                inputStyleClass="w-full"
+                [ngClass]="{
+                  'ng-invalid ng-dirty': cpassword.touched && cpassword.value !== password.value
+                }"
+              ></p-password>
+              <label for="cpassword">Confirm Password</label>
+              <i *ngIf="cpassword.value && cpassword.value === password.value" class="pi pi-check-circle success-icon password-success"></i>
+            </p-floatLabel>
+            <small *ngIf="cpassword.touched && cpassword.value !== password.value" class="p-error d-block mt-2">
+              Passwords do not match
+            </small>
+          </div>
+
+          <!-- Phone Number -->
+          <div class="form-group">
+            <p-floatLabel>
+              <input
+                pInputText
+                id="phonenumber"
+                type="tel"
+                formControlName="phonenumber"
+                class="w-full"
+                [ngClass]="{
+                  'ng-invalid ng-dirty': phonenumber.touched && phonenumber.invalid
+                }"
+              />
+              <label for="phonenumber">Phone Number</label>
+              <i *ngIf="phonenumber.valid && phonenumber.value" class="pi pi-check-circle success-icon"></i>
+            </p-floatLabel>
+            <small *ngIf="phonenumber.touched && phonenumber.invalid" class="p-error">
+              Phone number is required
+            </small>
+          </div>
+
+          <!-- Alternative Phone Number -->
+          <div class="form-group">
+            <p-floatLabel>
+              <input
+                pInputText
+                id="altphonenumber"
+                type="tel"
+                formControlName="altphonenumber"
+                class="w-full"
+              />
+              <label for="altphonenumber">Alternative Phone Number <span class="optional-text">(Optional)</span></label>
+              <i *ngIf="altphonenumber.value" class="pi pi-check-circle success-icon"></i>
+            </p-floatLabel>
+          </div>
+
+          <!-- Submit Button -->
+          <p-button
+            label="Create Account"
+            icon="pi pi-user-plus"
+            
+            [loading]="busy"
+            [disabled]="regForm.invalid || busy"
+            (onClick)="register()"
+            styleClass="w-full submit-button"
+          ></p-button>
+        </form>
+
+        <!-- Login Link -->
+        <div class="login-section">
+          <p class="login-text">
+            Already have an account? 
+            <a routerLink="/auth/login" class="login-link">Login</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

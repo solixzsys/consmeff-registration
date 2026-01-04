@@ -1,0 +1,19 @@
+// # Install dependencies first
+npm install @types/node
+
+// # Compile TypeScript
+npx tsc seeder.ts
+
+// # Run with default settings (50 events)
+node seeder.js
+
+// # Run with custom count
+node seeder.js --count=100
+
+// # Run with custom output directory
+node seeder.js --count=75 --output=./data
+
+// # Or use it as a module
+import { TraceabilitySeeder } from './seeder';
+const seeder = new TraceabilitySeeder();
+await seeder.run(50, './output');
