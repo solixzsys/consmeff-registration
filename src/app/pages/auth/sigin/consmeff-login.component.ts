@@ -20,7 +20,7 @@ import { TraceabilityModule } from '../../../shared/traceability.module';
 export class ConsmeffLoginComponent implements OnInit {
   email = '';
   password = '';
-  rememberMe = false;
+  
   showPassword = signal(false);
   isDarkMode = signal(false);
   isLoading = signal(false);
@@ -43,7 +43,8 @@ export class ConsmeffLoginComponent implements OnInit {
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required)
+      password: new FormControl('', Validators.required),
+      rememberMe: new FormControl(false, Validators.required)
     });
   }
 

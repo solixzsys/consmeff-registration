@@ -1,0 +1,100 @@
+<div class="summary-container">
+
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="loading-state">
+      <div class="summary-section">
+        <p-skeleton height="2rem" width="200px" styleClass="mb-3"></p-skeleton>
+        <p-skeleton *ngFor="let item of [1,2,3,4,5,6]" height="1.5rem" styleClass="mb-2"></p-skeleton>
+      </div>
+    </div>
+  
+    <!-- Personal Information Section -->
+    <div *ngIf="!isLoading" class="summary-section">
+      <h3 class="section-title">Personal Information</h3>
+      <p-divider></p-divider>
+      
+      <div class="info-grid">
+        <div *ngFor="let item of personalInfoItems" class="info-item">
+          <label class="info-label">{{ item.label }}:</label>
+          <span class="info-value">{{ getValue(item.value) }}</span>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Next of Kin Information Section -->
+    <div *ngIf="!isLoading" class="summary-section">
+      <h3 class="section-title">Next of Kin Information</h3>
+      <p-divider></p-divider>
+      
+      <div class="info-grid">
+        <div *ngFor="let item of nextOfKinItems" class="info-item">
+          <label class="info-label">{{ item.label }}:</label>
+          <span class="info-value">{{ getValue(item.value) }}</span>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Documents Section -->
+    <div *ngIf="!isLoading" class="summary-section">
+      <h3 class="section-title">Documents</h3>
+      <p-divider></p-divider>
+      
+      <div class="documents-grid">
+        <div *ngFor="let doc of documentItems" class="document-item">
+          <label class="document-label">{{ doc.label }}:</label>
+          <div class="document-preview">
+            <p-image 
+              [src]="getImageUrl(doc.imageUrl)" 
+              alt="{{ doc.label }}"
+              width="200"
+              [preview]="true"
+              styleClass="document-image"
+            ></p-image>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Accordion Alternative (Optional Collapsed View) -->
+    <!-- Uncomment to use accordion layout instead
+    <p-accordion *ngIf="!isLoading" [multiple]="true" [activeIndex]="[0, 1, 2]">
+      
+      <p-accordionTab header="Personal Information">
+        <div class="info-grid">
+          <div *ngFor="let item of personalInfoItems" class="info-item">
+            <label class="info-label">{{ item.label }}:</label>
+            <span class="info-value">{{ getValue(item.value) }}</span>
+          </div>
+        </div>
+      </p-accordionTab>
+  
+      <p-accordionTab header="Next of Kin Information">
+        <div class="info-grid">
+          <div *ngFor="let item of nextOfKinItems" class="info-item">
+            <label class="info-label">{{ item.label }}:</label>
+            <span class="info-value">{{ getValue(item.value) }}</span>
+          </div>
+        </div>
+      </p-accordionTab>
+  
+      <p-accordionTab header="Documents">
+        <div class="documents-grid">
+          <div *ngFor="let doc of documentItems" class="document-item">
+            <label class="document-label">{{ doc.label }}:</label>
+            <div class="document-preview">
+              <p-image 
+                [src]="getImageUrl(doc.imageUrl)" 
+                alt="{{ doc.label }}"
+                width="200"
+                [preview]="true"
+                styleClass="document-image"
+              ></p-image>
+            </div>
+          </div>
+        </div>
+      </p-accordionTab>
+  
+    </p-accordion>
+    -->
+  
+  </div>

@@ -1,474 +1,519 @@
 @import '../../../assets/demo/theme';
 
-.layout {
-  min-height: 100vh;
-  background: $bg-primary;
-}
-
-.content {
-  padding: $spacing-6 $spacing-8;
-  transition: margin-left $transition-base, width $transition-base;
-  min-height: calc(100vh - 4rem);
-  
-  @include responsive($breakpoint-md) {
-    padding: $spacing-8 $spacing-12;
-  }
-}
-
-// Page Header
-.page-header {
-  margin-bottom: $spacing-8;
-  animation: slideInDown 0.4s ease-out;
-  
-  .page-title {
-    font-size: $font-size-3xl;
-    font-weight: $font-weight-bold;
-    color: $text-secondary;
-    margin-bottom: $spacing-2;
+:host ::ng-deep {
+  .layout {
     display: flex;
-    align-items: center;
-    gap: $spacing-3;
-    
-    i {
-      color: $secondary;
-      font-size: $font-size-2xl;
-    }
+    min-height: 100vh;
+    background: $bg-secondary;
   }
-  
-  .page-subtitle {
-    font-size: $font-size-lg;
-    color: $text-primary;
-    margin: 0;
-  }
-}
 
-// Main Card
-.payment-card {
-  background: $card-bg;
-  border-radius: $card-border-radius;
-  padding: $spacing-8;
-  box-shadow: $shadow-lg;
-  animation: fadeInUp 0.5s ease-out;
-  transition: box-shadow $transition-base;
-  
-  &:hover {
-    box-shadow: $shadow-xl;
+  .dark .layout {
+    background: $dark-bg-secondary;
   }
-  
-  @include responsive($breakpoint-md) {
-    padding: $spacing-10;
-  }
-}
 
-// Information Section
-.info-section {
-  display: flex;
-  gap: $spacing-4;
-  padding: $spacing-6;
-  background: linear-gradient(135deg, $secondary-50 0%, $secondary-100 100%);
-  border-radius: $radius-lg;
-  border-left: 4px solid $secondary;
-  margin-bottom: $spacing-8;
-  animation: slideInLeft 0.5s ease-out;
-  
-  .info-icon {
-    flex-shrink: 0;
-    
-    i {
-      font-size: $font-size-2xl;
-      color: $secondary;
-    }
-  }
-  
-  .info-content {
+  .main-wrapper {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 280px;
+    transition: margin-left $transition-base;
+
+    @media (max-width: 1024px) {
+      margin-left: 0;
+    }
+  }
+
+  .content {
+    flex: 1;
+    padding: $spacing-8;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+
+    @media (max-width: 768px) {
+      padding: $spacing-4;
+    }
+  }
+
+  // Page Header
+  .page-header {
+    margin-bottom: $spacing-8;
+    animation: slideInDown 0.4s ease-out;
     
-    .info-text {
-      margin: 0 0 $spacing-2 0;
-      color: $text-secondary;
-      line-height: $line-height-relaxed;
+    .page-title {
+      font-size: $font-size-3xl;
+      font-weight: $font-weight-bold;
+      color: $text-primary;
+      margin-bottom: $spacing-2;
+      display: flex;
+      align-items: center;
+      gap: $spacing-3;
       
-      &:last-child {
-        margin-bottom: 0;
+      i {
+        color: $secondary;
+        font-size: $font-size-2xl;
+      }
+    }
+    
+    .page-subtitle {
+      font-size: $font-size-lg;
+      color: $text-secondary;
+      margin: 0;
+    }
+  }
+
+  .dark .page-header {
+    .page-title {
+      color: $dark-text-primary;
+    }
+
+    .page-subtitle {
+      color: $dark-text-secondary;
+    }
+  }
+
+  // Main Card
+  .payment-card {
+    background: $card-bg;
+    border-radius: $radius-xl;
+    padding: $spacing-10;
+    box-shadow: $shadow-lg;
+    animation: fadeInUp 0.5s ease-out;
+    
+    @media (max-width: 768px) {
+      padding: $spacing-6;
+    }
+  }
+
+  .dark .payment-card {
+    background: $dark-card-bg;
+  }
+
+  // Information Section
+  .info-section {
+    display: flex;
+    gap: $spacing-4;
+    padding: $spacing-6;
+    background: linear-gradient(135deg, rgba($secondary, 0.1) 0%, rgba($secondary-light, 0.05) 100%);
+    border-radius: $radius-lg;
+    border-left: 4px solid $secondary;
+    margin-bottom: $spacing-8;
+    animation: slideInLeft 0.5s ease-out;
+    
+    .info-icon {
+      flex-shrink: 0;
+      
+      i {
+        font-size: $font-size-2xl;
+        color: $secondary;
+      }
+    }
+    
+    .info-content {
+      flex: 1;
+      
+      .info-text {
+        margin: 0 0 $spacing-2 0;
+        color: $text-secondary;
+        line-height: $line-height-relaxed;
+        font-size: $font-size-sm;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
       }
     }
   }
-}
 
-// Payment Option Cards
-.payment-option-card {
-  background: $bg-primary;
-  border: 2px solid $border-color;
-  border-radius: $radius-lg;
-  padding: $spacing-6;
-  margin-bottom: $spacing-6;
-  transition: all $transition-base;
-  
-  &:hover {
-    border-color: $secondary-light;
-    box-shadow: $shadow-md;
-    transform: translateY(-2px);
-  }
-  
-  .option-header {
-    display: flex;
-    align-items: center;
-    gap: $spacing-3;
-    margin-bottom: $spacing-5;
-    padding-bottom: $spacing-4;
-    border-bottom: 2px solid $border-color;
-    
-    .option-icon {
-      font-size: $font-size-xl;
-      color: $secondary;
-    }
-    
-    .option-title {
-      font-size: $font-size-lg;
-      font-weight: $font-weight-semibold;
-      color: $text-secondary;
-    }
-  }
-  
-  .option-content {
-    display: flex;
-    flex-direction: column;
-    gap: $spacing-5;
-    
-    @include responsive($breakpoint-md) {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-    }
-  }
-}
+  .dark .info-section {
+    background: linear-gradient(135deg, rgba($secondary-light, 0.15) 0%, rgba($secondary-light, 0.05) 100%);
+    border-left-color: $secondary-light;
 
-// Buttons
-::ng-deep {
-  .pay-button {
-    background: $gradient-secondary !important;
-    border: none !important;
-    padding: $spacing-3 $spacing-6 !important;
-    font-weight: $font-weight-semibold !important;
-    border-radius: $radius-md !important;
-    transition: all $transition-base !important;
+    .info-content .info-text {
+      color: $dark-text-secondary;
+    }
+  }
+
+  // Payment Option Cards
+  .payment-option-card {
+    background: $bg-primary;
+    border: 2px solid $border-color;
+    border-radius: $radius-lg;
+    padding: $spacing-6;
+    margin-bottom: $spacing-6;
+    transition: all $transition-base;
     
-    &:hover:not(:disabled) {
-      background: $gradient-primary-hover !important;
+    &:hover {
+      border-color: $secondary-light;
+      box-shadow: $shadow-md;
       transform: translateY(-2px);
-      box-shadow: $shadow-lg !important;
     }
     
-    &:active:not(:disabled) {
-      transform: translateY(0);
+    .option-header {
+      display: flex;
+      align-items: center;
+      gap: $spacing-3;
+      margin-bottom: $spacing-5;
+      padding-bottom: $spacing-4;
+      border-bottom: 2px solid $border-color;
+      
+      .option-icon {
+        font-size: $font-size-xl;
+        color: $secondary;
+      }
+      
+      .option-title {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-semibold;
+        color: $text-primary;
+      }
+    }
+    
+    .option-content {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-5;
+      
+      @media (min-width: 768px) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+
+  .dark .payment-option-card {
+    background: $dark-bg-primary;
+    border-color: $dark-border-color;
+
+    .option-header {
+      border-bottom-color: $dark-border-color;
+
+      .option-title {
+        color: $dark-text-primary;
+      }
+    }
+  }
+
+  // Buttons
+  .pay-button,
+  .upload-button {
+    .p-button {
+      height: 48px;
+      padding: $spacing-3 $spacing-6;
+      font-weight: $font-weight-semibold;
+      border-radius: $radius-md;
+      transition: all $transition-base;
+      font-size: $font-size-base;
+
+      .p-button-icon {
+        font-size: $font-size-lg;
+      }
+    }
+  }
+
+  .pay-button .p-button {
+    background: $secondary !important;
+    border: none !important;
+    
+    &:enabled:hover {
+      background: $secondary-dark !important;
+      transform: translateY(-2px);
+      box-shadow: $shadow-lg;
     }
     
     &:disabled {
       opacity: 0.5;
       cursor: not-allowed;
+      background: $gray-400 !important;
     }
   }
-  
-  .upload-button {
+
+  .upload-button .p-button {
     background: $warning !important;
     border: none !important;
     color: white !important;
-    padding: $spacing-3 $spacing-6 !important;
-    font-weight: $font-weight-semibold !important;
-    border-radius: $radius-md !important;
-    transition: all $transition-base !important;
     
-    &:hover:not(:disabled) {
+    &:enabled:hover {
       background: $warning-dark !important;
       transform: translateY(-2px);
-      box-shadow: $shadow-lg !important;
+      box-shadow: $shadow-lg;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background: $gray-400 !important;
     }
   }
-  
+
+  // Checkbox
   .p-checkbox {
     .p-checkbox-box {
-      border: 2px solid $secondary !important;
-      border-radius: $radius-sm !important;
-      transition: all $transition-fast !important;
+      width: 20px;
+      height: 20px;
+      border: 2px solid $secondary;
+      border-radius: $radius-sm;
+      transition: all $transition-fast;
       
       &.p-highlight {
-        background: $secondary !important;
-        border-color: $secondary !important;
+        background: $secondary;
+        border-color: $secondary;
+      }
+
+      .p-checkbox-icon {
+        font-size: 14px;
       }
     }
     
-    .p-checkbox-label {
+    + label {
       margin-left: $spacing-2;
       font-weight: $font-weight-medium;
-      color: $text-secondary;
-    }
-  }
-}
-
-// Divider Section
-.divider-section {
-  display: flex;
-  align-items: center;
-  margin: $spacing-8 0;
-  
-  &::before,
-  &::after {
-    content: '';
-    flex: 1;
-    height: 2px;
-    background: linear-gradient(to right, transparent, $border-color, transparent);
-  }
-  
-  .divider-text {
-    padding: 0 $spacing-4;
-    font-weight: $font-weight-semibold;
-    color: $text-primary;
-    font-size: $font-size-sm;
-  }
-}
-
-// Bank Info Card
-.bank-info-card {
-  background: linear-gradient(135deg, $bg-secondary 0%, $bg-primary 100%);
-  border: 2px solid $border-color;
-  border-radius: $radius-lg;
-  overflow: hidden;
-  margin-bottom: $spacing-6;
-  box-shadow: $shadow-md;
-  transition: all $transition-base;
-  
-  &:hover {
-    box-shadow: $shadow-lg;
-  }
-  
-  .bank-header {
-    background: $gradient-secondary;
-    color: white;
-    padding: $spacing-5;
-    display: flex;
-    align-items: center;
-    gap: $spacing-3;
-    font-weight: $font-weight-semibold;
-    font-size: $font-size-lg;
-    
-    i {
-      font-size: $font-size-xl;
-    }
-  }
-  
-  .bank-details {
-    padding: $spacing-6;
-  }
-  
-  .detail-item {
-    margin-bottom: $spacing-5;
-    
-    &:last-child {
-      margin-bottom: 0;
-    }
-    
-    label {
-      display: block;
-      font-size: $font-size-sm;
-      font-weight: $font-weight-semibold;
       color: $text-primary;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: $spacing-2;
-    }
-    
-    .detail-value {
-      font-size: $font-size-lg;
-      font-weight: $font-weight-semibold;
-      color: $text-secondary;
-      margin: 0;
+      font-size: $font-size-sm;
     }
   }
-  
-  .detail-row {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: $spacing-5;
-    
-    @include responsive($breakpoint-md) {
-      grid-template-columns: 1fr 1fr;
+
+  .dark .p-checkbox {
+    + label {
+      color: $dark-text-primary;
     }
   }
-  
-  .account-number {
+
+  // Divider Section
+  .divider-section {
     display: flex;
     align-items: center;
-    gap: $spacing-2;
+    margin: $spacing-8 0;
     
-    .copy-btn {
-      color: $secondary !important;
-      transition: all $transition-fast !important;
+    &::before,
+    &::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(to right, transparent, $border-color, transparent);
+    }
+    
+    .divider-text {
+      padding: 0 $spacing-4;
+      font-weight: $font-weight-semibold;
+      color: $text-tertiary;
+      font-size: $font-size-sm;
+    }
+  }
+
+  .dark .divider-section {
+    &::before,
+    &::after {
+      background: linear-gradient(to right, transparent, $dark-border-color, transparent);
+    }
+
+    .divider-text {
+      color: $dark-text-tertiary;
+    }
+  }
+
+  // Bank Info Card
+  .bank-info-card {
+    background: $bg-primary;
+    border: 2px solid $border-color;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    margin-bottom: $spacing-6;
+    box-shadow: $shadow-md;
+    transition: all $transition-base;
+    
+    &:hover {
+      box-shadow: $shadow-lg;
+    }
+    
+    .bank-header {
+      background: $secondary;
+      color: white;
+      padding: $spacing-5;
+      display: flex;
+      align-items: center;
+      gap: $spacing-3;
+      font-weight: $font-weight-semibold;
+      font-size: $font-size-lg;
       
-      &:hover {
-        color: $secondary-dark !important;
-        transform: scale(1.1);
+      i {
+        font-size: $font-size-xl;
+      }
+    }
+    
+    .bank-details {
+      padding: $spacing-6;
+    }
+    
+    .detail-item {
+      margin-bottom: $spacing-5;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+      
+      label {
+        display: block;
+        font-size: $font-size-xs;
+        font-weight: $font-weight-semibold;
+        color: $text-tertiary;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: $spacing-2;
+      }
+      
+      .detail-value {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-semibold;
+        color: $text-primary;
+        margin: 0;
+      }
+    }
+    
+    .detail-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: $spacing-5;
+      
+      @media (min-width: 768px) {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    .account-number {
+      display: flex;
+      align-items: center;
+      gap: $spacing-2;
+      
+      .copy-btn {
+        color: $secondary !important;
+        transition: all $transition-fast !important;
+        
+        &:hover {
+          color: $secondary-dark !important;
+          transform: scale(1.1);
+        }
+      }
+    }
+    
+    .amount-banner {
+      margin-top: $spacing-6;
+      padding: $spacing-4;
+      background: rgba($warning, 0.1);
+      border: 2px solid $warning;
+      border-radius: $radius-md;
+      display: flex;
+      align-items: center;
+      gap: $spacing-3;
+      font-size: $font-size-lg;
+      color: $text-primary;
+      
+      i {
+        font-size: $font-size-xl;
+        color: $warning;
+      }
+      
+      strong {
+        font-weight: $font-weight-bold;
+        color: $warning-dark;
       }
     }
   }
-  
-  .amount-banner {
-    margin-top: $spacing-6;
-    padding: $spacing-4;
-    background: $warning-50;
-    border: 2px solid $warning;
-    border-radius: $radius-md;
-    display: flex;
-    align-items: center;
-    gap: $spacing-3;
-    font-size: $font-size-lg;
-    color: $warning-800;
-    
-    i {
-      font-size: $font-size-xl;
-      color: $warning;
+
+  .dark .bank-info-card {
+    background: $dark-bg-primary;
+    border-color: $dark-border-color;
+
+    .bank-header {
+      background: $secondary-light;
     }
-    
-    strong {
-      font-weight: $font-weight-bold;
-      color: $warning-900;
+
+    .detail-item {
+      label {
+        color: $dark-text-tertiary;
+      }
+
+      .detail-value {
+        color: $dark-text-primary;
+      }
+    }
+
+    .amount-banner {
+      background: rgba($warning, 0.15);
+      color: $dark-text-primary;
     }
   }
-}
 
-// Upload Section
-.upload-section {
-  .upload-controls {
-    display: flex;
-    flex-direction: column;
-    gap: $spacing-4;
-    flex: 1;
+  // Upload Section
+  .upload-section {
+    .upload-controls {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-4;
+      flex: 1;
+    }
   }
-}
 
-::ng-deep {
   .p-progressbar {
-    height: 8px !important;
-    border-radius: $radius-full !important;
-    background: $gray-200 !important;
+    height: 8px;
+    border-radius: $radius-full;
+    background: $gray-200;
     
     .p-progressbar-value {
-      background: $gradient-secondary !important;
+      background: $secondary;
     }
   }
-}
 
-// Navigation Buttons
-.navigation-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: $spacing-8;
-  padding-top: $spacing-6;
-  border-top: 2px solid $border-color;
-}
+  .dark .p-progressbar {
+    background: $gray-700;
 
-// Loading Overlay
-::ng-deep {
+    .p-progressbar-value {
+      background: $secondary-light;
+    }
+  }
+
+  // Loading Overlay
   .p-blockui {
-    background: rgba($gray-900, 0.7) !important;
+    background: rgba($gray-900, 0.7);
     backdrop-filter: blur(4px);
     
     .pi-spinner {
       color: white;
     }
   }
-}
 
-// Animations
-@keyframes slideInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  .layout {
-    background: $dark-bg-primary;
-  }
- 
-  
-  .payment-card {
-    background: $dark-card-bg;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-  }
-  
-  .page-header .page-title {
-    color: $dark-text-secondary;
-  }
-  
-  .page-header .page-subtitle {
-    color: $dark-text-primary;
-  }
-  
-  .info-section {
-    background: linear-gradient(135deg, rgba($secondary-900, 0.3) 0%, rgba($secondary-800, 0.3) 100%);
-    border-left-color: $secondary-light;
-    
-    .info-text {
-      color: $dark-text-secondary;
+  // Animations
+  @keyframes slideInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
-  
-  .payment-option-card {
-    background: $dark-bg-primary;
-    border-color: $dark-border-color;
-  }
-  
-  .bank-info-card {
-    background: linear-gradient(135deg, $dark-bg-secondary 0%, $dark-bg-primary 100%);
-    border-color: $dark-border-color;
-  }
-  
-  .detail-item {
-    .detail-value {
-      color: $dark-text-secondary;
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
-}
 
-// Responsive adjustments
-@media (max-width: $breakpoint-md) {
-  .content {
-    padding: $spacing-4;
-  }
-  
-  .payment-card {
-    padding: $spacing-5;
-  }
-  
-  .page-header .page-title {
-    font-size: $font-size-2xl;
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 }

@@ -1,0 +1,346 @@
+@import '../../../../../assets/demo/theme';
+
+.upload-container {
+  width: 100%;
+  background-color: $bg-secondary;
+  border-radius: $radius-xl;
+  padding: $spacing-6;
+
+  @include responsive($breakpoint-md) {
+    padding: $spacing-10;
+  }
+
+  @include dark-mode {
+    background-color: $dark-bg-secondary;
+  }
+}
+
+.upload-form {
+  width: 100%;
+}
+
+.form-title {
+  font-family: $font-family-sans;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+  color: $text-primary;
+  margin-bottom: $spacing-8;
+
+  @include dark-mode {
+    color: $dark-text-primary;
+  }
+}
+
+.upload-section {
+  margin-bottom: $spacing-8;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.upload-label {
+  display: block;
+  font-family: $font-family-sans;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-normal;
+  color: $text-primary;
+  margin-bottom: $spacing-3;
+
+  @include dark-mode {
+    color: $dark-text-primary;
+  }
+
+  .required {
+    color: $danger;
+    margin-left: 2px;
+  }
+}
+
+.upload-area {
+  width: 100%;
+  max-width: 500px;
+  height: 160px;
+  border: 2px dashed $border-color;
+  border-radius: $radius-lg;
+  background-color: $bg-primary;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-3;
+  cursor: pointer;
+  transition: $transition-all;
+
+  &:hover {
+    border-color: $primary;
+    background-color: rgba($primary, 0.02);
+
+    .upload-icon {
+      color: $primary;
+      transform: translateY(-2px);
+    }
+  }
+
+  @include dark-mode {
+    background-color: $dark-bg-primary;
+    border-color: $dark-border-color;
+
+    &:hover {
+      border-color: $primary-light;
+      background-color: rgba($primary-light, 0.05);
+
+      .upload-icon {
+        color: $primary-light;
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    max-width: 100%;
+  }
+}
+
+.upload-icon {
+  font-size: 3rem;
+  color: $text-tertiary;
+  transition: $transition-all;
+
+  @include dark-mode {
+    color: $dark-text-tertiary;
+  }
+}
+
+.upload-desc {
+  font-family: $font-family-sans;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-normal;
+  color: $text-secondary;
+  text-align: center;
+
+  @include dark-mode {
+    color: $dark-text-secondary;
+  }
+}
+
+.upload-hint {
+  font-size: $font-size-xs;
+  color: $text-tertiary;
+  text-align: center;
+
+  @include dark-mode {
+    color: $dark-text-tertiary;
+  }
+}
+
+.file-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-4;
+  background-color: $bg-primary;
+  border: 1px solid $border-color;
+  border-radius: $radius-lg;
+  max-width: 500px;
+  transition: $transition-all;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+
+  @include dark-mode {
+    background-color: $dark-bg-primary;
+    border-color: $dark-border-color;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    max-width: 100%;
+  }
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
+  flex: 1;
+  position: relative;
+}
+
+.file-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: $radius;
+  flex-shrink: 0;
+}
+
+.file-details {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-1;
+  flex: 1;
+  min-width: 0;
+}
+
+.file-name {
+  font-family: $font-family-sans;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+  color: $text-primary;
+  @include truncate;
+
+  @include dark-mode {
+    color: $dark-text-primary;
+  }
+}
+
+.file-size {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-normal;
+  color: $text-secondary;
+
+  @include dark-mode {
+    color: $dark-text-secondary;
+  }
+}
+
+.remove-icon {
+  font-size: 2rem;
+  color: $border-color;
+  cursor: pointer;
+  transition: $transition-all;
+  flex-shrink: 0;
+
+  &:hover {
+    color: $danger;
+    transform: scale(1.1);
+  }
+
+  @include dark-mode {
+    color: $dark-border-color;
+
+    &:hover {
+      color: $danger-light;
+    }
+  }
+}
+
+// PrimeNG Component Customization
+::ng-deep {
+  .upload-container {
+    // Progress Spinner in file preview
+    .file-spinner {
+      .p-progress-spinner-circle {
+        stroke: $primary !important;
+        animation: p-progress-spinner-dash 1.5s ease-in-out infinite;
+      }
+
+      @include dark-mode {
+        .p-progress-spinner-circle {
+          stroke: $primary-light !important;
+        }
+      }
+    }
+
+    // Toast Customization
+    .p-toast {
+      .p-toast-message {
+        border-radius: $radius-md;
+        box-shadow: $shadow-lg;
+        margin: $spacing-2;
+
+        &.p-toast-message-success {
+          background-color: $success;
+          border-left: 4px solid $success-dark;
+
+          .p-toast-message-icon,
+          .p-toast-summary,
+          .p-toast-detail {
+            color: white;
+          }
+        }
+
+        &.p-toast-message-error {
+          background-color: $danger;
+          border-left: 4px solid $danger-dark;
+
+          .p-toast-message-icon,
+          .p-toast-summary,
+          .p-toast-detail {
+            color: white;
+          }
+        }
+
+        &.p-toast-message-warn {
+          background-color: $warning;
+          border-left: 4px solid $warning-dark;
+
+          .p-toast-message-icon,
+          .p-toast-summary,
+          .p-toast-detail {
+            color: white;
+          }
+        }
+
+        &.p-toast-message-info {
+          background-color: $info;
+          border-left: 4px solid $info-dark;
+
+          .p-toast-message-icon,
+          .p-toast-summary,
+          .p-toast-detail {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.file-preview {
+  animation: fadeIn 0.3s ease;
+}
+
+// Responsive Adjustments
+@media (max-width: $breakpoint-md) {
+  .upload-container {
+    padding: $spacing-4;
+  }
+
+  .form-title {
+    font-size: $font-size-lg;
+  }
+
+  .upload-section {
+    margin-bottom: $spacing-6;
+  }
+
+  .file-preview {
+    padding: $spacing-3;
+  }
+
+  .file-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .remove-icon {
+    font-size: 1.75rem;
+  }
+}

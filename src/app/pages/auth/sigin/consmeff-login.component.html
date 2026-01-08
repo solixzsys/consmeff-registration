@@ -86,7 +86,8 @@
               <label class="remember-label">
                 <input
                   type="checkbox"
-                  [(ngModel)]="rememberMe"
+                  formControlName
+                  ="rememberMe"
                   name="rememberMe"
                   class="checkbox"
                   [disabled]="isLoading()"

@@ -1,0 +1,547 @@
+@import '../../../../../assets/demo/theme';
+
+.personal-details-container {
+  width: 100%;
+  background-color: $bg-secondary;
+  border-radius: $radius-xl;
+  padding: $spacing-6;
+  
+  @include responsive($breakpoint-md) {
+    padding: $spacing-10;
+  }
+
+  @include dark-mode {
+    background-color: $dark-bg-secondary;
+  }
+}
+
+.personal-form {
+  width: 100%;
+}
+
+.form-section {
+  margin-bottom: $spacing-10;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.section-title {
+  font-family: $font-family-sans;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+  color: $text-primary;
+  margin-bottom: $spacing-6;
+  padding-bottom: $spacing-3;
+  border-bottom: 2px solid $border-color;
+
+  @include dark-mode {
+    color: $dark-text-primary;
+    border-bottom-color: $dark-border-color;
+  }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-6;
+  margin-bottom: $spacing-6;
+
+  @include responsive($breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include responsive($breakpoint-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+
+  &.radio-group {
+    grid-column: 1 / -1;
+  }
+}
+
+.field-label {
+  font-family: $font-family-sans;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-normal;
+  color: $text-primary;
+
+  @include dark-mode {
+    color: $dark-text-primary;
+  }
+
+  .required {
+    color: $danger;
+    margin-left: 2px;
+  }
+}
+
+.radio-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-6;
+  margin-top: $spacing-2;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: $spacing-2;
+}
+
+.radio-label {
+  font-size: $font-size-sm;
+  color: $text-primary;
+  cursor: pointer;
+  user-select: none;
+
+  @include dark-mode {
+    color: $dark-text-primary;
+  }
+}
+
+// Small text styles
+small {
+  font-size: $font-size-xs;
+  margin-top: $spacing-1;
+  display: block;
+
+  &.p-error {
+    color: $danger;
+  }
+
+  &.p-info {
+    color: $text-secondary;
+
+    @include dark-mode {
+      color: $dark-text-secondary;
+    }
+  }
+}
+
+// PrimeNG Component Customization
+::ng-deep {
+  // Input Text Styling
+  .personal-details-container {
+    .p-inputtext {
+      width: 100%;
+      height: 48px !important;
+      padding: $spacing-3 $spacing-4;
+      font-size: $font-size-sm;
+      border: 1px solid $input-border;
+      border-radius: $radius-md;
+      background-color: $bg-primary;
+      color: $text-primary;
+      transition: $transition-all;
+
+      &::placeholder {
+        color: $text-tertiary;
+      }
+
+      &:enabled:focus {
+        border-color: $input-border-focus;
+        box-shadow: $shadow-primary;
+        outline: none;
+      }
+
+      &:enabled:hover {
+        border-color: $input-border-focus;
+      }
+
+      &.p-invalid {
+        border-color: $danger !important;
+
+        &:enabled:focus {
+          box-shadow: 0 0 0 3px rgba($danger, 0.1) !important;
+        }
+      }
+
+      @include dark-mode {
+        background-color: $dark-input-bg;
+        border-color: $dark-input-border;
+        color: $dark-text-primary;
+
+        &::placeholder {
+          color: $dark-text-tertiary;
+        }
+
+        &:enabled:focus {
+          border-color: $primary-light;
+          box-shadow: $shadow-primary-dark;
+        }
+      }
+    }
+
+    // Dropdown Styling
+    .p-dropdown {
+      width: 100%;
+      height: 48px !important;
+      border: 1px solid $input-border;
+      border-radius: $radius-md;
+      background-color: $bg-primary;
+      transition: $transition-all;
+
+      &:not(.p-disabled):hover {
+        border-color: $input-border-focus;
+      }
+
+      &:not(.p-disabled).p-focus {
+        border-color: $input-border-focus;
+        box-shadow: $shadow-primary;
+        outline: none;
+      }
+
+      &.p-invalid {
+        border-color: $danger !important;
+
+        &:not(.p-disabled).p-focus {
+          box-shadow: 0 0 0 3px rgba($danger, 0.1) !important;
+        }
+      }
+
+      .p-dropdown-label {
+        padding: $spacing-3 $spacing-4;
+        font-size: $font-size-sm;
+        color: $text-primary;
+        line-height: 1.5;
+
+        &.p-placeholder {
+          color: $text-tertiary;
+        }
+      }
+
+      .p-dropdown-trigger {
+        width: 48px;
+        color: $text-secondary;
+      }
+
+      @include dark-mode {
+        background-color: $dark-input-bg;
+        border-color: $dark-input-border;
+
+        .p-dropdown-label {
+          color: $dark-text-primary;
+
+          &.p-placeholder {
+            color: $dark-text-tertiary;
+          }
+        }
+
+        .p-dropdown-trigger {
+          color: $dark-text-secondary;
+        }
+
+        &:not(.p-disabled).p-focus {
+          border-color: $primary-light;
+          box-shadow: $shadow-primary-dark;
+        }
+      }
+    }
+
+    // Dropdown Panel
+    .p-dropdown-panel {
+      background: $bg-primary;
+      border: 1px solid $border-color;
+      border-radius: $radius-md;
+      box-shadow: $shadow-lg;
+
+      .p-dropdown-header {
+        padding: $spacing-3;
+        background: $bg-secondary;
+        border-bottom: 1px solid $border-color;
+
+        .p-dropdown-filter {
+          padding: $spacing-2 $spacing-3;
+          border: 1px solid $input-border;
+          border-radius: $radius;
+          font-size: $font-size-sm;
+
+          &:focus {
+            border-color: $input-border-focus;
+            box-shadow: $shadow-primary;
+          }
+        }
+      }
+
+      .p-dropdown-items {
+        padding: $spacing-2 0;
+
+        .p-dropdown-item {
+          padding: $spacing-3 $spacing-4;
+          color: $text-primary;
+          font-size: $font-size-sm;
+          transition: $transition-fast;
+
+          &:not(.p-highlight):not(.p-disabled):hover {
+            background: $bg-secondary;
+            color: $text-primary;
+          }
+
+          &.p-highlight {
+            background: $primary;
+            color: white;
+          }
+        }
+
+        .p-dropdown-empty-message {
+          padding: $spacing-4;
+          color: $text-secondary;
+          text-align: center;
+        }
+      }
+
+      @include dark-mode {
+        background: $dark-bg-secondary;
+        border-color: $dark-border-color;
+
+        .p-dropdown-header {
+          background: $dark-bg-primary;
+          border-bottom-color: $dark-border-color;
+
+          .p-dropdown-filter {
+            background: $dark-input-bg;
+            border-color: $dark-input-border;
+            color: $dark-text-primary;
+
+            &:focus {
+              border-color: $primary-light;
+            }
+          }
+        }
+
+        .p-dropdown-items {
+          .p-dropdown-item {
+            color: $dark-text-primary;
+
+            &:not(.p-highlight):not(.p-disabled):hover {
+              background: $dark-bg-primary;
+            }
+
+            &.p-highlight {
+              background: $primary-light;
+            }
+          }
+
+          .p-dropdown-empty-message {
+            color: $dark-text-secondary;
+          }
+        }
+      }
+    }
+
+    // Calendar Styling
+    .p-calendar {
+      width: 100%;
+
+      .p-inputtext {
+        width: 100%;
+        height: 48px !important;
+        padding-right: 48px;
+      }
+
+      .p-datepicker-trigger {
+        width: 48px;
+        height: 48px;
+        color: $text-secondary;
+
+        @include dark-mode {
+          color: $dark-text-secondary;
+        }
+      }
+    }
+
+    .p-datepicker {
+      background: $bg-primary;
+      border: 1px solid $border-color;
+      border-radius: $radius-md;
+      box-shadow: $shadow-lg;
+      padding: $spacing-3;
+
+      .p-datepicker-header {
+        background: transparent;
+        border-bottom: 1px solid $border-color;
+        padding: $spacing-3;
+        margin-bottom: $spacing-2;
+
+        .p-datepicker-title {
+          color: $text-primary;
+
+          button {
+            color: $text-primary;
+            font-weight: $font-weight-semibold;
+
+            &:hover {
+              background: $bg-secondary;
+            }
+          }
+        }
+
+        .p-datepicker-prev,
+        .p-datepicker-next {
+          color: $text-secondary;
+
+          &:hover {
+            background: $bg-secondary;
+            color: $text-primary;
+          }
+        }
+      }
+
+      .p-datepicker-calendar-container {
+        .p-datepicker-calendar {
+          th {
+            color: $text-secondary;
+            font-size: $font-size-xs;
+            font-weight: $font-weight-semibold;
+            padding: $spacing-2;
+          }
+
+          td {
+            padding: $spacing-1;
+
+            span {
+              width: 36px;
+              height: 36px;
+              border-radius: $radius;
+              color: $text-primary;
+
+              &:hover {
+                background: $bg-secondary;
+              }
+
+              &.p-highlight {
+                background: $primary;
+                color: white;
+              }
+            }
+          }
+        }
+      }
+
+      @include dark-mode {
+        background: $dark-bg-secondary;
+        border-color: $dark-border-color;
+
+        .p-datepicker-header {
+          border-bottom-color: $dark-border-color;
+
+          .p-datepicker-title {
+            color: $dark-text-primary;
+
+            button {
+              color: $dark-text-primary;
+
+              &:hover {
+                background: $dark-bg-primary;
+              }
+            }
+          }
+
+          .p-datepicker-prev,
+          .p-datepicker-next {
+            color: $dark-text-secondary;
+
+            &:hover {
+              background: $dark-bg-primary;
+              color: $dark-text-primary;
+            }
+          }
+        }
+
+        .p-datepicker-calendar-container {
+          .p-datepicker-calendar {
+            th {
+              color: $dark-text-secondary;
+            }
+
+            td span {
+              color: $dark-text-primary;
+
+              &:hover {
+                background: $dark-bg-primary;
+              }
+
+              &.p-highlight {
+                background: $primary-light;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Radio Button Styling
+    .p-radiobutton {
+      .p-radiobutton-box {
+        width: 20px;
+        height: 20px;
+        border: 2px solid $input-border;
+        background: $bg-primary;
+        transition: $transition-all;
+
+        &:hover {
+          border-color: $primary;
+        }
+
+        &.p-highlight {
+          border-color: $primary;
+          background: $primary;
+
+          .p-radiobutton-icon {
+            width: 10px;
+            height: 10px;
+            background-color: white;
+          }
+        }
+
+        @include dark-mode {
+          background: $dark-input-bg;
+          border-color: $dark-input-border;
+
+          &:hover {
+            border-color: $primary-light;
+          }
+
+          &.p-highlight {
+            border-color: $primary-light;
+            background: $primary-light;
+          }
+        }
+      }
+
+      &:not(.p-disabled):has(.p-radiobutton-input:focus-visible) .p-radiobutton-box {
+        box-shadow: $shadow-primary;
+        border-color: $primary;
+
+        @include dark-mode {
+          box-shadow: $shadow-primary-dark;
+          border-color: $primary-light;
+        }
+      }
+    }
+  }
+}
+
+// Responsive Adjustments
+@media (max-width: $breakpoint-md) {
+  .personal-details-container {
+    padding: $spacing-4;
+  }
+
+  .section-title {
+    font-size: $font-size-lg;
+  }
+
+  .form-grid {
+    gap: $spacing-4;
+  }
+}

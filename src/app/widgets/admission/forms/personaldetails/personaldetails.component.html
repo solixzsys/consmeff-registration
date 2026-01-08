@@ -1,0 +1,365 @@
+<div class="personal-details-container">
+  <form [formGroup]="personalInfoForm" class="personal-form">
+    
+    <!-- Personal Information Section -->
+    <div class="form-section">
+      <h3 class="section-title">Personal Information</h3>
+
+      <div class="form-grid">
+        <!-- First Name -->
+        <div class="form-field">
+          <label for="firstname" class="field-label">First Name <span class="required">*</span></label>
+          <input 
+            pInputText 
+            id="firstname" 
+            formControlName="firstname"
+            placeholder="Enter first name"
+            [class.p-invalid]="isFieldInvalid('firstname')"
+          />
+          <small *ngIf="isFieldInvalid('firstname')" class="p-error">
+            {{ getErrorMessage('firstname') }}
+          </small>
+        </div>
+
+        <!-- Last Name -->
+        <div class="form-field">
+          <label for="lastname" class="field-label">Last Name <span class="required">*</span></label>
+          <input 
+            pInputText 
+            id="lastname" 
+            formControlName="lastname"
+            placeholder="Enter last name"
+            [class.p-invalid]="isFieldInvalid('lastname')"
+          />
+          <small *ngIf="isFieldInvalid('lastname')" class="p-error">
+            {{ getErrorMessage('lastname') }}
+          </small>
+        </div>
+
+        <!-- Middle Name -->
+        <div class="form-field">
+          <label for="middlename" class="field-label">Middle Name</label>
+          <input 
+            pInputText 
+            id="middlename" 
+            formControlName="middlename"
+            placeholder="Enter middle name (optional)"
+          />
+        </div>
+
+        <!-- Email Address -->
+        <div class="form-field">
+          <label for="email" class="field-label">Email Address <span class="required">*</span></label>
+          <input 
+            pInputText 
+            id="email" 
+            type="email"
+            formControlName="email"
+            placeholder="Enter email address"
+            [class.p-invalid]="isFieldInvalid('email')"
+          />
+          <small *ngIf="isFieldInvalid('email')" class="p-error">
+            {{ getErrorMessage('email') }}
+          </small>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="form-field">
+          <label for="phonenumber" class="field-label">Phone Number <span class="required">*</span></label>
+          <input 
+            pInputText 
+            id="phonenumber" 
+            formControlName="phonenumber"
+            placeholder="Enter phone number"
+            [class.p-invalid]="isFieldInvalid('phonenumber')"
+          />
+          <small *ngIf="isFieldInvalid('phonenumber')" class="p-error">
+            {{ getErrorMessage('phonenumber') }}
+          </small>
+        </div>
+
+        <!-- Alternative Phone Number -->
+        <div class="form-field">
+          <label for="alternativePhoneNumber" class="field-label">Alternative Phone Number</label>
+          <input 
+            pInputText 
+            id="alternativePhoneNumber" 
+            formControlName="alternativePhoneNumber"
+            placeholder="Enter alternative phone (optional)"
+            [class.p-invalid]="isFieldInvalid('alternativePhoneNumber')"
+          />
+        </div>
+
+        <!-- Date of Birth -->
+        <div class="form-field">
+          <label for="dateOfBirth" class="field-label">Date of Birth <span class="required">*</span></label>
+          <p-calendar 
+            inputId="dateOfBirth"
+            formControlName="dateOfBirth"
+            [showIcon]="true"
+            dateFormat="yy-mm-dd"
+            placeholder="Select date of birth"
+            [maxDate]="maxDate"
+            [minDate]="minDate"
+            [yearNavigator]="true"
+            [monthNavigator]="true"
+            yearRange="1940:2024"
+            [class.p-invalid]="isFieldInvalid('dateOfBirth')"
+            styleClass="w-full"
+          ></p-calendar>
+          <small *ngIf="isFieldInvalid('dateOfBirth')" class="p-error">
+            {{ getErrorMessage('dateOfBirth') }}
+          </small>
+        </div>
+
+        <!-- Marital Status -->
+        <div class="form-field">
+          <label for="maritalStatus" class="field-label">Marital Status <span class="required">*</span></label>
+          <p-dropdown 
+            inputId="maritalStatus"
+            [options]="maritalStatusOptions"
+            formControlName="maritalStatus"
+            placeholder="Select marital status"
+            [class.p-invalid]="isFieldInvalid('maritalStatus')"
+            styleClass="w-full"
+          ></p-dropdown>
+          <small *ngIf="isFieldInvalid('maritalStatus')" class="p-error">
+            {{ getErrorMessage('maritalStatus') }}
+          </small>
+        </div>
+
+        <!-- Nationality -->
+        <div class="form-field">
+          <label for="nationality" class="field-label">Nationality <span class="required">*</span></label>
+          <p-dropdown 
+            inputId="nationality"
+            [options]="nationalityDropdownOptions"
+            formControlName="nationality"
+            placeholder="Select nationality"
+            [filter]="true"
+            filterBy="label"
+            [disabled]="!nationalityDropdownOptions || nationalityDropdownOptions.length === 0"
+            [class.p-invalid]="isFieldInvalid('nationality')"
+            styleClass="w-full"
+          ></p-dropdown>
+          <small *ngIf="!nationalityDropdownOptions || nationalityDropdownOptions.length === 0" class="p-info">
+            Loading nationalities...
+          </small>
+          <small *ngIf="isFieldInvalid('nationality')" class="p-error">
+            {{ getErrorMessage('nationality') }}
+          </small>
+        </div>
+
+        <!-- State of Origin -->
+        <div class="form-field">
+          <label for="stateOfOrigin" class="field-label">State of Origin <span class="required">*</span></label>
+          <p-dropdown 
+            inputId="stateOfOrigin"
+            [options]="stateDropdownOptions"
+            formControlName="stateOfOrigin"
+            placeholder="Select state of origin"
+            [filter]="true"
+            filterBy="label"
+            [disabled]="!stateDropdownOptions || stateDropdownOptions.length === 0"
+            [class.p-invalid]="isFieldInvalid('stateOfOrigin')"
+            styleClass="w-full"
+          ></p-dropdown>
+          <small *ngIf="!stateDropdownOptions || stateDropdownOptions.length === 0" class="p-info">
+            Loading states...
+          </small>
+          <small *ngIf="isFieldInvalid('stateOfOrigin')" class="p-error">
+            {{ getErrorMessage('stateOfOrigin') }}
+          </small>
+        </div>
+
+        <!-- Local Government -->
+        <div class="form-field">
+          <label for="localGovernment" class="field-label">Local Government <span class="required">*</span></label>
+          <p-dropdown 
+            inputId="localGovernment"
+            [options]="localGovDropdownOptions"
+            formControlName="localGovernment"
+            placeholder="Select local government"
+            [filter]="true"
+            filterBy="label"
+            [disabled]="!localGovDropdownOptions || localGovDropdownOptions.length === 0 || !personalInfoForm.get('stateOfOrigin')?.value"
+            [class.p-invalid]="isFieldInvalid('localGovernment')"
+            styleClass="w-full"
+          ></p-dropdown>
+          <small *ngIf="!personalInfoForm.get('stateOfOrigin')?.value" class="p-info">
+            Please select state of origin first
+          </small>
+          <small *ngIf="personalInfoForm.get('stateOfOrigin')?.value && (!localGovDropdownOptions || localGovDropdownOptions.length === 0)" class="p-info">
+            Loading local governments...
+          </small>
+          <small *ngIf="isFieldInvalid('localGovernment')" class="p-error">
+            {{ getErrorMessage('localGovernment') }}
+          </small>
+        </div>
+      </div>
+
+      <!-- Gender Radio Buttons -->
+      <div class="form-field radio-group">
+        <label class="field-label">Gender <span class="required">*</span></label>
+        <div class="radio-options">
+          <div *ngFor="let gender of genderOptions" class="radio-option">
+            <p-radioButton 
+              [inputId]="'gender-' + gender"
+              [value]="gender"
+              formControlName="gender"
+            ></p-radioButton>
+            <label [for]="'gender-' + gender" class="radio-label">{{ gender }}</label>
+          </div>
+        </div>
+        <small *ngIf="isFieldInvalid('gender')" class="p-error">
+          {{ getErrorMessage('gender') }}
+        </small>
+      </div>
+
+      <!-- Disability Radio Buttons -->
+      <div class="form-field radio-group " style="margin-top: 20px;">
+        <label class="field-label">Do you live with a disability? <span class="required">*</span></label>
+        <div class="radio-options">
+          <div *ngFor="let option of disabilityOptions" class="radio-option">
+            <p-radioButton 
+              [inputId]="'disability-' + option"
+              [value]="option"
+              formControlName="disability"
+            ></p-radioButton>
+            <label [for]="'disability-' + option" class="radio-label">{{ option }}</label>
+          </div>
+        </div>
+        <small *ngIf="isFieldInvalid('disability')" class="p-error">
+          {{ getErrorMessage('disability') }}
+        </small>
+      </div>
+
+      <!-- Disability Details (Conditional) -->
+      <div class="form-field" *ngIf="personalInfoForm.get('disability')?.value === 'Yes'">
+        <label for="disabilityDetails" class="field-label">If Yes, please specify <span class="required">*</span></label>
+        <input 
+          pInputText 
+          id="disabilityDetails" 
+          formControlName="disabilityDetails"
+          placeholder="Please specify your disability"
+          [class.p-invalid]="isFieldInvalid('disabilityDetails')"
+        />
+        <small *ngIf="isFieldInvalid('disabilityDetails')" class="p-error">
+          {{ getErrorMessage('disabilityDetails') }}
+        </small>
+      </div>
+    </div>
+
+    <!-- Residential Information Section -->
+    <div class="form-section">
+      <h3 class="section-title">Residential Information</h3>
+
+      <div class="form-grid">
+        <!-- House Number -->
+        <div class="form-field">
+          <label for="houseNumber" class="field-label">House Number <span class="required">*</span></label>
+          <input 
+            pInputText 
+            id="houseNumber" 
+            formControlName="houseNumber"
+            placeholder="Enter house number"
+            [class.p-invalid]="isFieldInvalid('houseNumber')"
+          />
+          <small *ngIf="isFieldInvalid('houseNumber')" class="p-error">
+            {{ getErrorMessage('houseNumber') }}
+          </small>
+        </div>
+
+        <!-- Street Name -->
+        <div class="form-field">
+          <label for="streetName" class="field-label">Street Name <span class="required">*</span></label>
+          <input 
+            pInputText 
+            id="streetName" 
+            formControlName="streetName"
+            placeholder="Enter street name"
+            [class.p-invalid]="isFieldInvalid('streetName')"
+          />
+          <small *ngIf="isFieldInvalid('streetName')" class="p-error">
+            {{ getErrorMessage('streetName') }}
+          </small>
+        </div>
+
+        <!-- Landmark -->
+        <div class="form-field">
+          <label for="landmark" class="field-label">Landmark <span class="required">*</span></label>
+          <input 
+            pInputText 
+            id="landmark" 
+            formControlName="landmark"
+            placeholder="Enter landmark"
+            [class.p-invalid]="isFieldInvalid('landmark')"
+          />
+          <small *ngIf="isFieldInvalid('landmark')" class="p-error">
+            {{ getErrorMessage('landmark') }}
+          </small>
+        </div>
+
+        <!-- Area/Town -->
+        <div class="form-field">
+          <label for="areaTown" class="field-label">Area/Town <span class="required">*</span></label>
+          <input 
+            pInputText 
+            id="areaTown" 
+            formControlName="areaTown"
+            placeholder="Enter area or town"
+            [class.p-invalid]="isFieldInvalid('areaTown')"
+          />
+          <small *ngIf="isFieldInvalid('areaTown')" class="p-error">
+            {{ getErrorMessage('areaTown') }}
+          </small>
+        </div>
+
+        <!-- Residential State -->
+        <div class="form-field">
+          <label for="residentialState" class="field-label">Residential State <span class="required">*</span></label>
+          <p-dropdown 
+            inputId="residentialState"
+            [options]="stateDropdownOptions"
+            formControlName="residentialState"
+            placeholder="Select residential state"
+            [filter]="true"
+            filterBy="label"
+            [disabled]="!stateDropdownOptions || stateDropdownOptions.length === 0"
+            [class.p-invalid]="isFieldInvalid('residentialState')"
+            styleClass="w-full"
+          ></p-dropdown>
+          <small *ngIf="isFieldInvalid('residentialState')" class="p-error">
+            {{ getErrorMessage('residentialState') }}
+          </small>
+        </div>
+
+        <!-- Residential Local Government -->
+        <div class="form-field">
+          <label for="residentialLocalGovernment" class="field-label">Residential Local Government <span class="required">*</span></label>
+          <p-dropdown 
+            inputId="residentialLocalGovernment"
+            [options]="residentialLGADropdownOptions"
+            formControlName="residentialLocalGovernment"
+            placeholder="Select residential LGA"
+            [filter]="true"
+            filterBy="label"
+            [disabled]="!residentialLGADropdownOptions || residentialLGADropdownOptions.length === 0 || !personalInfoForm.get('residentialState')?.value"
+            [class.p-invalid]="isFieldInvalid('residentialLocalGovernment')"
+            styleClass="w-full"
+          ></p-dropdown>
+          <small *ngIf="!personalInfoForm.get('residentialState')?.value" class="p-info">
+            Please select residential state first
+          </small>
+          <small *ngIf="personalInfoForm.get('residentialState')?.value && (!residentialLGADropdownOptions || residentialLGADropdownOptions.length === 0)" class="p-info">
+            Loading local governments...
+          </small>
+          <small *ngIf="isFieldInvalid('residentialLocalGovernment')" class="p-error">
+            {{ getErrorMessage('residentialLocalGovernment') }}
+          </small>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>

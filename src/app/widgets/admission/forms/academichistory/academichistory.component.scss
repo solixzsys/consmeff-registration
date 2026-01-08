@@ -1,0 +1,419 @@
+@import '../../../../../assets/demo/theme';
+
+.academic-history-container {
+  width: 100%;
+}
+
+.academic-form {
+  width: 100%;
+  margin-bottom: $spacing-8;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.form-section {
+  background-color: $bg-secondary;
+  border-radius: $radius-xl;
+  padding: $spacing-6;
+  margin-bottom: $spacing-6;
+
+  @include responsive($breakpoint-md) {
+    padding: $spacing-8;
+  }
+
+  @include dark-mode {
+    background-color: $dark-bg-secondary;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.section-title {
+  font-family: $font-family-sans;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+  color: $text-primary;
+  margin-bottom: $spacing-6;
+  padding-bottom: $spacing-3;
+  border-bottom: 2px solid $border-color;
+
+  @include dark-mode {
+    color: $dark-text-primary;
+    border-bottom-color: $dark-border-color;
+  }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-6;
+
+  @include responsive($breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include responsive($breakpoint-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+
+  &.full-width {
+    grid-column: 1 / -1;
+  }
+
+  &.radio-group {
+    grid-column: 1 / -1;
+  }
+}
+
+.field-label {
+  font-family: $font-family-sans;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-normal;
+  color: $text-primary;
+
+  @include dark-mode {
+    color: $dark-text-primary;
+  }
+
+  .required {
+    color: $danger;
+    margin-left: 2px;
+  }
+}
+
+.radio-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-6;
+  margin-top: $spacing-2;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: $spacing-2;
+}
+
+.radio-label {
+  font-size: $font-size-sm;
+  color: $text-primary;
+  cursor: pointer;
+  user-select: none;
+
+  @include dark-mode {
+    color: $dark-text-primary;
+  }
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: $spacing-6;
+  gap: $spacing-3;
+
+  &.centered {
+    justify-content: center;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    flex-direction: column;
+
+    ::ng-deep .p-button {
+      width: 100%;
+    }
+  }
+}
+
+// Small text styles
+small {
+  font-size: $font-size-xs;
+  margin-top: $spacing-1;
+  display: block;
+
+  &.p-error {
+    color: $danger;
+  }
+
+  &.p-info {
+    color: $text-secondary;
+
+    @include dark-mode {
+      color: $dark-text-secondary;
+    }
+  }
+}
+
+// PrimeNG Component Customization
+::ng-deep {
+  .academic-history-container {
+    // Input Text Styling
+    .p-inputtext {
+      width: 100%;
+      height: 48px !important;
+      padding: $spacing-3 $spacing-4;
+      font-size: $font-size-sm;
+      border: 1px solid $input-border;
+      border-radius: $radius-md;
+      background-color: $bg-primary;
+      color: $text-primary;
+      transition: $transition-all;
+
+      &::placeholder {
+        color: $text-tertiary;
+      }
+
+      &:enabled:focus {
+        border-color: $input-border-focus;
+        box-shadow: $shadow-primary;
+        outline: none;
+      }
+
+      &:enabled:hover {
+        border-color: $input-border-focus;
+      }
+
+      &.p-invalid {
+        border-color: $danger !important;
+
+        &:enabled:focus {
+          box-shadow: 0 0 0 3px rgba($danger, 0.1) !important;
+        }
+      }
+
+      @include dark-mode {
+        background-color: $dark-input-bg;
+        border-color: $dark-input-border;
+        color: $dark-text-primary;
+
+        &::placeholder {
+          color: $dark-text-tertiary;
+        }
+
+        &:enabled:focus {
+          border-color: $primary-light;
+          box-shadow: $shadow-primary-dark;
+        }
+      }
+    }
+
+    // Dropdown Styling
+    .p-dropdown {
+      width: 100%;
+      height: 48px !important;
+      border: 1px solid $input-border;
+      border-radius: $radius-md;
+      background-color: $bg-primary;
+      transition: $transition-all;
+
+      &:not(.p-disabled):hover {
+        border-color: $input-border-focus;
+      }
+
+      &:not(.p-disabled).p-focus {
+        border-color: $input-border-focus;
+        box-shadow: $shadow-primary;
+        outline: none;
+      }
+
+      &.p-invalid {
+        border-color: $danger !important;
+
+        &:not(.p-disabled).p-focus {
+          box-shadow: 0 0 0 3px rgba($danger, 0.1) !important;
+        }
+      }
+
+      .p-dropdown-label {
+        padding: $spacing-3 $spacing-4;
+        font-size: $font-size-sm;
+        color: $text-primary;
+        line-height: 1.5;
+
+        &.p-placeholder {
+          color: $text-tertiary;
+        }
+      }
+
+      .p-dropdown-trigger {
+        width: 48px;
+        color: $text-secondary;
+      }
+
+      @include dark-mode {
+        background-color: $dark-input-bg;
+        border-color: $dark-input-border;
+
+        .p-dropdown-label {
+          color: $dark-text-primary;
+
+          &.p-placeholder {
+            color: $dark-text-tertiary;
+          }
+        }
+
+        .p-dropdown-trigger {
+          color: $dark-text-secondary;
+        }
+
+        &:not(.p-disabled).p-focus {
+          border-color: $primary-light;
+          box-shadow: $shadow-primary-dark;
+        }
+      }
+    }
+
+    // Calendar Styling
+    .p-calendar {
+      width: 100%;
+
+      .p-inputtext {
+        width: 100%;
+        height: 48px !important;
+        padding-right: 48px;
+      }
+
+      .p-datepicker-trigger {
+        width: 48px;
+        height: 48px;
+        color: $text-secondary;
+
+        @include dark-mode {
+          color: $dark-text-secondary;
+        }
+      }
+    }
+
+    // Radio Button Styling
+    .p-radiobutton {
+      .p-radiobutton-box {
+        width: 20px;
+        height: 20px;
+        border: 2px solid $input-border;
+        background: $bg-primary;
+        transition: $transition-all;
+
+        &:hover {
+          border-color: $primary;
+        }
+
+        &.p-highlight {
+          border-color: $primary;
+          background: $primary;
+
+          .p-radiobutton-icon {
+            width: 10px;
+            height: 10px;
+            background-color: white;
+          }
+        }
+
+        @include dark-mode {
+          background: $dark-input-bg;
+          border-color: $dark-input-border;
+
+          &:hover {
+            border-color: $primary-light;
+          }
+
+          &.p-highlight {
+            border-color: $primary-light;
+            background: $primary-light;
+          }
+        }
+      }
+
+      &:not(.p-disabled):has(.p-radiobutton-input:focus-visible) .p-radiobutton-box {
+        box-shadow: $shadow-primary;
+        border-color: $primary;
+
+        @include dark-mode {
+          box-shadow: $shadow-primary-dark;
+          border-color: $primary-light;
+        }
+      }
+    }
+
+    // Button Styling
+    .p-button {
+      height: 48px !important;
+      padding: $spacing-3 $spacing-6 !important;
+      font-size: $font-size-sm !important;
+      font-weight: $font-weight-semibold !important;
+      border-radius: $radius-md !important;
+      transition: $transition-all;
+
+      &.p-button-outlined {
+        border: 2px solid $border-color !important;
+        color: $text-secondary !important;
+
+        &:enabled:hover {
+          background: $bg-secondary !important;
+          border-color: $border-color-dark !important;
+          color: $text-primary !important;
+        }
+
+        @include dark-mode {
+          border-color: $dark-border-color !important;
+          color: $dark-text-secondary !important;
+
+          &:enabled:hover {
+            background: $dark-bg-primary !important;
+            border-color: $dark-border-color-light !important;
+            color: $dark-text-primary !important;
+          }
+        }
+      }
+
+      &.p-button-danger {
+        &.p-button-outlined {
+          border-color: $danger !important;
+          color: $danger !important;
+
+          &:enabled:hover {
+            background: rgba($danger, 0.1) !important;
+            border-color: $danger-dark !important;
+          }
+        }
+      }
+
+      .p-button-icon {
+        font-size: $font-size-base;
+      }
+    }
+
+    .add-button {
+      min-width: 200px;
+
+      @media (max-width: $breakpoint-sm) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// Responsive Adjustments
+@media (max-width: $breakpoint-md) {
+  .form-section {
+    padding: $spacing-4;
+  }
+
+  .section-title {
+    font-size: $font-size-lg;
+  }
+
+  .form-grid {
+    gap: $spacing-4;
+  }
+}

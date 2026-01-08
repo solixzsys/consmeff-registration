@@ -1,0 +1,360 @@
+@import '../../../../../assets/demo/theme';
+
+.summary-container {
+  width: 100%;
+}
+
+.loading-state {
+  .summary-section {
+    background-color: $bg-secondary;
+    border-radius: $radius-xl;
+    padding: $spacing-8;
+    margin-bottom: $spacing-6;
+
+    @include dark-mode {
+      background-color: $dark-bg-secondary;
+    }
+  }
+}
+
+.summary-section {
+  background-color: $bg-secondary;
+  border-radius: $radius-xl;
+  padding: $spacing-6;
+  margin-bottom: $spacing-6;
+
+  @include responsive($breakpoint-md) {
+    padding: $spacing-8 $spacing-10;
+  }
+
+  @include dark-mode {
+    background-color: $dark-bg-secondary;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.section-title {
+  font-family: $font-family-sans;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+  color: $text-primary;
+  margin-bottom: $spacing-4;
+
+  @include dark-mode {
+    color: $dark-text-primary;
+  }
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-4;
+  margin-top: $spacing-4;
+
+  @include responsive($breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-6 $spacing-8;
+  }
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-1;
+
+  @include responsive($breakpoint-lg) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.info-label {
+  font-family: $font-family-sans;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-normal;
+  color: $text-secondary;
+  min-width: 180px;
+
+  @include dark-mode {
+    color: $dark-text-secondary;
+  }
+
+  @include responsive($breakpoint-lg) {
+    flex-shrink: 0;
+  }
+}
+
+.info-value {
+  font-family: $font-family-sans;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-normal;
+  color: $text-primary;
+  word-break: break-word;
+
+  @include dark-mode {
+    color: $dark-text-primary;
+  }
+}
+
+.documents-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-6;
+  margin-top: $spacing-4;
+
+  @include responsive($breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include responsive($breakpoint-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.document-item {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-3;
+}
+
+.document-label {
+  font-family: $font-family-sans;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-normal;
+  color: $text-primary;
+
+  @include dark-mode {
+    color: $dark-text-primary;
+  }
+}
+
+.document-preview {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+// PrimeNG Component Customization
+::ng-deep {
+  .summary-container {
+    // Divider Styling
+    .p-divider {
+      &.p-divider-horizontal {
+        margin: 0;
+        padding: 0;
+
+        &::before {
+          border-top: 1px solid $border-color;
+        }
+
+        @include dark-mode {
+          &::before {
+            border-top-color: $dark-border-color;
+          }
+        }
+      }
+    }
+
+    // Image Preview Styling
+    .document-image {
+      border-radius: $radius-md;
+      border: 1px solid $border-color;
+      cursor: pointer;
+      transition: $transition-all;
+      max-width: 200px;
+      height: auto;
+
+      &:hover {
+        transform: scale(1.02);
+        box-shadow: $shadow-md;
+      }
+
+      @include dark-mode {
+        border-color: $dark-border-color;
+      }
+    }
+
+    // Image Preview Dialog
+    .p-image-preview-container {
+      .p-image-preview {
+        max-width: 90vw;
+        max-height: 90vh;
+      }
+    }
+
+    .p-image-mask {
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .p-image-toolbar {
+      padding: $spacing-4;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: $radius-md;
+
+      button {
+        color: white;
+        width: 48px;
+        height: 48px;
+        border-radius: $radius;
+        transition: $transition-all;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.2);
+        }
+      }
+    }
+
+    // Skeleton Styling
+    .p-skeleton {
+      background-color: $gray-200;
+      border-radius: $radius;
+
+      @include dark-mode {
+        background-color: $gray-700;
+      }
+
+      &::after {
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0) 0,
+          rgba(255, 255, 255, 0.4) 50%,
+          rgba(255, 255, 255, 0) 100%
+        );
+
+        @include dark-mode {
+          background: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0) 0,
+            rgba(255, 255, 255, 0.1) 50%,
+            rgba(255, 255, 255, 0) 100%
+          );
+        }
+      }
+    }
+
+    // Accordion Styling (Optional)
+    .p-accordion {
+      .p-accordion-header {
+        margin-bottom: $spacing-2;
+
+        .p-accordion-header-link {
+          background: $bg-primary;
+          border: 1px solid $border-color;
+          border-radius: $radius-md;
+          padding: $spacing-4 $spacing-6;
+          color: $text-primary;
+          font-weight: $font-weight-semibold;
+          transition: $transition-all;
+
+          &:hover {
+            background: $bg-secondary;
+            border-color: $primary;
+          }
+
+          &:focus {
+            box-shadow: $shadow-primary;
+          }
+
+          @include dark-mode {
+            background: $dark-bg-primary;
+            border-color: $dark-border-color;
+            color: $dark-text-primary;
+
+            &:hover {
+              background: $dark-bg-secondary;
+              border-color: $primary-light;
+            }
+
+            &:focus {
+              box-shadow: $shadow-primary-dark;
+            }
+          }
+
+          .p-accordion-toggle-icon {
+            color: $text-secondary;
+
+            @include dark-mode {
+              color: $dark-text-secondary;
+            }
+          }
+        }
+
+        &.p-highlight {
+          .p-accordion-header-link {
+            background: $primary;
+            border-color: $primary;
+            color: white;
+
+            .p-accordion-toggle-icon {
+              color: white;
+            }
+
+            @include dark-mode {
+              background: $primary-light;
+              border-color: $primary-light;
+            }
+          }
+        }
+      }
+
+      .p-accordion-content {
+        background: $bg-primary;
+        border: 1px solid $border-color;
+        border-top: none;
+        border-radius: 0 0 $radius-md $radius-md;
+        padding: $spacing-6;
+        margin-top: -$spacing-2;
+
+        @include dark-mode {
+          background: $dark-bg-primary;
+          border-color: $dark-border-color;
+        }
+      }
+    }
+  }
+}
+
+// Responsive Adjustments
+@media (max-width: $breakpoint-md) {
+  .summary-section {
+    padding: $spacing-4;
+  }
+
+  .section-title {
+    font-size: $font-size-lg;
+  }
+
+  .info-grid {
+    gap: $spacing-3;
+  }
+
+  .info-label {
+    min-width: auto;
+  }
+
+  .documents-grid {
+    gap: $spacing-4;
+  }
+}
+
+// Print Styles
+@media print {
+  .summary-container {
+    .summary-section {
+      page-break-inside: avoid;
+      background: white !important;
+      box-shadow: none !important;
+    }
+
+    .document-image {
+      max-width: 150px;
+    }
+  }
+}

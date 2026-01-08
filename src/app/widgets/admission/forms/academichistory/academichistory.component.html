@@ -1,0 +1,344 @@
+<div class="academic-history-container">
+  
+    <!-- Primary School Section -->
+    <form [formGroup]="academicHistoryPrimaryForm" class="academic-form">
+      <div class="form-section">
+        <h3 class="section-title">Primary School Profile</h3>
+  
+        <div class="form-grid">
+          <div class="form-field full-width">
+            <label for="primaryName" class="field-label">Name <span class="required">*</span></label>
+            <input 
+              pInputText 
+              id="primaryName" 
+              formControlName="name"
+              placeholder="Enter primary school name"
+              [class.p-invalid]="isFieldInvalid(academicHistoryPrimaryForm, 'name')"
+            />
+            <small *ngIf="isFieldInvalid(academicHistoryPrimaryForm, 'name')" class="p-error">
+              Primary school name is required
+            </small>
+          </div>
+  
+          <div class="form-field">
+            <label for="primaryQualificationType" class="field-label">Qualification Type <span class="required">*</span></label>
+            <p-dropdown 
+              inputId="primaryQualificationType"
+              [options]="examDropdownOptions"
+              formControlName="qualificationType"
+              placeholder="Select qualification type"
+              [class.p-invalid]="isFieldInvalid(academicHistoryPrimaryForm, 'qualificationType')"
+              styleClass="w-full"
+            ></p-dropdown>
+            <small *ngIf="isFieldInvalid(academicHistoryPrimaryForm, 'qualificationType')" class="p-error">
+              Qualification type is required
+            </small>
+          </div>
+  
+          <div class="form-field">
+            <label for="primaryDateStarted" class="field-label">Date Started <span class="required">*</span></label>
+            <p-calendar 
+              inputId="primaryDateStarted"
+              formControlName="datestarted"
+              [showIcon]="true"
+              dateFormat="yy-mm-dd"
+              placeholder="Select start date"
+              [class.p-invalid]="isFieldInvalid(academicHistoryPrimaryForm, 'datestarted')"
+              styleClass="w-full"
+            ></p-calendar>
+            <small *ngIf="isFieldInvalid(academicHistoryPrimaryForm, 'datestarted')" class="p-error">
+              Start date is required
+            </small>
+          </div>
+  
+          <div class="form-field">
+            <label for="primaryDateCompleted" class="field-label">Date Ended <span class="required">*</span></label>
+            <p-calendar 
+              inputId="primaryDateCompleted"
+              formControlName="datecompleted"
+              [showIcon]="true"
+              dateFormat="yy-mm-dd"
+              placeholder="Select end date"
+              [class.p-invalid]="isFieldInvalid(academicHistoryPrimaryForm, 'datecompleted')"
+              styleClass="w-full"
+            ></p-calendar>
+            <small *ngIf="isFieldInvalid(academicHistoryPrimaryForm, 'datecompleted')" class="p-error">
+              End date is required
+            </small>
+          </div>
+        </div>
+      </div>
+    </form>
+  
+    <!-- Secondary School Section -->
+    <form [formGroup]="academicHistorySecondaryForm" class="academic-form">
+      <div class="form-section">
+        <h3 class="section-title">Secondary School Profile</h3>
+  
+        <div class="form-grid">
+          <div class="form-field full-width">
+            <label for="secondaryName" class="field-label">Name <span class="required">*</span></label>
+            <input 
+              pInputText 
+              id="secondaryName" 
+              formControlName="name"
+              placeholder="Enter secondary school name"
+              [class.p-invalid]="isFieldInvalid(academicHistorySecondaryForm, 'name')"
+            />
+            <small *ngIf="isFieldInvalid(academicHistorySecondaryForm, 'name')" class="p-error">
+              Secondary school name is required
+            </small>
+          </div>
+  
+          <div class="form-field">
+            <label for="secondaryQualificationType" class="field-label">Qualification Type <span class="required">*</span></label>
+            <p-dropdown 
+              inputId="secondaryQualificationType"
+              [options]="examDropdownOptions"
+              formControlName="qualificationType"
+              placeholder="Select qualification type"
+              [class.p-invalid]="isFieldInvalid(academicHistorySecondaryForm, 'qualificationType')"
+              styleClass="w-full"
+            ></p-dropdown>
+            <small *ngIf="isFieldInvalid(academicHistorySecondaryForm, 'qualificationType')" class="p-error">
+              Qualification type is required
+            </small>
+          </div>
+  
+          <div class="form-field">
+            <label for="secondaryDateStarted" class="field-label">Date Started <span class="required">*</span></label>
+            <p-calendar 
+              inputId="secondaryDateStarted"
+              formControlName="datestarted"
+              [showIcon]="true"
+              dateFormat="yy-mm-dd"
+              placeholder="Select start date"
+              [class.p-invalid]="isFieldInvalid(academicHistorySecondaryForm, 'datestarted')"
+              styleClass="w-full"
+            ></p-calendar>
+            <small *ngIf="isFieldInvalid(academicHistorySecondaryForm, 'datestarted')" class="p-error">
+              Start date is required
+            </small>
+          </div>
+  
+          <div class="form-field">
+            <label for="secondaryDateCompleted" class="field-label">Date Completed <span class="required">*</span></label>
+            <p-calendar 
+              inputId="secondaryDateCompleted"
+              formControlName="datecompleted"
+              [showIcon]="true"
+              dateFormat="yy-mm-dd"
+              placeholder="Select completion date"
+              [class.p-invalid]="isFieldInvalid(academicHistorySecondaryForm, 'datecompleted')"
+              styleClass="w-full"
+            ></p-calendar>
+            <small *ngIf="isFieldInvalid(academicHistorySecondaryForm, 'datecompleted')" class="p-error">
+              Completion date is required
+            </small>
+          </div>
+        </div>
+      </div>
+    </form>
+  
+    <!-- Number of Attempts -->
+    <form [formGroup]="examnumform" class="academic-form">
+      <div class="form-section">
+        <div class="form-field radio-group">
+          <label class="field-label">Number of Attempts <span class="required">*</span></label>
+          <div class="radio-options">
+            <div *ngFor="let attempt of attemptOptions" class="radio-option">
+              <p-radioButton 
+                [inputId]="'attempt-' + attempt"
+                name="attempt"
+                [value]="attempt"
+                formControlName="attempt"
+              ></p-radioButton>
+              <label [for]="'attempt-' + attempt" class="radio-label">{{ attempt }}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  
+    <!-- Examination Details -->
+    <form [formGroup]="academicHistoryExamsForm" class="academic-form">
+      <div formArrayName="examattemptcount">
+        <div *ngFor="let item of examattemptcount.controls; let i = index" [formGroupName]="i">
+          <div class="form-section">
+            <h3 class="section-title">{{ i === 0 ? 'Examination Details' : 'Second Sitting' }}</h3>
+  
+            <div class="form-grid">
+              <div class="form-field">
+                <label [for]="'examName' + i" class="field-label">Examination Name <span class="required">*</span></label>
+                <p-dropdown 
+                  [inputId]="'examName' + i"
+                  [options]="examDropdownOptions"
+                  formControlName="name"
+                  placeholder="Select examination"
+                  [class.p-invalid]="isFieldInvalidArray(examattemptcount, i, 'name')"
+                  styleClass="w-full"
+                ></p-dropdown>
+                <small *ngIf="isFieldInvalidArray(examattemptcount, i, 'name')" class="p-error">
+                  Examination name is required
+                </small>
+              </div>
+  
+              <div class="form-field">
+                <label [for]="'examYear' + i" class="field-label">Examination Year <span class="required">*</span></label>
+                <p-dropdown 
+                  [inputId]="'examYear' + i"
+                  [options]="yearDropdownOptions"
+                  formControlName="year"
+                  placeholder="Select year"
+                  [class.p-invalid]="isFieldInvalidArray(examattemptcount, i, 'year')"
+                  styleClass="w-full"
+                ></p-dropdown>
+                <small *ngIf="isFieldInvalidArray(examattemptcount, i, 'year')" class="p-error">
+                  Year is required
+                </small>
+              </div>
+  
+              <div class="form-field">
+                <label [for]="'english' + i" class="field-label">English Language <span class="required">*</span></label>
+                <p-dropdown 
+                  [inputId]="'english' + i"
+                  [options]="gradeDropdownOptions"
+                  formControlName="english"
+                  placeholder="Select grade"
+                  [class.p-invalid]="isFieldInvalidArray(examattemptcount, i, 'english')"
+                  styleClass="w-full"
+                ></p-dropdown>
+              </div>
+  
+              <div class="form-field">
+                <label [for]="'math' + i" class="field-label">Mathematics <span class="required">*</span></label>
+                <p-dropdown 
+                  [inputId]="'math' + i"
+                  [options]="gradeDropdownOptions"
+                  formControlName="math"
+                  placeholder="Select grade"
+                  [class.p-invalid]="isFieldInvalidArray(examattemptcount, i, 'math')"
+                  styleClass="w-full"
+                ></p-dropdown>
+              </div>
+  
+              <div class="form-field">
+                <label [for]="'physics' + i" class="field-label">Physics <span class="required">*</span></label>
+                <p-dropdown 
+                  [inputId]="'physics' + i"
+                  [options]="gradeDropdownOptions"
+                  formControlName="physics"
+                  placeholder="Select grade"
+                  [class.p-invalid]="isFieldInvalidArray(examattemptcount, i, 'physics')"
+                  styleClass="w-full"
+                ></p-dropdown>
+              </div>
+  
+              <div class="form-field">
+                <label [for]="'chemistry' + i" class="field-label">Chemistry <span class="required">*</span></label>
+                <p-dropdown 
+                  [inputId]="'chemistry' + i"
+                  [options]="gradeDropdownOptions"
+                  formControlName="chemistry"
+                  placeholder="Select grade"
+                  [class.p-invalid]="isFieldInvalidArray(examattemptcount, i, 'chemistry')"
+                  styleClass="w-full"
+                ></p-dropdown>
+              </div>
+  
+              <div class="form-field">
+                <label [for]="'biology' + i" class="field-label">Biology <span class="required">*</span></label>
+                <p-dropdown 
+                  [inputId]="'biology' + i"
+                  [options]="gradeDropdownOptions"
+                  formControlName="biology"
+                  placeholder="Select grade"
+                  [class.p-invalid]="isFieldInvalidArray(examattemptcount, i, 'biology')"
+                  styleClass="w-full"
+                ></p-dropdown>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  
+    <!-- Other Qualifications -->
+    <form [formGroup]="academicHistoryOtherQualificationForm" class="academic-form">
+      <div formArrayName="qualifications">
+        <div *ngFor="let qualification of qualifications.controls; let i = index" [formGroupName]="i">
+          <div class="form-section">
+            <h3 class="section-title">Qualification {{ i + 1 }} (Optional)</h3>
+  
+            <div class="form-grid">
+              <div class="form-field full-width">
+                <label [for]="'qualName' + i" class="field-label">Name</label>
+                <input 
+                  pInputText 
+                  [id]="'qualName' + i" 
+                  formControlName="name"
+                  placeholder="Enter institution name"
+                />
+              </div>
+  
+              <div class="form-field">
+                <label [for]="'qualType' + i" class="field-label">Qualification Type</label>
+                <p-dropdown 
+                  [inputId]="'qualType' + i"
+                  [options]="examDropdownOptions"
+                  formControlName="qualificationType"
+                  placeholder="Select qualification type"
+                  styleClass="w-full"
+                ></p-dropdown>
+              </div>
+  
+              <div class="form-field">
+                <label [for]="'qualStart' + i" class="field-label">Date Started</label>
+                <p-calendar 
+                  [inputId]="'qualStart' + i"
+                  formControlName="dateStarted"
+                  [showIcon]="true"
+                  dateFormat="yy-mm-dd"
+                  placeholder="Select start date"
+                  styleClass="w-full"
+                ></p-calendar>
+              </div>
+  
+              <div class="form-field">
+                <label [for]="'qualEnd' + i" class="field-label">Date Completed</label>
+                <p-calendar 
+                  [inputId]="'qualEnd' + i"
+                  formControlName="dateCompleted"
+                  [showIcon]="true"
+                  dateFormat="yy-mm-dd"
+                  placeholder="Select completion date"
+                  styleClass="w-full"
+                ></p-calendar>
+              </div>
+            </div>
+  
+            <div class="action-buttons" *ngIf="qualifications.length > 1">
+              <p-button 
+                label="Remove Qualification" 
+                (onClick)="removeQualification(i)"
+                severity="danger"
+                [outlined]="true"
+                icon="pi pi-trash"
+              ></p-button>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="action-buttons centered">
+        <p-button 
+          label="Add Qualification" 
+          (onClick)="addQualification()"
+          [outlined]="true"
+          icon="pi pi-plus"
+          styleClass="add-button"
+        ></p-button>
+      </div>
+    </form>
+  
+  </div>
