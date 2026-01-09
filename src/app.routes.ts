@@ -13,7 +13,7 @@ export const appRoutes: Routes = [
     {
         path: '',
         component: AppLayout,
-        // canActivate: [authGuard],
+        canActivate: [authGuard],
         children: [
             { path: 'pages', loadChildren: () => import('./app/pages/pages.routes') },
 
