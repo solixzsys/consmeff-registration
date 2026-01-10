@@ -186,6 +186,7 @@ export class Dashboard {
     ngOnInit(): void {
         const name = sessionStorage.getItem("user_name") || '';
         this.appno= sessionStorage.getItem("APP_NO") || '';
+        this.applicationNumber= this.appno;
         if (name != '') {
             // let email = this.jwtservices.getUserEmail(token)!;
             this.user = name;

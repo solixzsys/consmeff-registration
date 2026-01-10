@@ -41,6 +41,7 @@ export class ConsmeffLoginComponent implements OnInit {
     }
   }
   ngOnInit(): void {
+    sessionStorage.clear();
     this.loginForm = new FormGroup({
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
