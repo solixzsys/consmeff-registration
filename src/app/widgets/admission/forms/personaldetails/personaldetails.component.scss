@@ -109,6 +109,105 @@
   }
 }
 
+// Native Radio Button Styling (PrimeNG-like)
+.p-radiobutton {
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: bottom;
+}
+
+.p-radiobutton-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+}
+
+.p-radiobutton-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border: 2px solid $input-border;
+  background: $bg-primary;
+  border-radius: 50%;
+  transition: $transition-all;
+
+  @include dark-mode {
+    background: $dark-input-bg;
+    border-color: $dark-input-border;
+  }
+}
+
+.p-radiobutton-icon {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: background-color 0.2s;
+}
+
+// Checked State
+.p-radiobutton-input:checked ~ .p-radiobutton-box {
+  border-color: $primary;
+  background: $bg-primary;
+
+  @include dark-mode {
+    border-color: $primary-light;
+    background: $dark-input-bg;
+  }
+
+  .p-radiobutton-icon {
+    background-color: $primary;
+
+    @include dark-mode {
+      background-color: $primary-light;
+    }
+  }
+}
+
+// Hover State
+.p-radiobutton:hover .p-radiobutton-box {
+  border-color: $primary;
+
+  @include dark-mode {
+    border-color: $primary-light;
+  }
+}
+
+// Focus State
+.p-radiobutton-input:focus ~ .p-radiobutton-box {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: $shadow-primary;
+  border-color: $primary;
+
+  @include dark-mode {
+    box-shadow: $shadow-primary-dark;
+    border-color: $primary-light;
+  }
+}
+
+// Disabled State
+.p-radiobutton-input:disabled ~ .p-radiobutton-box {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.p-radiobutton-input:disabled ~ .radio-label {
+  opacity: 0.6;
+  cursor: default;
+}
+
 // Small text styles
 small {
   font-size: $font-size-xs;
@@ -475,56 +574,6 @@ small {
               }
             }
           }
-        }
-      }
-    }
-
-    // Radio Button Styling
-    .p-radiobutton {
-      .p-radiobutton-box {
-        width: 20px;
-        height: 20px;
-        border: 2px solid $input-border;
-        background: $bg-primary;
-        transition: $transition-all;
-
-        &:hover {
-          border-color: $primary;
-        }
-
-        &.p-highlight {
-          border-color: $primary;
-          background: $primary;
-
-          .p-radiobutton-icon {
-            width: 10px;
-            height: 10px;
-            background-color: white;
-          }
-        }
-
-        @include dark-mode {
-          background: $dark-input-bg;
-          border-color: $dark-input-border;
-
-          &:hover {
-            border-color: $primary-light;
-          }
-
-          &.p-highlight {
-            border-color: $primary-light;
-            background: $primary-light;
-          }
-        }
-      }
-
-      &:not(.p-disabled):has(.p-radiobutton-input:focus-visible) .p-radiobutton-box {
-        box-shadow: $shadow-primary;
-        border-color: $primary;
-
-        @include dark-mode {
-          box-shadow: $shadow-primary-dark;
-          border-color: $primary-light;
         }
       }
     }

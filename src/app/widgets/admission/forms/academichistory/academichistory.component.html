@@ -147,18 +147,26 @@
           <label class="field-label">Number of Attempts <span class="required">*</span></label>
           <div class="radio-options">
             <div *ngFor="let attempt of attemptOptions" class="radio-option">
-              <p-radioButton 
-                [inputId]="'attempt-' + attempt"
-                name="attempt"
-                [value]="attempt"
-                formControlName="attempt"
-              ></p-radioButton>
+              <div class="p-radiobutton">
+                <input 
+                  type="radio"
+                  [id]="'attempt-' + attempt"
+                  name="attempt"
+                  [value]="attempt"
+                  formControlName="attempt"
+                  class="p-radiobutton-input"
+                />
+                <div class="p-radiobutton-box">
+                  <div class="p-radiobutton-icon"></div>
+                </div>
+              </div>
               <label [for]="'attempt-' + attempt" class="radio-label">{{ attempt }}</label>
             </div>
           </div>
         </div>
       </div>
     </form>
+    
   
     <!-- Examination Details -->
     <form [formGroup]="academicHistoryExamsForm" class="academic-form">

@@ -360,7 +360,7 @@ export class AdmissionformComponent implements OnInit {
         residential_address: _raddress,
         correspondence_address: _caddress,
         nationality: this._personalFormData.nationality,
-        dob: this._personalFormData.dateOfBirth,
+        dob: this._personalFormData.dateOfBirth ? this._personalFormData.dateOfBirth.toISOString().split('T')[0] : '',
         gender: this._personalFormData.gender,
         lga: this._lgas?.filter(f => f.id == +this._personalFormData!.localGovernment)[0].name,
         state_of_origin: this._states?.filter(f => f.id == +this._personalFormData!.stateOfOrigin)[0].name,

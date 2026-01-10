@@ -6,7 +6,7 @@ import { jwtDecode } from 'jwt-decode';   // npm i jwt-decode
 export const authGuard: CanActivateFn = (): boolean | UrlTree => {
   const router = inject(Router);
 
-  const token = sessionStorage.getItem('key');
+  const token = sessionStorage.getItem('JWT_TOKEN');
 
   if (!token) {
     return router.createUrlTree(['/auth/login']);

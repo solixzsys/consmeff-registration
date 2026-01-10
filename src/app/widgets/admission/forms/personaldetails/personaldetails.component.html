@@ -198,42 +198,57 @@
         </div>
       </div>
 
-      <!-- Gender Radio Buttons -->
-      <div class="form-field radio-group">
-        <label class="field-label">Gender <span class="required">*</span></label>
-        <div class="radio-options">
-          <div *ngFor="let gender of genderOptions" class="radio-option">
-            <p-radioButton 
-              [inputId]="'gender-' + gender"
-              [value]="gender"
-              formControlName="gender"
-            ></p-radioButton>
-            <label [for]="'gender-' + gender" class="radio-label">{{ gender }}</label>
-          </div>
+<!-- Gender Radio Buttons - Native HTML with PrimeNG Style -->
+<div class="form-field radio-group">
+  <label class="field-label">Gender <span class="required">*</span></label>
+  <div class="radio-options">
+    <div *ngFor="let gender of genderOptions" class="radio-option">
+      <div class="p-radiobutton">
+        <input 
+          type="radio"
+          [id]="'gender-' + gender"
+          name="gender"
+          [value]="gender"
+          formControlName="gender"
+          class="p-radiobutton-input"
+        />
+        <div class="p-radiobutton-box">
+          <div class="p-radiobutton-icon"></div>
         </div>
-        <small *ngIf="isFieldInvalid('gender')" class="p-error">
-          {{ getErrorMessage('gender') }}
-        </small>
       </div>
+      <label [for]="'gender-' + gender" class="radio-label">{{ gender }}</label>
+    </div>
+  </div>
+  <small *ngIf="isFieldInvalid('gender')" class="p-error">
+    {{ getErrorMessage('gender') }}
+  </small>
+</div>
 
-      <!-- Disability Radio Buttons -->
-      <div class="form-field radio-group " style="margin-top: 20px;">
-        <label class="field-label">Do you live with a disability? <span class="required">*</span></label>
-        <div class="radio-options">
-          <div *ngFor="let option of disabilityOptions" class="radio-option">
-            <p-radioButton 
-              [inputId]="'disability-' + option"
-              [value]="option"
-              formControlName="disability"
-            ></p-radioButton>
-            <label [for]="'disability-' + option" class="radio-label">{{ option }}</label>
-          </div>
+<!-- Disability Radio Buttons - Native HTML with PrimeNG Style -->
+<div class="form-field radio-group" style="margin-top: 20px;">
+  <label class="field-label">Do you live with a disability? <span class="required">*</span></label>
+  <div class="radio-options">
+    <div *ngFor="let option of disabilityOptions" class="radio-option">
+      <div class="p-radiobutton">
+        <input 
+          type="radio"
+          [id]="'disability-' + option"
+          name="disability"
+          [value]="option"
+          formControlName="disability"
+          class="p-radiobutton-input"
+        />
+        <div class="p-radiobutton-box">
+          <div class="p-radiobutton-icon"></div>
         </div>
-        <small *ngIf="isFieldInvalid('disability')" class="p-error">
-          {{ getErrorMessage('disability') }}
-        </small>
       </div>
-
+      <label [for]="'disability-' + option" class="radio-label">{{ option }}</label>
+    </div>
+  </div>
+  <small *ngIf="isFieldInvalid('disability')" class="p-error">
+    {{ getErrorMessage('disability') }}
+  </small>
+</div>
       <!-- Disability Details (Conditional) -->
       <div class="form-field" *ngIf="personalInfoForm.get('disability')?.value === 'Yes'">
         <label for="disabilityDetails" class="field-label">If Yes, please specify <span class="required">*</span></label>

@@ -196,11 +196,19 @@
         <label class="field-label">Gender <span class="required">*</span></label>
         <div class="radio-options">
           <div *ngFor="let gender of genderOptions" class="radio-option">
-            <p-radioButton 
-              [inputId]="'gender-' + gender"
-              [value]="gender"
-              formControlName="gender"
-            ></p-radioButton>
+            <div class="p-radiobutton">
+              <input 
+                type="radio"
+                [id]="'gender-' + gender"
+                name="gender"
+                [value]="gender"
+                formControlName="gender"
+                class="p-radiobutton-input"
+              />
+              <div class="p-radiobutton-box">
+                <div class="p-radiobutton-icon"></div>
+              </div>
+            </div>
             <label [for]="'gender-' + gender" class="radio-label">{{ gender }}</label>
           </div>
         </div>

@@ -57,6 +57,12 @@ export class PersonaldetailsComponent {
   ];
   
   genderOptions = ['Male', 'Female', 'Other'];
+  categories: any[] = [
+    { name: 'Cheese', key: 'C' },
+    { name: 'Mushroom', key: 'M' },
+    { name: 'Pepper', key: 'P' },
+    { name: 'Onion', key: 'O' }
+];
   
   disabilityOptions = ['Yes', 'No', 'Prefer not to say'];
 
@@ -134,11 +140,11 @@ export class PersonaldetailsComponent {
       alternativePhoneNumber: [data?.alt_phone_number ?? '', Validators.pattern(/^\+?\(?[0-9]{1,4}\)?[-.\s]?[0-9]{1,15}$/)],
       dateOfBirth: [data?.dob ? new Date(data.dob) : null, Validators.required],
       maritalStatus: [data?.marital_status ?? null, Validators.required],
-      gender: [data?.gender ?? '', Validators.required],
+      gender: [data?.gender ?? null, Validators.required],
       nationality: [null, Validators.required],
       stateOfOrigin: [null, Validators.required],
       localGovernment: [null, Validators.required],
-      disability: [data?.disability?.toLowerCase().includes("no") ? 'No' : '', Validators.required],
+      disability: [data?.disability?.toLowerCase().includes("no") ? 'No' : 'Yes', Validators.required],
       disabilityDetails: [''],
       // Residential Information
       houseNumber: [this.getAddressPart(data?.residential_address?.address, 0), Validators.required],
@@ -147,7 +153,9 @@ export class PersonaldetailsComponent {
       areaTown: [data?.residential_address?.city ?? '', Validators.required],
       residentialState: [null, Validators.required],
       residentialLocalGovernment: [null, Validators.required],
+      
     });
+
 
     this.handleDisabilityField(data);
     this.setupFormSubscriptions();
