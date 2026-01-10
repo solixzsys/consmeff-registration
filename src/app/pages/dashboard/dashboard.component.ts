@@ -12,6 +12,7 @@ import { ProgrammeComponent } from '../../widgets/admission/programme/programme.
 import { firstValueFrom } from 'rxjs';
 import { ApplicationService } from '../../services/application.service';
 import { RegStoreService } from '../../services/regstore.service';
+import { RegistrantDataDTO } from '../../data/application/registrantdatadto';
 
 interface TimelineStage {
     title: string;
@@ -153,12 +154,14 @@ export class Dashboard {
         return result;
     }
 
-    updateDashboardFromBackend(data: any): void {
+    updateDashboardFromBackend(data: RegistrantDataDTO): void {
         // Update metrics from backend data
         if (data.data) {
-            this.applicationNumber = data.data.applicationNumber || this.applicationNumber;
+            this.applicationNumber = data.data.application_no || this.applicationNumber;
             this.programmeName = data.data.program?.name || this.programmeName;
             this.paymentStatus = sessionStorage.getItem("PAYMENT_STATUS") || this.paymentStatus;
+            this.academicSession= data.data.session.name || this.academicSession;
+            this.appliedDate = data.data.created_at ? new Date(data.data.created_at).toLocaleDateString() : this.appliedDate;
             
             // Update timeline based on backend status
             this.updateTimelineStatus();
@@ -186,7 +189,7 @@ export class Dashboard {
     ngOnInit(): void {
         const name = sessionStorage.getItem("user_name") || '';
         this.appno= sessionStorage.getItem("APP_NO") || '';
-        this.applicationNumber= this.appno;
+        
         if (name != '') {
             // let email = this.jwtservices.getUserEmail(token)!;
             this.user = name;
