@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "afritrack": {
+        "consmeff": {
             "projectType": "application",
             "schematics": {
                 "@schematics/angular:component": {
@@ -17,7 +17,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:application",
                     "options": {
-                        "outputPath": "dist/afritrack",
+                        "outputPath": "dist/consmeff",
                         "index": "src/index.html",
                         "browser": "src/main.ts",
                         "polyfills": [
@@ -82,13 +82,13 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
-                            "buildTarget": "afritrack:build:production"
+                            "buildTarget": "consmeff:build:production"
                         },
                         "staging": {
-                            "buildTarget": "afritrack:build:staging"
+                            "buildTarget": "consmeff:build:staging"
                         },
                         "development": {
-                            "buildTarget": "afritrack:build:development"
+                            "buildTarget": "consmeff:build:development"
                         }
                     },
                     "defaultConfiguration": "development"

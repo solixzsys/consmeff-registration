@@ -43,6 +43,7 @@ export class Dashboard {
     showWelcomeText = false;
     showActionButtons = false;
     user: string = "user";
+    appno:string="";
     visible: boolean = false;
     guidelinesAccepted = false;
 
@@ -183,10 +184,11 @@ export class Dashboard {
     }
 
     ngOnInit(): void {
-        const token = sessionStorage.getItem("key") || '';
-        if (token != '') {
-            let email = this.jwtservices.getUserEmail(token)!;
-            this.user = email.split("@")[0];
+        const name = sessionStorage.getItem("user_name") || '';
+        this.appno= sessionStorage.getItem("APP_NO") || '';
+        if (name != '') {
+            // let email = this.jwtservices.getUserEmail(token)!;
+            this.user = name;
         }
         
         setTimeout(() => {

@@ -19,7 +19,7 @@ import { ThemeService } from '../../services/theme.service';
                 <i class="pi pi-bars"></i>
             </button>
             <a class="layout-topbar-logo" routerLink="/">
-                <img src="https://www.afri-health.com/wp-content/uploads/2023/05/Favicon-1.png" style="height: 25px;" alt="" srcset="">
+                <img src="https://consmmefs.edu.ng/img/favicon.ico" style="height: 25px;" alt="" srcset="">
                 <span style="font-family: monospace;font-weight:900">consmmefs</span>
             </a>
         </div>

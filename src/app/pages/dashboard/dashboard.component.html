@@ -23,7 +23,8 @@
               <div class="flex-1 transition-all duration-1000 ease-out transform"
                   [style.opacity]="showWelcomeText ? '1' : '0'"
                   [style.transform]="showWelcomeText ? 'translateX(0)' : 'translateX(100px)'">
-                  <h2 class="text-white text-2xl font-bold mb-1">Welcome back, {{user}}! 👋</h2>
+                  <h2 class="text-white text-3xl font-bold mb-1">Welcome back, {{user}}! 👋</h2>
+                  <p style="font-weight: bold;color: white;">Application Number: <span style="color: var(--p-yellow-400);" className="font-semibold">{{appno}}</span></p>
                   <p class="text-violet-100 text-sm">Ready to complete your application ?</p>
               </div>
 

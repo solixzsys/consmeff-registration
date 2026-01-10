@@ -3,15 +3,12 @@ import { Routes } from '@angular/router';
 import { Dashboard } from './dashboard/dashboard.component';
 import { PaymentComponent } from './payment/payment.component';
 import { AdmissionformComponent } from './admissionform/admissionform.component';
-// import { Documentation } from './documentation/documentation';
-// import { Crud } from './crud/crud';
-// import { Empty } from './empty/empty';
 
 export default [
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Add this
     { path: 'dashboard', component: Dashboard },
     { path: 'payment', component: PaymentComponent },
     { path: 'admissionform', component: AdmissionformComponent },
-    // { path: 'crud', component: Crud },
-    // { path: 'empty', component: Empty },
-    { path: '**', redirectTo: '/notfound' }
+   
+    { path: '**', redirectTo: 'dashboard' } // Changed from /notfound
 ] as Routes;

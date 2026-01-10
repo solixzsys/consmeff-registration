@@ -26,7 +26,7 @@ export class AppMenu {
         const fullTree: MenuItem[] = [
             {
                 label: 'Home',
-                items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }]
+                items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/pages/dashboard'] }]
             },
 
             // {
@@ -200,7 +200,7 @@ export class AppMenu {
                             {
                                 label: 'New Registration',
                                 icon: 'pi pi-fw pi-sign-out',
-                                routerLink: ['/pages/newregistration']
+                                routerLink: ['/pages/admissionform']
                             }
                         ]
                     }
