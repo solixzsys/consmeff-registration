@@ -1,320 +1,319 @@
 <div class="grid grid-cols-12 gap-8">
-  <!-- Animated Welcome Panel -->
-  <div class="col-span-12 transition-all duration-1000 ease-out overflow-hidden hidden md:block"
-      [style.margin-bottom]="showPanel ? '2rem' : '0px'">
+    <!-- Animated Welcome Panel -->
+    <div class="col-span-12 transition-all duration-1000 ease-out overflow-hidden"
+        [style.margin-bottom]="showPanel ? '1rem' : '0px'">
 
-      <div class="relative h-25 bg-gradient-to-r from-violet-500 to-purple-600 rounded-md panel-shadow overflow-hidden transition-all duration-1000 ease-out"
-          [style.width]="showPanel ? '100%' : '0px'" [style.height]="showPanel ? '100px' : '0px'"
-          [style.margin-left]="showPanel ? '0%' : '100%'">
+        <div class="welcome-panel-container relative bg-gradient-to-r from-violet-500 to-purple-600 rounded-md panel-shadow overflow-hidden transition-all duration-1000 ease-out"
+            [class.panel-visible]="showPanel">
 
-          <!-- Animated Background Elements -->
-          <div class="absolute inset-0 opacity-20">
-              <div class="absolute top-3 right-4 w-16 h-16 bg-white rounded-full animate-pulse"></div>
-              <div class="absolute bottom-3 right-20 w-8 h-8 bg-white rounded-full animate-bounce"
-                  style="animation-delay: 0.5s;"></div>
-              <div class="absolute top-6 right-32 w-4 h-4 bg-white rounded-full animate-ping"
-                  style="animation-delay: 1s;"></div>
-          </div>
+            <!-- Animated Background Elements -->
+            <div class="absolute inset-0 opacity-20">
+                <div class="absolute top-3 right-4 w-16 h-16 bg-white rounded-full animate-pulse"></div>
+                <div class="absolute bottom-3 right-20 w-8 h-8 bg-white rounded-full animate-bounce"
+                    style="animation-delay: 0.5s;"></div>
+                <div class="absolute top-6 right-32 w-4 h-4 bg-white rounded-full animate-ping"
+                    style="animation-delay: 1s;"></div>
+            </div>
 
-          <!-- Content Container -->
-          <div class="flex items-center justify-between h-full px-8 relative z-10">
+            <!-- Content Container -->
+            <div class="welcome-content-wrapper relative z-10">
 
-              <!-- Welcome Text -->
-              <div class="flex-1 transition-all duration-1000 ease-out transform"
-                  [style.opacity]="showWelcomeText ? '1' : '0'"
-                  [style.transform]="showWelcomeText ? 'translateX(0)' : 'translateX(100px)'">
-                  <h2 class="text-white text-3xl font-bold mb-1">Welcome back, {{user}}! 👋</h2>
-                  <p style="font-weight: bold;color: white;">Application Number: <span style="color: var(--p-yellow-400);" className="font-semibold">{{appno}}</span></p>
-                  <p class="text-violet-100 text-sm">Ready to complete your application ?</p>
-              </div>
+                <!-- Welcome Text -->
+                <div class="welcome-text-section transition-all duration-1000 ease-out transform"
+                    [style.opacity]="showWelcomeText ? '1' : '0'"
+                    [style.transform]="showWelcomeText ? 'translateX(0)' : 'translateX(100px)'">
+                    <h2 class="welcome-title text-white font-bold mb-1">Welcome back, {{user}}! 👋</h2>
+                    <p class="welcome-app-number">
+                        Application Number: <span class="app-number-highlight">{{applicationNumber}}</span>
+                    </p>
+                    <p class="welcome-subtitle text-violet-100">Ready to complete your application?</p>
+                </div>
 
-              <!-- Action Buttons -->
-              <div class="flex items-center space-x-4">
-                  <div *ngFor="let action of actionButtons; let i = index"
-                      class="transition-all duration-500 ease-out transform"
-                      [style.opacity]="showActionButtons ? '1' : '0'"
-                      [style.transform]="showActionButtons ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.8)'"
-                      [style.transition-delay]="(i * 150) + 'ms'">
+                <!-- Action Buttons -->
+                <div class="welcome-actions">
+                    <div *ngFor="let action of actionButtons; let i = index"
+                        class="transition-all duration-500 ease-out transform"
+                        [style.opacity]="showActionButtons ? '1' : '0'"
+                        [style.transform]="showActionButtons ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.8)'"
+                        [style.transition-delay]="(i * 150) + 'ms'">
 
-                      <div class="flex flex-col items-center p-5 bg-white bg-opacity-20 rounded-md backdrop-blur-sm cursor-pointer transition-all duration-300 hover:bg-white hover:bg-opacity-30 transform hover:scale-105 hover:-translate-y-1"
-                          (click)="showDialog()">
+                        <div class="action-card"
+                            (click)="showDialog()">
+                            <i [class]="action.icon + ' text-white action-icon'"></i>
+                            <span class="action-label text-white">{{ action.name }}</span>
+                        </div>
+                    </div>
+                </div>
 
-                          <i [class]="action.icon + ' text-white text-xl mb-1'"></i>
-                          <span class="text-white text-xs font-medium text-center leading-tight">{{ action.name
-                              }}</span>
-                      </div>
-                  </div>
-              </div>
+                <!-- Close Button -->
+                <div class="welcome-close-btn transition-all duration-500 ease-out transform"
+                    [style.opacity]="showActionButtons ? '1' : '0'"
+                    [style.transform]="showActionButtons ? 'rotate(0deg)' : 'rotate(180deg)'">
+                    <div class="close-btn-inner"
+                        (click)="closePanel()">
+                        <i class="pi pi-times text-white text-lg"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-              <!-- Close Button -->
-              <div class="ml-6 transition-all duration-500 ease-out transform"
-                  [style.opacity]="showActionButtons ? '1' : '0'"
-                  [style.transform]="showActionButtons ? 'rotate(0deg)' : 'rotate(180deg)'">
-                  <div class="p-2 bg-white bg-opacity-20 rounded-xl backdrop-blur-sm cursor-pointer transition-all duration-300 hover:bg-red-500 hover:bg-opacity-80 transform hover:scale-110"
-                      (click)="closePanel()">
-                      <i class="pi pi-times text-white text-lg"></i>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+    <!-- Metric Cards Row -->
+    <div class="col-span-12 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+        <!-- Application Status Card -->
+        <div class="metric-card">
+            <div class="metric-icon-wrapper bg-primary-50 dark:bg-primary-900/20">
+                <i class="pi pi-file-check text-primary-600 dark:text-primary-400"></i>
+            </div>
+            <div class="metric-content">
+                <p class="metric-label">Application Status</p>
+                <h3 class="metric-value" [class.text-success-600]="applicationStatus === 'Submitted'"
+                    [class.text-warning-600]="applicationStatus === 'In Progress'"
+                    [class.text-primary-600]="applicationStatus === 'Under Review'">
+                    {{applicationStatus}}
+                </h3>
+            </div>
+        </div>
 
-  <!-- Metric Cards Row -->
-  <div class="col-span-12 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-      <!-- Application Status Card -->
-      <div class="metric-card">
-          <div class="metric-icon-wrapper bg-primary-50 dark:bg-primary-900/20">
-              <i class="pi pi-file-check text-primary-600 dark:text-primary-400"></i>
-          </div>
-          <div class="metric-content">
-              <p class="metric-label">Application Status</p>
-              <h3 class="metric-value" [class.text-success-600]="applicationStatus === 'Submitted'"
-                  [class.text-warning-600]="applicationStatus === 'In Progress'"
-                  [class.text-primary-600]="applicationStatus === 'Under Review'">
-                  {{applicationStatus}}
-              </h3>
-          </div>
-      </div>
+        <!-- Payment Status Card -->
+        <div class="metric-card">
+            <div class="metric-icon-wrapper bg-success-50 dark:bg-success-900/20">
+                <i class="pi pi-credit-card text-success-600 dark:text-success-400"></i>
+            </div>
+            <div class="metric-content">
+                <p class="metric-label">Payment Status</p>
+                <h3 class="metric-value" [class.text-success-600]="paymentStatus === 'Paid'"
+                    [class.text-danger-600]="paymentStatus === 'Pending'">
+                    {{paymentStatus}}
+                </h3>
+            </div>
+        </div>
 
-      <!-- Payment Status Card -->
-      <div class="metric-card">
-          <div class="metric-icon-wrapper bg-success-50 dark:bg-success-900/20">
-              <i class="pi pi-credit-card text-success-600 dark:text-success-400"></i>
-          </div>
-          <div class="metric-content">
-              <p class="metric-label">Payment Status</p>
-              <h3 class="metric-value" [class.text-success-600]="paymentStatus === 'Paid'"
-                  [class.text-danger-600]="paymentStatus === 'Pending'">
-                  {{paymentStatus}}
-              </h3>
-          </div>
-      </div>
+        <!-- Current Stage Card -->
+        <div class="metric-card">
+            <div class="metric-icon-wrapper bg-info-50 dark:bg-info-900/20">
+                <i class="pi pi-compass text-info-600 dark:text-info-400"></i>
+            </div>
+            <div class="metric-content">
+                <p class="metric-label">Current Stage</p>
+                <h3 class="metric-value text-info-600 dark:text-info-400">{{currentStage}}</h3>
+            </div>
+        </div>
 
-      <!-- Current Stage Card -->
-      <div class="metric-card">
-          <div class="metric-icon-wrapper bg-info-50 dark:bg-info-900/20">
-              <i class="pi pi-compass text-info-600 dark:text-info-400"></i>
-          </div>
-          <div class="metric-content">
-              <p class="metric-label">Current Stage</p>
-              <h3 class="metric-value text-info-600 dark:text-info-400">{{currentStage}}</h3>
-          </div>
-      </div>
+        <!-- Applied On Card -->
+        <div class="metric-card">
+            <div class="metric-icon-wrapper bg-secondary-50 dark:bg-secondary-900/20">
+                <i class="pi pi-calendar text-secondary-700 dark:text-secondary-400"></i>
+            </div>
+            <div class="metric-content">
+                <p class="metric-label">Applied On</p>
+                <h3 class="metric-value text-secondary-700 dark:text-secondary-400">{{appliedDate}}</h3>
+            </div>
+        </div>
+    </div>
 
-      <!-- Applied On Card -->
-      <div class="metric-card">
-          <div class="metric-icon-wrapper bg-secondary-50 dark:bg-secondary-900/20">
-              <i class="pi pi-calendar text-secondary-700 dark:text-secondary-400"></i>
-          </div>
-          <div class="metric-content">
-              <p class="metric-label">Applied On</p>
-              <h3 class="metric-value text-secondary-700 dark:text-secondary-400">{{appliedDate}}</h3>
-          </div>
-      </div>
-  </div>
+    <!-- Application Progress Timeline -->
+    <div class="col-span-12">
+        <div class="progress-card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <i class="pi pi-chart-line mr-2"></i>
+                    Application Progress
+                </h2>
+                <span class="progress-badge">{{calculateProgress()}}% Complete</span>
+            </div>
 
-  <!-- Application Progress Timeline -->
-  <div class="col-span-12">
-      <div class="progress-card">
-          <div class="card-header">
-              <h2 class="card-title">
-                  <i class="pi pi-chart-line mr-2"></i>
-                  Application Progress
-              </h2>
-              <span class="progress-badge">{{calculateProgress()}}% Complete</span>
-          </div>
+            <div class="timeline-container">
+                <div class="timeline-track"></div>
+                
+                <div *ngFor="let stage of stages; let i = index" class="timeline-item"
+                    [class.active]="stage.status === 'current'"
+                    [class.completed]="stage.status === 'completed'"
+                    [class.pending]="stage.status === 'pending'">
+                    
+                    <div class="timeline-marker">
+                        <div class="timeline-icon-wrapper">
+                            <i [class]="stage.icon"></i>
+                        </div>
+                        <div class="timeline-connector" *ngIf="i < stages.length - 1"></div>
+                    </div>
+                    
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">{{stage.title}}</h3>
+                        <p class="timeline-description">{{stage.description}}</p>
+                        <div class="timeline-meta">
+                            <span class="timeline-date" *ngIf="stage.date">
+                                <i class="pi pi-calendar text-xs mr-1"></i>
+                                {{stage.date}}
+                            </span>
+                            <span class="timeline-status-badge" 
+                                [class.status-completed]="stage.status === 'completed'"
+                                [class.status-current]="stage.status === 'current'"
+                                [class.status-pending]="stage.status === 'pending'">
+                                {{stage.statusText}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-          <div class="timeline-container">
-              <div class="timeline-track"></div>
-              
-              <div *ngFor="let stage of stages; let i = index" class="timeline-item"
-                  [class.active]="stage.status === 'current'"
-                  [class.completed]="stage.status === 'completed'"
-                  [class.pending]="stage.status === 'pending'">
-                  
-                  <div class="timeline-marker">
-                      <div class="timeline-icon-wrapper">
-                          <i [class]="stage.icon"></i>
-                      </div>
-                      <div class="timeline-connector" *ngIf="i < stages.length - 1"></div>
-                  </div>
-                  
-                  <div class="timeline-content">
-                      <h3 class="timeline-title">{{stage.title}}</h3>
-                      <p class="timeline-description">{{stage.description}}</p>
-                      <div class="timeline-meta">
-                          <span class="timeline-date" *ngIf="stage.date">
-                              <i class="pi pi-calendar text-xs mr-1"></i>
-                              {{stage.date}}
-                          </span>
-                          <span class="timeline-status-badge" 
-                              [class.status-completed]="stage.status === 'completed'"
-                              [class.status-current]="stage.status === 'current'"
-                              [class.status-pending]="stage.status === 'pending'">
-                              {{stage.statusText}}
-                          </span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+    <!-- Quick Actions & Programme Info Row -->
+    <div class="col-span-12 lg:col-span-7">
+        <div class="info-card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <i class="pi pi-book mr-2"></i>
+                    Programme Information
+                </h2>
+            </div>
+            
+            <div class="programme-details">
+                <div class="detail-row">
+                    <span class="detail-label">Programme:</span>
+                    <span class="detail-value">{{programmeName}}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Application Number:</span>
+                    <span class="detail-value font-mono">{{applicationNumber}}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Session:</span>
+                    <span class="detail-value">{{academicSession}}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Entry Mode:</span>
+                    <span class="detail-value">{{entryMode}}</span>
+                </div>
+            </div>
 
-  <!-- Quick Actions & Programme Info Row -->
-  <div class="col-span-12 lg:col-span-7">
-      <div class="info-card">
-          <div class="card-header">
-              <h2 class="card-title">
-                  <i class="pi pi-book mr-2"></i>
-                  Programme Information
-              </h2>
-          </div>
-          
-          <div class="programme-details">
-              <div class="detail-row">
-                  <span class="detail-label">Programme:</span>
-                  <span class="detail-value">{{programmeName}}</span>
-              </div>
-              <div class="detail-row">
-                  <span class="detail-label">Application Number:</span>
-                  <span class="detail-value font-mono">{{applicationNumber}}</span>
-              </div>
-              <div class="detail-row">
-                  <span class="detail-label">Session:</span>
-                  <span class="detail-value">{{academicSession}}</span>
-              </div>
-              <div class="detail-row">
-                  <span class="detail-label">Entry Mode:</span>
-                  <span class="detail-value">{{entryMode}}</span>
-              </div>
-          </div>
+            <div class="action-buttons-grid">
+                <button class="action-btn primary" (click)="viewApplication()">
+                    <i class="pi pi-eye"></i>
+                    <span>View Application</span>
+                </button>
+                <button class="action-btn secondary" (click)="downloadForm()" 
+                    [disabled]="applicationStatus !== 'Submitted'">
+                    <i class="pi pi-download"></i>
+                    <span>Download Form</span>
+                </button>
+                <button class="action-btn info" (click)="showDialog()" 
+                    *ngIf="paymentStatus !== 'Paid'">
+                    <i class="pi pi-wallet"></i>
+                    <span>Make Payment</span>
+                </button>
+            </div>
+        </div>
+    </div>
 
-          <div class="action-buttons-grid">
-              <button class="action-btn primary" (click)="viewApplication()">
-                  <i class="pi pi-eye"></i>
-                  <span>View Application</span>
-              </button>
-              <button class="action-btn secondary" (click)="downloadForm()" 
-                  [disabled]="applicationStatus !== 'Submitted'">
-                  <i class="pi pi-download"></i>
-                  <span>Download Form</span>
-              </button>
-              <button class="action-btn info" (click)="showDialog()" 
-                  *ngIf="paymentStatus !== 'Paid'">
-                  <i class="pi pi-wallet"></i>
-                  <span>Make Payment</span>
-              </button>
-          </div>
-      </div>
-  </div>
+    <!-- Important Notices -->
+    <div class="col-span-12 lg:col-span-5">
+        <div class="notices-card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <i class="pi pi-megaphone mr-2"></i>
+                    Important Notices
+                </h2>
+            </div>
+            
+            <div class="notices-list">
+                <div class="notice-item" *ngFor="let notice of notices" 
+                    [class.notice-urgent]="notice.priority === 'high'"
+                    [class.notice-info]="notice.priority === 'normal'">
+                    <div class="notice-icon">
+                        <i [class]="notice.icon"></i>
+                    </div>
+                    <div class="notice-content">
+                        <h4 class="notice-title">{{notice.title}}</h4>
+                        <p class="notice-text">{{notice.message}}</p>
+                        <span class="notice-time">{{notice.time}}</span>
+                    </div>
+                </div>
+                
+                <div class="empty-notices" *ngIf="notices.length === 0">
+                    <i class="pi pi-check-circle text-4xl text-success-600 mb-2"></i>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">You're all caught up!</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  <!-- Important Notices -->
-  <div class="col-span-12 lg:col-span-5">
-      <div class="notices-card">
-          <div class="card-header">
-              <h2 class="card-title">
-                  <i class="pi pi-megaphone mr-2"></i>
-                  Important Notices
-              </h2>
-          </div>
-          
-          <div class="notices-list">
-              <div class="notice-item" *ngFor="let notice of notices" 
-                  [class.notice-urgent]="notice.priority === 'high'"
-                  [class.notice-info]="notice.priority === 'normal'">
-                  <div class="notice-icon">
-                      <i [class]="notice.icon"></i>
-                  </div>
-                  <div class="notice-content">
-                      <h4 class="notice-title">{{notice.title}}</h4>
-                      <p class="notice-text">{{notice.message}}</p>
-                      <span class="notice-time">{{notice.time}}</span>
-                  </div>
-              </div>
-              
-              <div class="empty-notices" *ngIf="notices.length === 0">
-                  <i class="pi pi-check-circle text-4xl text-success-600 mb-2"></i>
-                  <p class="text-sm text-gray-500 dark:text-gray-400">You're all caught up!</p>
-              </div>
-          </div>
-      </div>
-  </div>
+    <!-- Dialogs -->
+    <p-dialog header="{{title}}" [modal]="true" [closable]="true"
+        [(visible)]="visible"
+        [style]="{  'text-align': 'center',height:'353px',width:'540px','border-radius':'16px', 'font-weight': '600','font-size':'18px','line-height':'21.6px' }">
+        <app-programme [backendProgramme]="backendProgramme" (showGuidelineStatus)="showGuideline($event)" (selectedDeptChanged)="courseUpdated($event)"></app-programme>
+    </p-dialog>
 
-  <!-- Dialogs -->
-  <p-dialog header="{{title}}" [modal]="true" [closable]="true"
-      [(visible)]="visible"
-      [style]="{  'text-align': 'center',height:'353px',width:'540px','border-radius':'16px', 'font-weight': '600','font-size':'18px','line-height':'21.6px' }">
-      <app-programme [backendProgramme]="backendProgramme" (showGuidelineStatus)="showGuideline($event)" (selectedDeptChanged)="courseUpdated($event)"></app-programme>
-  </p-dialog>
+    <p-dialog 
+        header="APPLICATION GUIDELINE" 
+        [(visible)]="guidelineVisible" 
+        [modal]="true"
+        [closable]="true"
+        [style]="{ width: '540px', maxHeight: '90vh' }"
+        styleClass="guidelines-dialog">
+        <div class="guidelines-wrapper">
+            <div class="guidelines-intro">
+                Kindly read the Application Guideline carefully before you proceed with the application. It is very important to understand and follow the guideline to avoid error in your application.
+            </div>
+            
+            <div class="guidelines-scroll-area">
+                <ol class="guidelines-list">
+                    <li class="guideline-item">
+                        Candidates for admission into the Basic Midwifery Programme must possess the Senior Secondary School Certificate (SSCE) or its equivalent at credit level in the following five (5) subjects at not more than two (2) sittings:
+                        <ul class="subjects-list">
+                            <li>Physics</li>
+                            <li>Chemistry</li>
+                            <li>Biology</li>
+                            <li>English</li>
+                            <li>Mathematics</li>
+                        </ul>
+                    </li>
+                    
+                    <li class="guideline-item">
+                        Candidates are required to upload the following documents in addition to other relevant documents:
+                        <ul class="subjects-list">
+                            <li>Certificate of Birth</li>
+                            <li>O' Level (SSCE) Certificates</li>
+                            <li>Certificate of Origin</li>
+                            <li>Passport Photograph</li>
+                        </ul>
+                    </li>
+                    
+                    <li class="guideline-item">
+                        Candidates are required to make payment of a non-refundable sum of Fifteen Thousand Naira Only (NGN15,000.00) as application fee.
+                    </li>
+                    
+                    <li class="guideline-item">
+                        Candidate must have a minimum JAMB score of 150 and must have chosen the institution as first choice in the 2024 UTME registration. Moreover, candidates who did not select CONSMMEFS as their first choice can change institution on the JAMB Portal.
+                    </li>
+                </ol>
+                
+                <div class="acceptance-section">
+                    <p-checkbox 
+                        [(ngModel)]="guidelinesAccepted" 
+                        [binary]="true" 
+                        inputId="acceptguide">
+                    </p-checkbox>
+                    <label for="acceptguide" class="acceptance-label">
+                        I have read and understand the guideline
+                    </label>
+                </div>
+            </div>
+        </div>
 
-  <p-dialog 
-      header="APPLICATION GUIDELINE" 
-      [(visible)]="guidelineVisible" 
-      [modal]="true"
-      [closable]="true"
-      [style]="{ width: '540px', maxHeight: '90vh' }"
-      styleClass="guidelines-dialog">
-      <div class="guidelines-wrapper">
-          <div class="guidelines-intro">
-              Kindly read the Application Guideline carefully before you proceed with the application. It is very important to understand and follow the guideline to avoid error in your application.
-          </div>
-          
-          <div class="guidelines-scroll-area">
-              <ol class="guidelines-list">
-                  <li class="guideline-item">
-                      Candidates for admission into the Basic Midwifery Programme must possess the Senior Secondary School Certificate (SSCE) or its equivalent at credit level in the following five (5) subjects at not more than two (2) sittings:
-                      <ul class="subjects-list">
-                          <li>Physics</li>
-                          <li>Chemistry</li>
-                          <li>Biology</li>
-                          <li>English</li>
-                          <li>Mathematics</li>
-                      </ul>
-                  </li>
-                  
-                  <li class="guideline-item">
-                      Candidates are required to upload the following documents in addition to other relevant documents:
-                      <ul class="subjects-list">
-                          <li>Certificate of Birth</li>
-                          <li>O' Level (SSCE) Certificates</li>
-                          <li>Certificate of Origin</li>
-                          <li>Passport Photograph</li>
-                      </ul>
-                  </li>
-                  
-                  <li class="guideline-item">
-                      Candidates are required to make payment of a non-refundable sum of Fifteen Thousand Naira Only (NGN15,000.00) as application fee.
-                  </li>
-                  
-                  <li class="guideline-item">
-                      Candidate must have a minimum JAMB score of 150 and must have chosen the institution as first choice in the 2024 UTME registration. Moreover, candidates who did not select CONSMMEFS as their first choice can change institution on the JAMB Portal.
-                  </li>
-              </ol>
-              
-              <div class="acceptance-section">
-                  <p-checkbox 
-                      [(ngModel)]="guidelinesAccepted" 
-                      [binary]="true" 
-                      inputId="acceptguide">
-                  </p-checkbox>
-                  <label for="acceptguide" class="acceptance-label">
-                      I have read and understand the guideline
-                  </label>
-              </div>
-          </div>
-      </div>
-
-      <ng-template pTemplate="footer">
-          <div class="dialog-footer">
-              <p-button 
-                  label="Continue to Payments" 
-                  icon="pi pi-arrow-right"
-                  iconPos="right"
-                  [disabled]="!guidelinesAccepted"
-                  (onClick)="dismissGuideline()"
-                  styleClass="continue-payment-btn">
-              </p-button>
-          </div>
-      </ng-template>
-  </p-dialog>
+        <ng-template pTemplate="footer">
+            <div class="dialog-footer">
+                <p-button 
+                    label="Continue to Payments" 
+                    icon="pi pi-arrow-right"
+                    iconPos="right"
+                    [disabled]="!guidelinesAccepted"
+                    (onClick)="dismissGuideline()"
+                    styleClass="continue-payment-btn">
+                </p-button>
+            </div>
+        </ng-template>
+    </p-dialog>
 </div>

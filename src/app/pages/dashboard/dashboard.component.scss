@@ -1,5 +1,177 @@
 @import '../../../assets/demo/theme';
 
+
+// ============================================================================
+// WELCOME PANEL - MOBILE RESPONSIVE
+// ============================================================================
+.welcome-panel-container {
+    width: 0%;
+    height: 0px;
+    margin-left: 100%;
+    transition: all 1s ease-out;
+
+    &.panel-visible {
+        width: 100%;
+        height: auto;
+        margin-left: 0%;
+        min-height: 100px;
+    }
+}
+
+.welcome-content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing-4;
+    padding: $spacing-6 $spacing-4;
+    min-height: 100px;
+
+    @media (min-width: $breakpoint-md) {
+        padding: $spacing-6 $spacing-8;
+    }
+}
+
+.welcome-text-section {
+    flex: 1;
+    min-width: 0;
+}
+
+.welcome-title {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    margin-bottom: 0.25rem;
+
+    @media (min-width: $breakpoint-sm) {
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+
+    @media (min-width: $breakpoint-md) {
+        font-size: 1.875rem;
+        line-height: 2.25rem;
+    }
+}
+
+.welcome-app-number {
+    font-weight: 700;
+    color: white;
+    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
+
+    @media (min-width: $breakpoint-sm) {
+        font-size: 0.875rem;
+    }
+
+    .app-number-highlight {
+        color: #fbbf24; /* yellow-400 */
+        font-weight: 600;
+    }
+}
+
+.welcome-subtitle {
+    font-size: 0.75rem;
+    display: none;
+
+    @media (min-width: $breakpoint-sm) {
+        display: block;
+        font-size: 0.875rem;
+    }
+}
+
+.welcome-actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+
+    @media (min-width: $breakpoint-sm) {
+        gap: $spacing-4;
+    }
+}
+
+.action-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-3;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: $radius-md;
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 60px;
+
+    @media (min-width: $breakpoint-sm) {
+        padding: $spacing-4;
+        min-width: 80px;
+    }
+
+    @media (min-width: $breakpoint-md) {
+        padding: $spacing-5;
+        min-width: auto;
+    }
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1.05) translateY(-2px);
+    }
+
+    .action-icon {
+        font-size: 1.25rem;
+        margin-bottom: 0.25rem;
+
+        @media (min-width: $breakpoint-md) {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+    }
+
+    .action-label {
+        font-size: 0.625rem;
+        font-weight: 500;
+        text-align: center;
+        line-height: 1.2;
+
+        @media (min-width: $breakpoint-sm) {
+            font-size: 0.75rem;
+        }
+    }
+}
+
+.welcome-close-btn {
+    flex-shrink: 0;
+    margin-left: $spacing-2;
+
+    @media (min-width: $breakpoint-md) {
+        margin-left: $spacing-6;
+    }
+}
+
+.close-btn-inner {
+    padding: $spacing-2;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: $radius-xl;
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        background: rgba(239, 68, 68, 0.8); /* red-500 */
+        transform: scale(1.1);
+    }
+
+    i {
+        font-size: 1rem;
+
+        @media (min-width: $breakpoint-md) {
+            font-size: 1.125rem;
+        }
+    }
+}
+
 // ============================================================================
 // ANIMATIONS
 // ============================================================================
