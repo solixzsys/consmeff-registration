@@ -12,7 +12,6 @@ import { ProgrammeComponent } from '../../widgets/admission/programme/programme.
 import { firstValueFrom } from 'rxjs';
 import { ApplicationService } from '../../services/application.service';
 import { RegStoreService } from '../../services/regstore.service';
-import { RegistrantDataDTO } from '../../data/application/registrantdatadto';
 
 interface TimelineStage {
     title: string;
@@ -44,7 +43,6 @@ export class Dashboard {
     showWelcomeText = false;
     showActionButtons = false;
     user: string = "user";
-    appno:string="";
     visible: boolean = false;
     guidelinesAccepted = false;
 
@@ -154,14 +152,12 @@ export class Dashboard {
         return result;
     }
 
-    updateDashboardFromBackend(data: RegistrantDataDTO): void {
+    updateDashboardFromBackend(data: any): void {
         // Update metrics from backend data
         if (data.data) {
-            this.applicationNumber = data.data.application_no || this.applicationNumber;
+            this.applicationNumber = data.data.applicationNumber || this.applicationNumber;
             this.programmeName = data.data.program?.name || this.programmeName;
             this.paymentStatus = sessionStorage.getItem("PAYMENT_STATUS") || this.paymentStatus;
-            this.academicSession= data.data.session.name || this.academicSession;
-            this.appliedDate = data.data.created_at ? new Date(data.data.created_at).toLocaleDateString() : this.appliedDate;
             
             // Update timeline based on backend status
             this.updateTimelineStatus();
@@ -187,18 +183,19 @@ export class Dashboard {
     }
 
     ngOnInit(): void {
-        const name = sessionStorage.getItem("user_name") || '';
-        this.appno= sessionStorage.getItem("APP_NO") || '';
-        
-        if (name != '') {
-            // let email = this.jwtservices.getUserEmail(token)!;
-            this.user = name;
+        const token = sessionStorage.getItem("key") || '';
+        if (token != '') {
+            let email = this.jwtservices.getUserEmail(token)!;
+            this.user = email.split("@")[0];
         }
         
+        // Initialize data immediately to prevent blank screen
+        this.dataIntitialization();
+        
+        // Start welcome panel animation after a short delay
         setTimeout(() => {
             this.startWelcomePanelAnimation();
-            this.dataIntitialization();
-        }, 2000);
+        }, 500);
     }
 
     private startWelcomePanelAnimation(): void {

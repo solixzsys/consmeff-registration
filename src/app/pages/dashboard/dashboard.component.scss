@@ -1,5 +1,27 @@
 @import '../../../assets/demo/theme';
 
+// ============================================================================
+// DASHBOARD CONTENT - ENSURE VISIBILITY ON MOBILE
+// ============================================================================
+.dashboard-content {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    
+    // Prevent any accidental hiding during animations
+    &.contents {
+        display: block !important;
+    }
+}
+
+// Force render for Chrome Android
+@supports (-webkit-appearance: none) {
+    .dashboard-content {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        will-change: auto;
+    }
+}
 
 // ============================================================================
 // WELCOME PANEL - MOBILE RESPONSIVE
@@ -231,9 +253,16 @@
     display: flex;
     align-items: flex-start;
     gap: $spacing-4;
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    // Force GPU acceleration for better mobile performance
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    backface-visibility: hidden;
 
     &:hover {
-        transform: translateY(-4px);
+        transform: translateY(-4px) translateZ(0);
         box-shadow: $shadow-xl;
     }
 
@@ -303,6 +332,13 @@
     padding: $spacing-8;
     box-shadow: $shadow-md;
     border: 1px solid $border-color;
+    opacity: 1 !important;
+    visibility: visible !important;
+    
+    // Force GPU acceleration
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    backface-visibility: hidden;
 
     .card-header {
         display: flex;
@@ -533,6 +569,13 @@
     box-shadow: $shadow-md;
     border: 1px solid $border-color;
     height: 100%;
+    opacity: 1 !important;
+    visibility: visible !important;
+    
+    // Force GPU acceleration
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .dark .info-card {
@@ -651,6 +694,13 @@
     box-shadow: $shadow-md;
     border: 1px solid $border-color;
     height: 100%;
+    opacity: 1 !important;
+    visibility: visible !important;
+    
+    // Force GPU acceleration
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .dark .notices-card {
