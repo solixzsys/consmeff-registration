@@ -204,12 +204,12 @@ export class PaymentComponent {
           .subscribe({
             next: (data) => {
               this.isLoading = false;
-              this.showSuccess('Payment Successful', 'Your payment has been verified successfully');
+              this.showSuccess('Payment Successful', 'Your payment has been verified successfully, login to continue.');
               this.btnState = 1;
               this.canMove = true;
               
               setTimeout(() => {
-                this.router.navigateByUrl("/pages/admissionform");
+                this.router.navigateByUrl("/auth/login");
               }, 1500);
             },
             error: (err) => {
