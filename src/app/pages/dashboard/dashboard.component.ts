@@ -183,10 +183,10 @@ export class Dashboard {
     }
 
     ngOnInit(): void {
-        const token = sessionStorage.getItem("key") || '';
-        if (token != '') {
-            let email = this.jwtservices.getUserEmail(token)!;
-            this.user = email.split("@")[0];
+        const name = sessionStorage.getItem("user_name") || '';
+        if (name != '') {
+            // let email = this.jwtservices.getUserEmail(token)!;
+            this.user = name;
         }
         
         // Initialize data immediately to prevent blank screen
