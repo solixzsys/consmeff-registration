@@ -59,7 +59,7 @@ export class Dashboard {
     paymentStatus: string = 'Pending';
     currentStage: string = 'Registration';
     appliedDate: string = 'Jan 10, 2026';
-    applicationNumber: string = 'APP-2026-0001';
+    applicationNumber: string = '';
     programmeName: string = 'Basic Midwifery Programme';
     academicSession: string = '2025/2026';
     entryMode: string = 'UTME';
@@ -184,9 +184,11 @@ export class Dashboard {
 
     ngOnInit(): void {
         const name = sessionStorage.getItem("user_name") || '';
+        const token = sessionStorage.getItem("token") || '';
         if (name != '') {
             // let email = this.jwtservices.getUserEmail(token)!;
             this.user = name;
+            this.applicationNumber = sessionStorage.getItem("APP_NO") || '';
         }
         
         // Initialize data immediately to prevent blank screen
