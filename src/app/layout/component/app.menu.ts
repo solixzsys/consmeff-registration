@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { AppMenuitem } from './app.menuitem';
 import { ALL_ROLES, PermissionService } from '../../services/permission.service';
+import { RegStoreService } from '../../services/regstore.service';
+import { RegistrantDataDTO } from '../../data/application/registrantdatadto';
 
 @Component({
     selector: 'app-menu',
@@ -20,7 +22,7 @@ export class AppMenu {
     model: MenuItem[] = [];
 
 
-    constructor(private permission: PermissionService) { }
+    constructor(private permission: PermissionService, private regstore: RegStoreService,) { }
 
     ngOnInit() {
         const fullTree: MenuItem[] = [
@@ -29,166 +31,6 @@ export class AppMenu {
                 items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/pages/dashboard'] }]
             },
 
-            // {
-            //     label: 'Traceability',
-            //     icon: 'pi pi-fw pi-briefcase',
-            //     routerLink: ['/traceability'],
-            //     data: { roles: ALL_ROLES.slice(0, -2) },
-            //     items: [
-            //         {
-            //             label: 'Serialization',
-            //             icon: 'pi pi-th-large',
-            //             items: [
-            //                 {
-            //                     label: 'Encoding Intent',
-            //                     icon: 'pi pi-fw pi-key',
-            //                     routerLink: ['/traceability/serialization/encoding'],
-            //                     data: { roles: ['can_generate_sgtin', 'can_generate_sscc', 'can_upload_event_file', 'can_integrate_with_api'] }
-            //                 },
-            //                 {
-            //                     label: 'Barcoding',
-            //                     icon: 'pi pi-fw pi-qrcode',
-            //                     routerLink: ['/traceability/serialization/barcoding'],
-            //                     data: { roles: ['can_generate_barcode', 'can_download_barcode_label'] }
-            //                 },
-            //                 {
-            //                     label: 'CodingLists',
-            //                     icon: 'pi pi-fw pi-list',
-            //                     routerLink: ['/traceability/serialization/codinglist']
-            //                 }
-            //             ],
-            //             data: { roles: ALL_ROLES.slice(0, 5) },
-            //         },
-            //         {
-            //             label: 'Commission',
-            //             icon: 'pi pi-microchip',
-            //             items: [
-            //                 {
-            //                     label: 'Commission Intent',
-            //                     icon: 'pi pi-fw pi-external-link',
-            //                     routerLink: ['/traceability/commissioning/commissioning'],
-            //                     data: {
-            //                         roles: ['can_commission_with_form',
-            //                             'can_commission_in_batches']
-            //                     }
-            //                 },
-            //                 {
-            //                     label: 'CommissionList',
-            //                     icon: 'pi pi-list-check',
-            //                     routerLink: ['/traceability/commissioning/commissionlist']
-            //                 }
-
-            //             ],
-            //             data: {
-            //                 roles: ['can_commission_with_form',
-            //                     'can_commission_in_batches']
-            //             },
-            //         },
-            //         {
-            //             label: 'Aggregation',
-            //             icon: 'pi pi-sitemap',
-            //             items: [
-            //                 {
-            //                     label: 'Packing',
-            //                     icon: 'pi pi pi-fw pi-box',
-            //                     routerLink: ['/traceability/aggregation/packing'],
-            //                     data: {
-            //                         roles: ['can_pack_with_form',
-            //                             'can_pack_in_batches']
-            //                     }
-            //                 },
-            //                 {
-            //                     label: 'UnPacking',
-            //                     icon: 'pi pi-sort-alt-slash',
-            //                     routerLink: ['/traceability/aggregation/unpacking'],
-            //                     data: {
-            //                         roles: ['can_unpack_partially',
-            //                             'can_unpack_in_full']
-            //                     }
-            //                 }
-            //             ],
-            //             data: {
-            //                 roles: ['can_pack_with_form',
-            //                     'can_pack_in_batches',
-            //                     'can_unpack_partially',
-            //                     'can_unpack_in_full']
-            //             },
-            //         },
-            //         {
-            //             label: 'Transaction',
-            //             icon: 'pi pi-fw pi-arrow-right-arrow-left',
-            //             items: [
-            //                 {
-            //                     label: 'Shipping',
-            //                     icon: 'pi pi-fw pi-sign-in',
-            //                     routerLink: ['/traceability/transaction/shipping'],
-            //                     data: {
-            //                         roles: ['can_transfer',
-            //                             'can_transfer_in_batches']
-            //                     }
-            //                 },
-            //                 {
-            //                     label: 'Receiving',
-            //                     icon: 'pi pi-fw pi-truck',
-            //                     routerLink: ['/traceability/transaction/receiving'],
-            //                     data: {
-            //                         roles: ['can_receive',
-            //                             'can_receive_in_batches',]
-            //                     }
-            //                 },
-            //                 {
-            //                     label: 'TransferList',
-            //                     icon: 'pi pi-angle-double-down',
-            //                     routerLink: ['/traceability/transaction/transferlist']
-            //                 }
-            //             ],
-            //             data: {
-            //                 roles: [
-            //                     'can_receive',
-            //                     'can_transfer',
-            //                     'can_transfer_in_batches',
-            //                     'can_receive_in_batches']
-            //             },
-            //         },
-            //         {
-            //             label: 'Events Information',
-            //             icon: 'pi pi-history',
-            //             items: [
-
-            //                 {
-            //                     label: 'EventsLog',
-            //                     icon: 'pi pi-fw pi-calendar',
-            //                     routerLink: ['/traceability/eventinformation/eventslog']
-            //                 }
-            //             ],
-            //             data: { roles: ['can_view_eventlog'] }
-            //         },
-            //     ]
-            // },
-            // {
-            //     label: 'Master Data Information',
-            //     icon: '',
-            //     items: [
-            //         {
-            //             label: 'Products Information',
-            //             icon: 'pi pi-fw pi-box',
-            //             routerLink: ['/masterdata/products'],
-            //             data: { roles: ['can_view_productinformation'] }
-            //         },
-            //         {
-            //             label: 'Locations Information',
-            //             icon: 'pi pi-fw pi-map-marker',
-            //             routerLink: ['/masterdata/locations'],
-            //             data: { roles: ['can_view_locationinformation'] }
-            //         }
-            //     ],
-            //     data: {
-            //         roles: [
-            //             'can_view_productinformation',
-            //             'can_view_locationinformation'
-            //         ]
-            //     }
-            // },
             {
                 label: 'Application',
                 icon: '',
@@ -201,6 +43,11 @@ export class AppMenu {
                                 label: 'New Registration',
                                 icon: 'pi pi-fw pi-sign-out',
                                 routerLink: ['/pages/admissionform']
+                            },
+                            {
+                                label: 'Registration Summary',
+                                icon: 'pi pi-fw pi-file',
+                                routerLink: ['/pages/summarypage']
                             }
                         ]
                     }
@@ -241,6 +88,31 @@ export class AppMenu {
         ];
 
         this.model = this.filterMenu(fullTree);
+        this.regstore.regData$.subscribe((data) => {
+            this.setRegistrationStage(data);
+        });
+
+    }
+
+    setRegistrationStage(data: RegistrantDataDTO|null) {
+        let _data = data?.data;
+        if (_data != undefined && _data != null) {
+            if (
+                _data.residential_address != null &&
+                _data.primary_parent_or_guardian != null &&
+                _data.academic_history != null &&
+                _data.o_level_result != null &&
+                _data.utme_result != null &&
+                _data.certificate_of_birth != null &&
+                _data.passport_photo != null
+            ) {
+                this.model[1]?.items?.[0]?.items?.[0] && (this.model[1].items[0].items[0].visible = false);
+            } else {
+                this.model[1]?.items?.[0]?.items?.[1] && (this.model[1].items[0].items[1].visible = false);
+            }
+
+
+        }
     }
 
     private filterMenu(items: MenuItem[]): MenuItem[] {

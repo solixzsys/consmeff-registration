@@ -12,6 +12,7 @@ import { ProgrammeComponent } from '../../widgets/admission/programme/programme.
 import { firstValueFrom } from 'rxjs';
 import { ApplicationService } from '../../services/application.service';
 import { RegStoreService } from '../../services/regstore.service';
+import { RegistrantDataDTO } from '../../data/application/registrantdatadto';
 
 interface TimelineStage {
     title: string;
@@ -63,6 +64,7 @@ export class Dashboard {
     programmeName: string = 'Basic Midwifery Programme';
     academicSession: string = '2025/2026';
     entryMode: string = 'UTME';
+    registrationStage="";
 
     stages: TimelineStage[] = [
         {
@@ -142,7 +144,7 @@ export class Dashboard {
                     
                     // Update dashboard data from backend
                     this.updateDashboardFromBackend(data);
-                    
+                    this.setRegistrationStage(data);
                     result = true;
                 })
                 .catch((err) => {
@@ -150,6 +152,27 @@ export class Dashboard {
                 })
         }
         return result;
+    }
+    setRegistrationStage(data: RegistrantDataDTO) {
+        let _data=data?.data;
+        if(_data != undefined && _data != null){
+            if(
+                _data.residential_address !=null && 
+                _data.primary_parent_or_guardian !=null && 
+                _data.academic_history !=null &&
+                _data.o_level_result !=null &&
+                _data.utme_result !=null &&
+                _data.certificate_of_birth !=null &&
+                _data.passport_photo !=null 
+            ){
+                this.registrationStage="Completed";
+                this.actionButtons=[];
+            }else{
+                this.registrationStage="In Progress";
+            }
+
+            
+        }
     }
 
     updateDashboardFromBackend(data: any): void {
